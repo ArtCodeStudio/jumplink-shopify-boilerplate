@@ -1,3 +1,4 @@
+'use strict';
 /*
   Bootstrapify build tasks
 */
@@ -9,7 +10,8 @@ var gulp          = require('gulp'),
     concat        = require('gulp-concat'),
     pjson         = require('./package.json'),
     zip           = require('gulp-zip'),
-    SassImport    = require('./utils/sass_import.js');
+    SassImport    = require('./utils/sass_import.js'),
+    sass          = require('gulp-sass');
 
 // Basic error messages output to the console.
 // Used with plumber so we don't stop the other tasks from running or kill the gulp process on an error
@@ -35,10 +37,17 @@ gulp.task('default', function () {
 });
 
 // Helper for sass tasks
-gulp.task('sass', ['sass_concat']);
+gulp.task('sass', ['bootstrap_sass_test_build', 'sass_concat']);
 
 // ALL THE TASKS!!! plus zipping up a fully built theme
 gulp.task('build', ['sass', 'zip']);
+
+// build sass to test build
+gulp.task('bootstrap_sass_test_build', function () {
+  return gulp.src('./bower_components/bootstrap/scss/bootstrap.scss')
+    .pipe(sass().on('error', onError))
+    .pipe(gulp.dest('./css'));
+});
 
 // SASS_CONCAT: Pull our scss files together and move them into the themes assets
 gulp.task('sass_concat', function () {

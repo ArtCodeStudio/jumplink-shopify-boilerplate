@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "v4.0.0-alpha.3"
+    "bootstrap": "JumpLinkNetwork/bootstrap#v4-0-0-alpha-3-scss-backward"
   }
 }

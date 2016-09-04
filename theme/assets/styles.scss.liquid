@@ -1,4 +1,16 @@
 @charset 'utf-8';
+
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    transition: $transition;
+  }
+}
 // Bootstrap overrides
 //
 // Copy variables from `_variables.scss` to this file to override default values
@@ -26,17 +38,18 @@
 @mixin _assert-ascending($map, $map-name) {
   $prev-key: null;
   $prev-num: null;
-  @each $key, $num in $map {
-    @if $prev-num == null {
-      // Do nothing
-    } @else if not comparable($prev-num, $num) {
-      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-    } @else if $prev-num >= $num {
-      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-    }
-    $prev-key: $key;
-    $prev-num: $num;
-  }
+  // TODO
+  // @each $key, $num in $map {
+  //   @if $prev-num == null {
+  //     // Do nothing
+  //   } @else if not comparable($prev-num, $num) {
+  //     @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  //   } @else if $prev-num >= $num {
+  //     @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  //   }
+  //   $prev-key: $key;
+  //   $prev-num: $num;
+  // }
 }
 
 // General variable structure
@@ -85,24 +98,16 @@ $enable-print-styles:       true !default;
 $spacer:   1rem !default;
 $spacer-x: $spacer !default;
 $spacer-y: $spacer !default;
-$spacers: (
-  0: (
-    x: 0,
-    y: 0
-  ),
-  1: (
-    x: $spacer-x,
-    y: $spacer-y
-  ),
-  2: (
-    x: ($spacer-x * 1.5),
-    y: ($spacer-y * 1.5)
-  ),
-  3: (
-    x: ($spacer-x * 3),
-    y: ($spacer-y * 3)
-  )
-) !default;
+
+$spacers-x-0: 0 !default;
+$spacers-y-0: 0 !default;
+$spacers-x-1: $spacer-x !default;
+$spacers-y-1: $spacer-y !default;
+$spacers-x-2: ($spacer-x * 1.5) !default;
+$spacers-y-2: ($spacer-y * 1.5) !default;
+$spacers-x-3: ($spacer-x * 3) !default;
+$spacers-y-3: ($spacer-y * 3) !default;
+
 $border-width: 1px !default;
 
 
@@ -129,27 +134,26 @@ $link-hover-decoration: underline !default;
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 544px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
-) !default;
-@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+$grid-breakpoints-xs: 0 !default;
+$grid-breakpoints-sm: 544px !default;
+$grid-breakpoints-md: 768px !default;
+$grid-breakpoints-lg: 992px !default;
+$grid-breakpoints-xl: 1200px !default;
+
+// @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 
 
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
 
-$container-max-widths: (
-  sm: 576px,
-  md: 720px,
-  lg: 940px,
-  xl: 1140px
-) !default;
-@include _assert-ascending($container-max-widths, "$container-max-widths");
+$container-max-widths-xs: 576px !default;
+$container-max-widths-sm: 576px !default;
+$container-max-widths-md: 720px !default;
+$container-max-widths-lg: 940px !default;
+$container-max-widths-xl: 1140px !default;
+
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
 
 
 // Grid columns
@@ -423,14 +427,9 @@ $custom-file-border-radius: $border-radius !default;
 $custom-file-box-shadow:    inset 0 .2rem .4rem rgba(0,0,0,.05) !default;
 $custom-file-button-color:  $custom-file-color !default;
 $custom-file-button-bg:     #eee !default;
-$custom-file-text: (
-  placeholder: (
-    en: "Choose file..."
-  ),
-  button-label: (
-    en: "Browse"
-  )
-) !default;
+
+$custom-file-text-placeholder-en: "Choose file..." !default;
+$custom-file-text-button-label-en: "Browse" !default;
 
 
 // Form validation icons
@@ -850,18 +849,43 @@ $pre-scrollable-max-height:   340px !default;
 //    md
 //    >> breakpoint-next(sm, $breakpoint-names: (xs sm md))
 //    md
-@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-  $n: index($breakpoint-names, $name);
-  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+@function breakpoint-next($name) {
+  $next: sm;
+
+  @if($name == sm) {
+    $next: md;
+  }
+  @if($name == md) {
+    $next: lg;
+  }
+  @if($name == lg) {
+    $next: null;
+  }
+
+  @return $next;
 }
 
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.
 //
 //    >> breakpoint-min(sm, (xs: 0, sm: 544px, md: 768px))
 //    544px
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-  $min: map-get($breakpoints, $name);
-  @return if($min != 0, $min, null);
+@function breakpoint-min($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  $result: $grid-breakpoints-xs;
+
+  @if($name == sm) {
+    $result: null;
+  }
+  @if($name == md) {
+    $result: $md;
+  }
+  @if($name == lg) {
+    $result: $lg;
+  }
+  @if($name == lg) {
+    $result: $xl;
+  }
+
+  @return $result;
 }
 
 // Maximum breakpoint width. Null for the largest (last) breakpoint.
@@ -869,15 +893,29 @@ $pre-scrollable-max-height:   340px !default;
 //
 //    >> breakpoint-max(sm, (xs: 0, sm: 544px, md: 768px))
 //    767px
-@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-  $next: breakpoint-next($name, $breakpoints);
-  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+@function breakpoint-max($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  $result: $sm  - 1px;
+
+  @if($name == sm) {
+    $result: $md - 1px;
+  }
+  @if($name == md) {
+    $result: $lg - 1px;
+  }
+  @if($name == lg) {
+    $result: $xl - 1px;
+  }
+  @if($name == xl) {
+    $result: null;
+  }
+  
+  @return $result;
 }
 
 // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
 // Makes the @content apply to the given breakpoint and wider.
-@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
-  $min: breakpoint-min($name, $breakpoints);
+@mixin media-breakpoint-up($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  $min: breakpoint-min($name, $xs, $sm, $md, $lg, $xl);
   @if $min {
     @media (min-width: $min) {
       @content;
@@ -889,8 +927,8 @@ $pre-scrollable-max-height:   340px !default;
 
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
 // Makes the @content apply to the given breakpoint and narrower.
-@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
-  $max: breakpoint-max($name, $breakpoints);
+@mixin media-breakpoint-down($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  $max: breakpoint-max($name, $xs, $sm, $md, $lg, $xl);
   @if $max {
     @media (max-width: $max) {
       @content;
@@ -903,9 +941,9 @@ $pre-scrollable-max-height:   340px !default;
 // Media between the breakpoint's minimum and maximum widths.
 // No minimum for the smallest breakpoint, and no maximum for the largest one.
 // Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
-@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
-  @include media-breakpoint-up($name, $breakpoints) {
-    @include media-breakpoint-down($name, $breakpoints) {
+@mixin media-breakpoint-only($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  @include media-breakpoint-up($name, $xs, $sm, $md, $lg, $xl) {
+    @include media-breakpoint-down($name, $xs, $sm, $md, $lg, $xl) {
       @content;
     }
   }
@@ -913,9 +951,9 @@ $pre-scrollable-max-height:   340px !default;
 
 // Media that spans multiple breakpoint widths.
 // Makes the @content apply between the min and max breakpoints
-@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
-  @include media-breakpoint-up($lower, $breakpoints) {
-    @include media-breakpoint-down($upper, $breakpoints) {
+@mixin media-breakpoint-between($lower, $upper, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+  @include media-breakpoint-up($lower, $xs, $sm, $md, $lg, $xl) {
+    @include media-breakpoint-down($upper, $xs, $sm, $md, $lg, $xl) {
       @content;
     }
   }
@@ -1643,7 +1681,7 @@ $pre-scrollable-max-height:   340px !default;
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width) {
 
   // Common properties for all breakpoints
   %grid-column {
@@ -1660,53 +1698,295 @@ $pre-scrollable-max-height:   340px !default;
   }
 
   $breakpoint-counter: 0;
-  @each $breakpoint in map-keys($breakpoints) {
-    $breakpoint-counter: ($breakpoint-counter + 1);
+  // @each $breakpoint in map-keys($breakpoints) {
+  //   $breakpoint-counter: ($breakpoint-counter + 1);
 
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @extend %grid-column;
+  //   @for $i from 1 through $columns {
+  //     .col-#{$breakpoint}-#{$i} {
+  //       @extend %grid-column;
+  //     }
+  //   }
+
+  //   @include media-breakpoint-up($breakpoint, $breakpoints) {
+  //     // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+  //     @if $enable-flex {
+  //       .col-#{$breakpoint} {
+  //         position: relative;
+  //         flex-basis: 0;
+  //         flex-grow: 1;
+  //         max-width: 100%;
+  //         min-height: 1px;
+  //         padding-right: ($grid-gutter-width / 2);
+  //         padding-left:  ($grid-gutter-width / 2);
+  //       }
+  //     }
+
+  //     @for $i from 1 through $columns {
+  //       .col-#{$breakpoint}-#{$i} {
+  //         @include make-col($i, $columns, $gutter);
+  //       }
+  //     }
+
+  //     @each $modifier in (pull, push) {
+  //       @for $i from 0 through $columns {
+  //         .#{$modifier}-#{$breakpoint}-#{$i} {
+  //           @include make-col-modifier($modifier, $i, $columns)
+  //         }
+  //       }
+  //     }
+
+  //     // `$columns - 1` because offsetting by the width of an entire row isn't possible
+  //     @for $i from 0 through ($columns - 1) {
+  //       @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+  //         .offset-#{$breakpoint}-#{$i} {
+  //           @include make-col-modifier(offset, $i, $columns)
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  // xs
+  $breakpoint: xs;
+  $breakpoint-counter: ($breakpoint-counter + 1);
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up(xs, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
       }
     }
 
-    @include media-breakpoint-up($breakpoint, $breakpoints) {
-      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-      @if $enable-flex {
-        .col-#{$breakpoint} {
-          position: relative;
-          flex-basis: 0;
-          flex-grow: 1;
-          max-width: 100%;
-          min-height: 1px;
-          padding-right: ($grid-gutter-width / 2);
-          padding-left:  ($grid-gutter-width / 2);
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns, $gutter);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
         }
       }
+    }
 
-      @for $i from 1 through $columns {
-        .col-#{$breakpoint}-#{$i} {
-          @include make-col($i, $columns, $gutter);
-        }
-      }
-
-      @each $modifier in (pull, push) {
-        @for $i from 0 through $columns {
-          .#{$modifier}-#{$breakpoint}-#{$i} {
-            @include make-col-modifier($modifier, $i, $columns)
-          }
-        }
-      }
-
-      // `$columns - 1` because offsetting by the width of an entire row isn't possible
-      @for $i from 0 through ($columns - 1) {
-        @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-          .offset-#{$breakpoint}-#{$i} {
-            @include make-col-modifier(offset, $i, $columns)
-          }
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
         }
       }
     }
   }
+
+  // sm
+  $breakpoint: sm;
+  $breakpoint-counter: ($breakpoint-counter + 1);
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
+      }
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns, $gutter);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
+        }
+      }
+    }
+
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
+        }
+      }
+    }
+  }
+
+  // md
+  $breakpoint: md;
+  $breakpoint-counter: ($breakpoint-counter + 1);
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
+      }
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns, $gutter);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
+        }
+      }
+    }
+
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
+        }
+      }
+    }
+  }
+
+  // lg
+  $breakpoint: lg;
+  $breakpoint-counter: ($breakpoint-counter + 1);
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up(lg, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
+      }
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns, $gutter);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
+        }
+      }
+    }
+
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
+        }
+      }
+    }
+  }
+
+  // xl
+  $breakpoint: xl;
+  $breakpoint-counter: ($breakpoint-counter + 1);
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up(xl, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
+      }
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns, $gutter);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
+        }
+      }
+    }
+
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
+        }
+      }
+    }
+  }
+
+
 }
 
 /// Grid system
@@ -1723,15 +2003,22 @@ $pre-scrollable-max-height:   340px !default;
   }
 }
 
-
 // For each breakpoint, define the maximum width of the container in a media query
-@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
-  @each $breakpoint, $container-max-width in $max-widths {
-    @include media-breakpoint-up($breakpoint, $breakpoints) {
-      max-width: $container-max-width;
-    }
+@mixin make-container-max-widths() {
+  @include media-breakpoint-up(sm, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+    max-width: $container-max-widths-sm;
+  }
+  @include media-breakpoint-up(md, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+    max-width: $container-max-widths-md;
+  }
+  @include media-breakpoint-up(lg, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+    max-width: $container-max-widths-lg;
+  }
+  @include media-breakpoint-up(xl, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+    max-width: $container-max-widths-xl;
   }
 }
+
 
 @mixin make-row($gutter: $grid-gutter-width) {
   @if $enable-flex {
@@ -2340,5 +2627,4378 @@ textarea {
     }
 
     // Bootstrap specific changes end
+  }
+}
+
+//
+// Headings
+//
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+h1, .h1 { font-size: $font-size-h1; }
+h2, .h2 { font-size: $font-size-h2; }
+h3, .h3 { font-size: $font-size-h3; }
+h4, .h4 { font-size: $font-size-h4; }
+h5, .h5 { font-size: $font-size-h5; }
+h6, .h6 { font-size: $font-size-h6; }
+
+.lead {
+  font-size: $lead-font-size;
+  font-weight: $lead-font-weight;
+}
+
+// Type display classes
+.display-1 {
+  font-size: $display1-size;
+  font-weight: $display1-weight;
+}
+.display-2 {
+  font-size: $display2-size;
+  font-weight: $display2-weight;
+}
+.display-3 {
+  font-size: $display3-size;
+  font-weight: $display3-weight;
+}
+.display-4 {
+  font-size: $display4-size;
+  font-weight: $display4-weight;
+}
+
+
+//
+// Horizontal rules
+//
+
+hr {
+  margin-top: $spacer-y;
+  margin-bottom: $spacer-y;
+  border: 0;
+  border-top: $hr-border-width solid $hr-border-color;
+}
+
+
+//
+// Emphasis
+//
+
+small,
+.small {
+  font-size: $small-font-size;
+  font-weight: normal;
+}
+
+mark,
+.mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+
+//
+// Lists
+//
+
+.list-unstyled {
+  @include list-unstyled;
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+  @include list-unstyled;
+}
+.list-inline-item {
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-right: $list-inline-padding;
+  }
+}
+
+
+//
+// Misc
+//
+
+// Builds on `abbr`
+.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+// Blockquotes
+.blockquote {
+  padding: ($spacer / 2) $spacer;
+  margin-bottom: $spacer;
+  font-size: $blockquote-font-size;
+  border-left: $blockquote-border-width solid $blockquote-border-color;
+}
+
+.blockquote-footer {
+  display: block;
+  font-size: 80%; // back to default font-size
+  color: $blockquote-small-color;
+
+  &::before {
+    content: "\2014 \00A0"; // em dash, nbsp
+  }
+}
+
+// Opposite alignment of blockquote
+.blockquote-reverse {
+  padding-right: $spacer;
+  padding-left: 0;
+  text-align: right;
+  border-right: $blockquote-border-width solid $blockquote-border-color;
+  border-left: 0;
+}
+
+.blockquote-reverse .blockquote-footer {
+  &::before {
+    content: "";
+  }
+  &::after {
+    content: "\00A0 \2014"; // nbsp, em dash
+  }
+}
+
+@if not $enable-flex {
+  // Clean up some horizontal `<dl>`s built with grids
+  // scss-lint:disable QualifyingElement
+  dl.row {
+    > dd + dt {
+      clear: left;
+    }
+  }
+  // scss-lint:enable QualifyingElement
+}
+
+// Responsive images (ensure images don't scale beyond their parents)
+//
+// This is purposefully opt-in via an explicit class rather than being the default for all `<img>`s.
+// We previously tried the "images are responsive by default" approach in Bootstrap v2,
+// and abandoned it in Bootstrap v3 because it breaks lots of third-party widgets (including Google Maps)
+// which weren't expecting the images within themselves to be involuntarily resized.
+// See also https://github.com/twbs/bootstrap/issues/18178
+.img-fluid {
+  @include img-fluid();
+}
+
+// Rounded corners
+.img-rounded {
+  @include border-radius($border-radius-lg);
+}
+
+// Image thumbnails
+.img-thumbnail {
+  padding: $thumbnail-padding;
+  background-color: $thumbnail-bg;
+  border: $thumbnail-border-width solid $thumbnail-border-color;
+  @include border-radius($thumbnail-border-radius);
+  transition: all .2s ease-in-out;
+  @include box-shadow($thumbnail-box-shadow);
+
+  // Keep them at most 100% wide
+  @include img-fluid(inline-block);
+}
+
+// Perfect circle
+.img-circle {
+  border-radius: 50%;
+}
+
+//
+// Figures
+//
+
+.figure {
+  // Ensures the caption's text aligns with the image.
+  display: inline-block;
+}
+
+.figure-img {
+  margin-bottom: ($spacer-y / 2);
+  line-height: 1;
+}
+
+.figure-caption {
+  font-size: $figure-caption-font-size;
+  color: $gray-light;
+}
+
+// Inline and block code styles
+code,
+kbd,
+pre,
+samp {
+  font-family: $font-family-monospace;
+}
+
+// Inline code
+code {
+  padding: $code-padding-y $code-padding-x;
+  font-size: $code-font-size;
+  color: $code-color;
+  background-color: $code-bg;
+  @include border-radius($border-radius);
+}
+
+// User input typically entered via keyboard
+kbd {
+  padding: $code-padding-y $code-padding-x;
+  font-size: $code-font-size;
+  color: $kbd-color;
+  background-color: $kbd-bg;
+  @include border-radius($border-radius-sm);
+  @include box-shadow($kbd-box-shadow);
+
+  kbd {
+    padding: 0;
+    font-size: 100%;
+    font-weight: $nested-kbd-font-weight;
+    @include box-shadow(none);
+  }
+}
+
+// Blocks of code
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: $code-font-size;
+  color: $pre-color;
+
+  // Account for some code outputs that place code tags in pre tags
+  code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+
+// Enable scrollable blocks of code
+.pre-scrollable {
+  max-height: $pre-scrollable-max-height;
+  overflow-y: scroll;
+}
+
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes {
+  .container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+}
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but without any defined
+// width for fluid, full width layouts.
+
+@if $enable-grid-classes {
+  .container-fluid {
+    @include make-container();
+  }
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@if $enable-grid-classes {
+  .row {
+    @include make-row();
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+  @include make-grid-columns();
+}
+
+//
+// Basic Bootstrap table
+//
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $spacer;
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border-top: $table-border-width solid $table-border-color;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  .table {
+    background-color: $body-bg;
+  }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.table-sm {
+  th,
+  td {
+    padding: $table-sm-cell-padding;
+  }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+  border: $table-border-width solid $table-border-color;
+
+  th,
+  td {
+    border: $table-border-width solid $table-border-color;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: (2 * $table-border-width);
+    }
+  }
+}
+
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.table-striped {
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-bg-accent;
+  }
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+  tbody tr {
+    @include hover {
+      background-color: $table-bg-hover;
+    }
+  }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// Generate the contextual variants
+@include table-row-variant(active, $table-bg-active);
+@include table-row-variant(success, $state-success-bg);
+@include table-row-variant(info, $state-info-bg);
+@include table-row-variant(warning, $state-warning-bg);
+@include table-row-variant(danger, $state-danger-bg);
+
+
+// Inverse styles
+//
+// Same table markup, but inverted color scheme-dark background and light text.
+
+.thead-inverse {
+  th {
+    color: #fff;
+    background-color: $gray-dark;
+  }
+}
+
+.thead-default {
+  th {
+    color: $gray;
+    background-color: $gray-lighter;
+  }
+}
+
+.table-inverse {
+  color: $gray-lighter;
+  background-color: $gray-dark;
+
+  th,
+  td,
+  thead th {
+    border-color: $gray;
+  }
+
+  &.table-bordered {
+    border: 0;
+  }
+}
+// scss-lint:disable QualifyingElement
+
+//
+// Textual form controls
+//
+
+.form-control {
+  display: block;
+  width: 100%;
+  // // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  // height: $input-height;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $font-size-base;
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+  // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
+  background-image: none;
+  background-clip: padding-box;
+  border: $input-btn-border-width solid $input-border-color;
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @include border-radius($input-border-radius);
+  @include box-shadow($input-box-shadow);
+  @include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s);
+
+  // Unstyle the caret on `<select>`s in IE10+.
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  @include form-control-focus();
+
+  // Placeholder
+  &::placeholder {
+    color: $input-color-placeholder;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+
+  // Disabled and read-only inputs
+  //
+  // HTML5 says that controls under a fieldset > legend:first-child won't be
+  // disabled if the fieldset is disabled. Due to implementation difficulty, we
+  // don't honor that edge case; we style them as disabled anyway.
+  &:disabled,
+  &[readonly] {
+    background-color: $input-bg-disabled;
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+
+  &:disabled {
+    cursor: $cursor-disabled;
+  }
+}
+
+select.form-control {
+  &:not([size]):not([multiple]) {
+    height: $input-height;
+  }
+
+  &:focus::-ms-value {
+    // Suppress the nested default white text on blue background highlight given to
+    // the selected option text when the (still closed) <select> receives focus
+    // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
+    // match the appearance of the native widget.
+    // See https://github.com/twbs/bootstrap/issues/19398.
+    color: $input-color;
+    background-color: $input-bg;
+  }
+}
+
+// Make file inputs better match text inputs by forcing them to new lines.
+.form-control-file,
+.form-control-range {
+  display: block;
+}
+
+
+//
+// Labels
+//
+
+// For use with horizontal and inline forms, when you need the label text to
+// align with the form controls.
+.col-form-label {
+  padding-top: $input-padding-y;
+  padding-bottom: $input-padding-y;
+  margin-bottom: 0; // Override the `<label>` default
+}
+
+.col-form-label-lg {
+  padding-top: $input-padding-y-lg;
+  padding-bottom: $input-padding-y-lg;
+  font-size: $font-size-lg;
+}
+
+.col-form-label-sm {
+  padding-top: $input-padding-y-sm;
+  padding-bottom: $input-padding-y-sm;
+  font-size: $font-size-sm;
+}
+
+
+//
+// Legends
+//
+
+// For use with horizontal and inline forms, when you need the legend text to
+// be the same size as regular labels, and to align with the form controls.
+.col-form-legend {
+  padding-top: $input-padding-y;
+  padding-bottom: $input-padding-y;
+  margin-bottom: 0;
+  font-size: $font-size-base;
+}
+
+
+// Static form control text
+//
+// Apply class to an element to make any string of text align with labels in a
+// horizontal form layout.
+
+.form-control-static {
+  min-height: $input-height;
+  // Size it appropriately next to real form controls
+  padding-top: $input-padding-y;
+  padding-bottom: $input-padding-y;
+  // Remove default margin from `p`
+  margin-bottom: 0;
+
+  &.form-control-sm,
+  &.form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+// Form control sizing
+//
+// Build on `.form-control` with modifier classes to decrease or increase the
+// height and font-size of form controls.
+//
+// The `.form-group-* form-control` variations are sadly duplicated to avoid the
+// issue documented in https://github.com/twbs/bootstrap/issues/15074.
+
+.form-control-sm {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  font-size: $font-size-sm;
+  @include border-radius($input-border-radius-sm);
+}
+
+select.form-control-sm {
+  &:not([size]):not([multiple]) {
+    height: $input-height-sm;
+  }
+}
+
+.form-control-lg {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  font-size: $font-size-lg;
+  @include border-radius($input-border-radius-lg);
+}
+
+select.form-control-lg {
+  &:not([size]):not([multiple]) {
+    height: $input-height-lg;
+  }
+}
+
+
+// Form groups
+//
+// Designed to help with the organization and spacing of vertical forms. For
+// horizontal forms, use the predefined grid classes.
+
+.form-group {
+  margin-bottom: $form-group-margin-bottom;
+}
+
+.form-text {
+  display: block;
+  margin-top: ($spacer * .25);
+}
+
+
+// Checkboxes and radios
+//
+// Indent the labels to position radios/checkboxes as hanging controls.
+
+.form-check {
+  position: relative;
+  display: block;
+  margin-bottom: ($spacer * .75);
+
+  // Move up sibling radios or checkboxes for tighter spacing
+  + .form-check {
+    margin-top: -.25rem;
+  }
+
+  &.disabled {
+    .form-check-label {
+      color: $text-muted;
+      cursor: $cursor-disabled;
+    }
+  }
+}
+
+.form-check-label {
+  padding-left: 1.25rem;
+  margin-bottom: 0; // Override default `<label>` bottom margin
+  cursor: pointer;
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: .25rem;
+  margin-left: -1.25rem;
+
+  &:only-child {
+    position: static;
+  }
+}
+
+// Radios and checkboxes on same line
+.form-check-inline {
+  position: relative;
+  display: inline-block;
+  padding-left: 1.25rem;
+  margin-bottom: 0; // Override default `<label>` bottom margin
+  vertical-align: middle;
+  cursor: pointer;
+
+  + .form-check-inline {
+    margin-left: .75rem;
+  }
+
+  &.disabled {
+    cursor: $cursor-disabled;
+  }
+}
+
+
+// Form control feedback states
+//
+// Apply contextual and semantic states to individual form controls.
+
+.form-control-feedback {
+  margin-top: ($spacer * .25);
+}
+
+.form-control-success,
+.form-control-warning,
+.form-control-danger {
+  padding-right: ($input-padding-x * 3);
+  background-repeat: no-repeat;
+  background-position: center right ($input-height / 4);
+  background-size: ($input-height / 2) ($input-height / 2);
+}
+
+// Form validation states
+.has-success {
+  @include form-control-validation($brand-success);
+
+  .form-control-success {
+    background-image: $form-icon-success;
+  }
+}
+
+.has-warning {
+  @include form-control-validation($brand-warning);
+
+  .form-control-warning {
+    background-image: $form-icon-warning;
+  }
+}
+
+.has-danger {
+  @include form-control-validation($brand-danger);
+
+  .form-control-danger {
+    background-image: $form-icon-danger;
+  }
+}
+
+
+// Inline forms
+//
+// Make forms appear inline(-block) by adding the `.form-inline` class. Inline
+// forms begin stacked on extra small (mobile) devices and then go inline when
+// viewports reach <768px.
+//
+// Requires wrapping inputs and labels with `.form-group` for proper display of
+// default HTML form controls and our custom form controls (e.g., input groups).
+
+.form-inline {
+
+  // Kick in the inline
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    // Inline-block all the things for "inline"
+    .form-group {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    // Allow folks to *not* use `.form-group`
+    .form-control {
+      display: inline-block;
+      width: auto; // Prevent labels from stacking above inputs in `.form-group`
+      vertical-align: middle;
+    }
+
+    // Make static controls behave like regular ones
+    .form-control-static {
+      display: inline-block;
+    }
+
+    .input-group {
+      display: inline-table;
+      vertical-align: middle;
+
+      .input-group-addon,
+      .input-group-btn,
+      .form-control {
+        width: auto;
+      }
+    }
+
+    // Input groups need that 100% width though
+    .input-group > .form-control {
+      width: 100%;
+    }
+
+    .form-control-label {
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    // Remove default margin on radios/checkboxes that were used for stacking, and
+    // then undo the floating of radios and checkboxes to match.
+    .form-check {
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    .form-check-label {
+      padding-left: 0;
+    }
+    .form-check-input {
+      position: relative;
+      margin-left: 0;
+    }
+
+    // Re-override the feedback icon.
+    .has-feedback .form-control-feedback {
+      top: 0;
+    }
+  }
+}
+
+// scss-lint:disable QualifyingElement
+
+//
+// Base styles
+//
+
+.btn {
+  display: inline-block;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $input-btn-border-width solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+  @include transition(all .2s ease-in-out);
+
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      @include tab-focus();
+    }
+  }
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+  &.focus {
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    outline: 0;
+    @include box-shadow($btn-active-box-shadow);
+  }
+
+  &.disabled,
+  &:disabled {
+    cursor: $cursor-disabled;
+    opacity: .65;
+    @include box-shadow(none);
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+
+//
+// Alternate buttons
+//
+
+.btn-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+.btn-secondary {
+  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+.btn-info {
+  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+.btn-success {
+  @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+.btn-warning {
+  @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+.btn-danger {
+  @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+}
+
+// Remove all backgrounds
+.btn-outline-primary {
+  @include button-outline-variant($btn-primary-bg);
+}
+.btn-outline-secondary {
+  @include button-outline-variant($btn-secondary-border);
+}
+.btn-outline-info {
+  @include button-outline-variant($btn-info-bg);
+}
+.btn-outline-success {
+  @include button-outline-variant($btn-success-bg);
+}
+.btn-outline-warning {
+  @include button-outline-variant($btn-warning-bg);
+}
+.btn-outline-danger {
+  @include button-outline-variant($btn-danger-bg);
+}
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: normal;
+  color: $link-color;
+  border-radius: 0;
+
+  &,
+  &:active,
+  &.active,
+  &:disabled {
+    background-color: transparent;
+    @include box-shadow(none);
+  }
+  &,
+  &:focus,
+  &:active {
+    border-color: transparent;
+  }
+  @include hover {
+    border-color: transparent;
+  }
+  @include hover-focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: transparent;
+  }
+  &:disabled {
+    @include hover-focus {
+      color: $btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+}
+
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
+}
+.btn-sm {
+  // line-height: ensure proper height of button next to small input
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
+}
+
+
+//
+// Block button
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: $btn-block-spacing-y;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity .15s linear;
+
+  &.in {
+    opacity: 1;
+  }
+}
+
+.collapse {
+  display: none;
+
+  &.in {
+    display: block;
+  }
+  // tr&.in    { display: table-row; }
+  // tbody&.in { display: table-row-group; }
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition-timing-function: ease;
+  transition-duration: .35s;
+  transition-property: height;
+}
+
+// The dropdown wrapper (`<div>`)
+.dropup,
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  // Generate the caret automatically
+  &::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: $caret-width;
+    vertical-align: middle;
+    content: "";
+    border-top: $caret-width solid;
+    border-right: $caret-width solid transparent;
+    border-left: $caret-width solid transparent;
+  }
+
+  // Prevent the focus on the dropdown toggle when closing dropdowns
+  &:focus {
+    outline: 0;
+  }
+}
+
+.dropup {
+  .dropdown-toggle {
+    &::after {
+      border-top: 0;
+      border-bottom: $caret-width solid;
+    }
+  }
+}
+
+// The dropdown menu
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: $dropdown-min-width;
+  padding: $dropdown-padding-y 0;
+  margin: $dropdown-margin-top 0 0; // override default ul
+  font-size: $font-size-base;
+  color: $body-color;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: $dropdown-bg;
+  background-clip: padding-box;
+  border: $dropdown-border-width solid $dropdown-border-color;
+  @include border-radius($border-radius);
+  @include box-shadow($dropdown-box-shadow);
+}
+
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider {
+  @include nav-divider($dropdown-divider-bg);
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  display: block;
+  width: 100%; // For `<button>`s
+  padding: 3px $dropdown-item-padding-x;
+  clear: both;
+  font-weight: normal;
+  color: $dropdown-link-color;
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  background: none; // For `<button>`s
+  border: 0; // For `<button>`s
+
+  @include hover-focus {
+    color: $dropdown-link-hover-color;
+    text-decoration: none;
+    background-color: $dropdown-link-hover-bg;
+  }
+
+  // Active state
+  &.active {
+    @include plain-hover-focus {
+      color: $dropdown-link-active-color;
+      text-decoration: none;
+      background-color: $dropdown-link-active-bg;
+      outline: 0;
+    }
+  }
+
+  // Disabled state
+  //
+  // Gray out text and ensure the hover/focus state remains gray
+  &.disabled {
+    @include plain-hover-focus {
+      color: $dropdown-link-disabled-color;
+    }
+
+    // Nuke hover/focus effects
+    @include hover-focus {
+      text-decoration: none;
+      cursor: $cursor-disabled;
+      background-color: transparent;
+      background-image: none; // Remove CSS gradient
+      @include reset-filter();
+    }
+  }
+}
+
+// Open state for the dropdown
+.open {
+  // Show the menu
+  > .dropdown-menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+
+// Menu positioning
+//
+// Add extra class to `.dropdown-menu` to flip the alignment of the dropdown
+// menu with the parent.
+.dropdown-menu-right {
+  right: 0;
+  left: auto; // Reset the default from `.dropdown-menu`
+}
+
+.dropdown-menu-left {
+  right: auto;
+  left: 0;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: $dropdown-padding-y $dropdown-item-padding-x;
+  font-size: $font-size-sm;
+  color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
+}
+
+// Backdrop to catch body clicks on mobile, etc.
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-dropdown-backdrop;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+//
+// Just add .dropup after the standard .dropdown class and you're set.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Reverse the caret
+  .caret {
+    content: "";
+    border-top: 0;
+    border-bottom: $caret-width solid;
+  }
+
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: $dropdown-margin-top;
+  }
+}
+
+// scss-lint:disable QualifyingElement
+
+// Make the div behave like a button
+.btn-group,
+.btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle; // match .btn alignment given font-size hack above
+
+  > .btn {
+    position: relative;
+    float: left;
+
+    // Bring the "active" button to the front
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+    @include hover {
+      z-index: 2;
+    }
+  }
+}
+
+// Prevent double borders when buttons are next to each other
+.btn-group {
+  .btn + .btn,
+  .btn + .btn-group,
+  .btn-group + .btn,
+  .btn-group + .btn-group {
+    margin-left: -$input-btn-border-width;
+  }
+}
+
+// Optional: Group multiple button groups together for a toolbar
+.btn-toolbar {
+  margin-left: -$btn-toolbar-margin; // Offset the first child's margin
+  @include clearfix();
+
+  .btn-group,
+  .input-group {
+    float: left;
+  }
+
+  > .btn,
+  > .btn-group,
+  > .input-group {
+    margin-left: $btn-toolbar-margin;
+  }
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 0;
+}
+
+// Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
+.btn-group > .btn:first-child {
+  margin-left: 0;
+
+  &:not(:last-child):not(.dropdown-toggle) {
+    @include border-right-radius(0);
+  }
+}
+// Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child) {
+  @include border-left-radius(0);
+}
+
+// Custom edits for including btn-groups within btn-groups (useful for including dropdown buttons within a btn-group)
+.btn-group > .btn-group {
+  float: left;
+}
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
+  border-radius: 0;
+}
+.btn-group > .btn-group:first-child:not(:last-child) {
+  > .btn:last-child,
+  > .dropdown-toggle {
+    @include border-right-radius(0);
+  }
+}
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
+  @include border-left-radius(0);
+}
+
+// On active and open, don't show outline
+.btn-group .dropdown-toggle:active,
+.btn-group.open .dropdown-toggle {
+  outline: 0;
+}
+
+
+// Sizing
+//
+// Remix the default button sizing classes into new ones for easier manipulation.
+
+.btn-group-sm > .btn { @extend .btn-sm; }
+.btn-group-lg > .btn { @extend .btn-lg; }
+
+
+//
+// Split button dropdowns
+//
+
+.btn + .dropdown-toggle-split {
+  padding-right: $btn-padding-x * .75;
+  padding-left: $btn-padding-x * .75;
+
+  &::after {
+    margin-left: 0;
+  }
+}
+
+.btn-sm + .dropdown-toggle-split {
+  padding-right: $btn-padding-x-sm * .75;
+  padding-left: $btn-padding-x-sm * .75;
+}
+
+.btn-lg + .dropdown-toggle-split {
+  padding-right: $btn-padding-x-lg * .75;
+  padding-left: $btn-padding-x-lg * .75;
+}
+
+
+// The clickable button for toggling the menu
+// Remove the gradient and set the same inset shadow as the :active state
+.btn-group.open .dropdown-toggle {
+  @include box-shadow($btn-active-box-shadow);
+
+  // Show no shadow for `.btn-link` since it has no other button styles.
+  &.btn-link {
+    @include box-shadow(none);
+  }
+}
+
+
+// Reposition the caret
+.btn .caret {
+  margin-left: 0;
+}
+// Carets in other button sizes
+.btn-lg .caret {
+  border-width: $caret-width-lg $caret-width-lg 0;
+  border-bottom-width: 0;
+}
+// Upside down carets for .dropup
+.dropup .btn-lg .caret {
+  border-width: 0 $caret-width-lg $caret-width-lg;
+}
+
+
+
+//
+// Vertical button groups
+//
+
+.btn-group-vertical {
+  > .btn,
+  > .btn-group,
+  > .btn-group > .btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // Clear floats so dropdown menus can be properly placed
+  > .btn-group {
+    @include clearfix();
+
+    > .btn {
+      float: none;
+    }
+  }
+
+  > .btn + .btn,
+  > .btn + .btn-group,
+  > .btn-group + .btn,
+  > .btn-group + .btn-group {
+    margin-top: -$input-btn-border-width;
+    margin-left: 0;
+  }
+}
+
+.btn-group-vertical > .btn {
+  &:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  &:first-child:not(:last-child) {
+    @include border-bottom-radius(0);
+  }
+  &:last-child:not(:first-child) {
+    @include border-top-radius(0);
+  }
+}
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
+  border-radius: 0;
+}
+.btn-group-vertical > .btn-group:first-child:not(:last-child) {
+  > .btn:last-child,
+  > .dropdown-toggle {
+    @include border-bottom-radius(0);
+  }
+}
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
+  @include border-top-radius(0);
+}
+
+
+// Checkbox and radio options
+//
+// In order to support the browser's form validation feedback, powered by the
+// `required` attribute, we have to "hide" the inputs via `clip`. We cannot use
+// `display: none;` or `visibility: hidden;` as that also hides the popover.
+// Simply visually hiding the inputs via `opacity` would leave them clickable in
+// certain cases which is prevented by using `clip` and `pointer-events`.
+// This way, we ensure a DOM element is visible to position the popover from.
+//
+// See https://github.com/twbs/bootstrap/pull/12794 and
+// https://github.com/twbs/bootstrap/pull/14559 for more information.
+
+[data-toggle="buttons"] {
+  > .btn,
+  > .btn-group > .btn {
+    input[type="radio"],
+    input[type="checkbox"] {
+      position: absolute;
+      clip: rect(0,0,0,0);
+      pointer-events: none;
+    }
+  }
+}
+
+//
+// Base styles
+//
+
+.input-group {
+  position: relative;
+  width: 100%;
+
+  @if $enable-flex {
+    display: flex;
+  } @else {
+    display: table;
+    // Prevent input groups from inheriting border styles from table cells when
+    // placed within a table.
+    border-collapse: separate;
+  }
+
+  .form-control {
+    // Ensure that the input is always above the *appended* addon button for
+    // proper border colors.
+    position: relative;
+    z-index: 2;
+    // Bring the "active" form control to the front
+    @include hover-focus-active {
+      z-index: 3;
+    }
+    @if $enable-flex {
+      flex: 1;
+    } @else {
+      // IE9 fubars the placeholder attribute in text inputs and the arrows on
+      // select elements in input groups. To fix it, we float the input. Details:
+      // https://github.com/twbs/bootstrap/issues/11561#issuecomment-28936855
+      float: left;
+      width: 100%;
+    }
+    margin-bottom: 0;
+  }
+}
+
+.input-group-addon,
+.input-group-btn,
+.input-group .form-control {
+  @if not $enable-flex {
+    display: table-cell;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    @include border-radius(0);
+  }
+}
+
+.input-group-addon,
+.input-group-btn {
+  @if not $enable-flex {
+    width: 1%;
+  }
+  white-space: nowrap;
+  vertical-align: middle; // Match the inputs
+}
+
+
+// Sizing options
+//
+// Remix the default form control sizing classes into new ones for easier
+// manipulation.
+
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+  @extend .form-control-lg;
+}
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+  @extend .form-control-sm;
+}
+
+
+//
+// Text input groups
+//
+
+.input-group-addon {
+  padding: $input-padding-y $input-padding-x;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  font-size: $font-size-base;
+  font-weight: normal;
+  line-height: $input-line-height;
+  color: $input-color;
+  text-align: center;
+  background-color: $input-group-addon-bg;
+  border: $input-btn-border-width solid $input-group-addon-border-color;
+  @include border-radius($border-radius);
+
+  // Sizing
+  &.form-control-sm {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+    font-size: $font-size-sm;
+    @include border-radius($border-radius-sm);
+  }
+  &.form-control-lg {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $font-size-lg;
+    @include border-radius($border-radius-lg);
+  }
+
+  // scss-lint:disable QualifyingElement
+  // Nuke default margins from checkboxes and radios to vertically center within.
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 0;
+  }
+  // scss-lint:enable QualifyingElement
+}
+
+
+//
+// Reset rounded corners
+//
+
+.input-group .form-control:not(:last-child),
+.input-group-addon:not(:last-child),
+.input-group-btn:not(:last-child) > .btn,
+.input-group-btn:not(:last-child) > .btn-group > .btn,
+.input-group-btn:not(:last-child) > .dropdown-toggle,
+.input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn {
+  @include border-right-radius(0);
+}
+.input-group-addon:not(:last-child) {
+  border-right: 0;
+}
+.input-group .form-control:not(:first-child),
+.input-group-addon:not(:first-child),
+.input-group-btn:not(:first-child) > .btn,
+.input-group-btn:not(:first-child) > .btn-group > .btn,
+.input-group-btn:not(:first-child) > .dropdown-toggle,
+.input-group-btn:not(:last-child) > .btn:not(:first-child),
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn {
+  @include border-left-radius(0);
+}
+.form-control + .input-group-addon:not(:first-child) {
+  border-left: 0;
+}
+
+//
+// Button input groups
+//
+
+.input-group-btn {
+  position: relative;
+  // Jankily prevent input button groups from wrapping with `white-space` and
+  // `font-size` in combination with `inline-block` on buttons.
+  font-size: 0;
+  white-space: nowrap;
+
+  // Negative margin for spacing, position for bringing hovered/focused/actived
+  // element above the siblings.
+  > .btn {
+    position: relative;
+    + .btn {
+      margin-left: (-$input-btn-border-width);
+    }
+    // Bring the "active" button to the front
+    @include hover-focus-active {
+      z-index: 3;
+    }
+  }
+
+  // Negative margin to only have a single, shared border between the two
+  &:not(:last-child) {
+    > .btn,
+    > .btn-group {
+      margin-right: (-$input-btn-border-width);
+    }
+  }
+  &:not(:first-child) {
+    > .btn,
+    > .btn-group {
+      z-index: 2;
+      margin-left: (-$input-btn-border-width);
+      // Because specificity
+      @include hover-focus-active {
+        z-index: 3;
+      }
+    }
+  }
+}
+
+// scss-lint:disable PropertyCount
+
+// Embedded icons from Open Iconic.
+// Released under MIT and copyright 2014 Waybury.
+// http://useiconic.com/open
+
+
+// Checkboxes and radios
+//
+// Base class takes care of all the key behavioral aspects.
+
+.custom-control {
+  position: relative;
+  display: inline;
+  padding-left: $custom-control-gutter;
+  cursor: pointer;
+
+  + .custom-control {
+    margin-left: $custom-control-spacer-x;
+  }
+}
+
+.custom-control-input {
+  position: absolute;
+  z-index: -1; // Put the input behind the label so it doesn't overlay text
+  opacity: 0;
+
+  &:checked ~ .custom-control-indicator {
+    color: $custom-control-checked-indicator-color;
+    background-color: $custom-control-checked-indicator-bg;
+    @include box-shadow($custom-control-checked-indicator-box-shadow);
+  }
+
+  &:focus ~ .custom-control-indicator {
+    // the mixin is not used here to make sure there is feedback
+    box-shadow: $custom-control-focus-indicator-box-shadow;
+  }
+
+  &:active ~ .custom-control-indicator {
+    color: $custom-control-active-indicator-color;
+    background-color: $custom-control-active-indicator-bg;
+    @include box-shadow($custom-control-active-indicator-box-shadow);
+  }
+
+  &:disabled {
+    ~ .custom-control-indicator {
+      cursor: $custom-control-disabled-cursor;
+      background-color: $custom-control-disabled-indicator-bg;
+    }
+
+    ~ .custom-control-description {
+      color: $custom-control-disabled-description-color;
+      cursor: $custom-control-disabled-cursor;
+    }
+  }
+}
+
+// Custom indicator
+//
+// Generates a shadow element to create our makeshift checkbox/radio background.
+
+.custom-control-indicator {
+  position: absolute;
+  top: .0625rem;
+  left: 0;
+  display: block;
+  width: $custom-control-indicator-size;
+  height: $custom-control-indicator-size;
+  pointer-events: none;
+  user-select: none;
+  background-color: $custom-control-indicator-bg;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $custom-control-indicator-bg-size;
+  @include box-shadow($custom-control-indicator-box-shadow);
+}
+
+// Checkboxes
+//
+// Tweak just a few things for checkboxes.
+
+.custom-checkbox {
+  .custom-control-indicator {
+    @include border-radius($custom-checkbox-radius);
+  }
+
+  .custom-control-input:checked ~ .custom-control-indicator {
+    background-image: $custom-checkbox-checked-icon;
+  }
+
+  .custom-control-input:indeterminate ~ .custom-control-indicator {
+    background-color: $custom-checkbox-indeterminate-bg;
+    background-image: $custom-checkbox-indeterminate-icon;
+    @include box-shadow($custom-checkbox-indeterminate-box-shadow);
+  }
+}
+
+// Radios
+//
+// Tweak just a few things for radios.
+
+.custom-radio {
+  .custom-control-indicator {
+    border-radius: $custom-radio-radius;
+  }
+
+  .custom-control-input:checked ~ .custom-control-indicator {
+    background-image: $custom-radio-checked-icon;
+  }
+}
+
+
+// Layout options
+//
+// By default radios and checkboxes are `inline-block` with no additional spacing
+// set. Use these optional classes to tweak the layout.
+
+.custom-controls-stacked {
+  .custom-control {
+    display: inline;
+
+    &::after {
+      display: block;
+      margin-bottom: $custom-control-spacer-y;
+      content: "";
+    }
+
+    + .custom-control {
+      margin-left: 0;
+    }
+  }
+}
+
+
+// Select
+//
+// Replaces the browser default select with a custom one, mostly pulled from
+// http://primercss.io.
+//
+// Includes IE9-specific hacks (noted by ` \9`).
+
+.custom-select {
+  display: inline-block;
+  max-width: 100%;
+  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  padding-right: $custom-select-padding-x \9;
+  color: $custom-select-color;
+  vertical-align: middle;
+  background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
+  background-image: none \9;
+  background-size: $custom-select-bg-size;
+  border: $custom-select-border-width solid $custom-select-border-color;
+  @include border-radius($custom-select-border-radius);
+  // Use vendor prefixes as `appearance` isn't part of the CSS spec.
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    border-color: $custom-select-focus-border-color;
+    outline: none;
+    @include box-shadow($custom-select-focus-box-shadow);
+
+    &::-ms-value {
+      // For visual consistency with other platforms/browsers,
+      // supress the default white text on blue background highlight given to
+      // the selected option text when the (still closed) <select> receives focus
+      // in IE and (under certain conditions) Edge.
+      // See https://github.com/twbs/bootstrap/issues/19398.
+      color: $input-color;
+      background-color: $input-bg;
+    }
+  }
+
+  &:disabled {
+    color: $custom-select-disabled-color;
+    cursor: $cursor-disabled;
+    background-color: $custom-select-disabled-bg;
+  }
+
+  // Hides the default caret in IE11
+  &::-ms-expand {
+    opacity: 0;
+  }
+}
+
+.custom-select-sm {
+  padding-top: $custom-select-padding-y;
+  padding-bottom: $custom-select-padding-y;
+  font-size: $custom-select-sm-font-size;
+
+  // &:not([multiple]) {
+  //   height: 26px;
+  //   min-height: 26px;
+  // }
+}
+
+
+// File
+//
+// Custom file input.
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  height: $custom-file-height;
+  cursor: pointer;
+}
+
+.custom-file-input {
+  min-width: $custom-file-width;
+  max-width: 100%;
+  margin: 0;
+  filter: alpha(opacity = 0);
+  opacity: 0;
+
+  &:focus ~ .custom-file-control {
+    @include box-shadow($custom-file-focus-box-shadow);
+  }
+}
+
+.custom-file-control {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: $custom-file-height;
+  padding: $custom-file-padding-x $custom-file-padding-y;
+  line-height: $custom-file-line-height;
+  color: $custom-file-color;
+  user-select: none;
+  background-color: $custom-file-bg;
+  border: $custom-file-border-width solid $custom-file-border-color;
+  @include border-radius($custom-file-border-radius);
+  @include box-shadow($custom-file-box-shadow);
+
+  $lang: en;
+  $text: $custom-file-text-placeholder-en;
+  &:lang(#{$lang})::after {
+    content: $text;
+  }
+
+  &::before {
+    position: absolute;
+    top: -$custom-file-border-width;
+    right: -$custom-file-border-width;
+    bottom: -$custom-file-border-width;
+    z-index: 6;
+    display: block;
+    height: $custom-file-height;
+    padding: $custom-file-padding-x $custom-file-padding-y;
+    line-height: $custom-file-line-height;
+    color: $custom-file-button-color;
+    background-color: $custom-file-button-bg;
+    border: $custom-file-border-width solid $custom-file-border-color;
+    @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+  }
+
+  $lang: en;
+  $text: $custom-file-text-button-label-en;
+  &:lang(#{$lang})::before {
+    content: $text;
+  }
+
+}
+
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s or `<ul>`s.
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-block;
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  // Disabled state lightens text and removes hover/tab effects
+  &.disabled {
+    color: $nav-disabled-link-color;
+
+    @include plain-hover-focus {
+      color: $nav-disabled-link-hover-color;
+      cursor: $cursor-disabled;
+      background-color: $nav-disabled-link-hover-bg;
+    }
+  }
+}
+
+
+// Nav inline
+
+.nav-inline {
+  .nav-item {
+    display: inline-block;
+  }
+
+  .nav-item + .nav-item,
+  .nav-link + .nav-link {
+    margin-left: $nav-item-inline-spacer;
+  }
+}
+
+
+//
+// Tabs
+//
+
+.nav-tabs {
+  border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+  @include clearfix();
+
+  .nav-item {
+    float: left;
+    // Make the list-items overlay the bottom border
+    margin-bottom: -$nav-tabs-border-width;
+
+    + .nav-item {
+      margin-left: $nav-item-margin;
+    }
+  }
+
+  .nav-link {
+    display: block;
+    padding: $nav-link-padding;
+    border: $nav-tabs-border-width solid transparent;
+    @include border-top-radius($nav-tabs-border-radius);
+
+    @include hover-focus {
+      border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
+    }
+
+    &.disabled {
+      @include plain-hover-focus {
+        color: $nav-disabled-link-color;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.open .nav-link {
+    @include plain-hover-focus {
+      color: $nav-tabs-active-link-hover-color;
+      background-color: $nav-tabs-active-link-hover-bg;
+      border-color: $nav-tabs-active-link-hover-border-color $nav-tabs-active-link-hover-border-color transparent;
+    }
+  }
+
+  .dropdown-menu {
+    // Make dropdown border overlap tab border
+    margin-top: -$nav-tabs-border-width;
+    // Remove the top rounded corners here since there is a hard edge above the menu
+    @include border-top-radius(0);
+  }
+}
+
+
+//
+// Pills
+//
+
+.nav-pills {
+  @include clearfix();
+
+  .nav-item {
+    float: left;
+
+    + .nav-item {
+      margin-left: $nav-item-margin;
+    }
+  }
+
+  .nav-link {
+    display: block;
+    padding: $nav-link-padding;
+    @include border-radius($nav-pills-border-radius);
+  }
+
+  .nav-link.active,
+  .nav-item.open .nav-link {
+    @include plain-hover-focus {
+      color: $nav-pills-active-link-color;
+      cursor: default;
+      background-color: $nav-pills-active-link-bg;
+    }
+  }
+}
+
+.nav-stacked {
+  .nav-item {
+    display: block;
+    float: none;
+
+    + .nav-item {
+      margin-top: $nav-item-margin;
+      margin-left: 0;
+    }
+  }
+}
+
+
+//
+// Tabbable tabs
+//
+
+// Hide tabbable panes to start, show them when `.active`
+.tab-content {
+  > .tab-pane {
+    display: none;
+  }
+  > .active {
+    display: block;
+  }
+}
+
+// Wrapper and base class
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+
+.navbar {
+  position: relative;
+  padding: $navbar-padding-y $navbar-padding-x;
+  @include clearfix;
+
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    @include border-radius($navbar-border-radius);
+  }
+}
+
+
+// Navbar alignment options
+//
+// Display the navbar across the entirety of the page or fixed it to the top or
+// bottom of the page.
+
+// A static, full width modifier with no rounded corners.
+.navbar-full {
+  z-index: $zindex-navbar;
+
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    @include border-radius(0);
+  }
+}
+
+// Fix the top/bottom navbars when screen real estate supports it
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: $zindex-navbar-fixed;
+
+  // Undo the rounded corners
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    @include border-radius(0);
+  }
+}
+
+.navbar-fixed-top {
+  top: 0;
+}
+
+.navbar-fixed-bottom {
+  bottom: 0;
+}
+
+.navbar-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: $zindex-navbar-sticky;
+  width: 100%;
+
+  // Undo the rounded corners
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    @include border-radius(0);
+  }
+}
+
+
+//
+// Brand/project name
+//
+
+.navbar-brand {
+  float: left;
+  padding-top:    $navbar-brand-padding-y;
+  padding-bottom: $navbar-brand-padding-y;
+  margin-right: 1rem;
+  font-size: $font-size-lg;
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  > img {
+    display: block;
+  }
+}
+
+
+.navbar-divider {
+  float: left;
+  width: $border-width;
+  padding-top: .425rem;
+  padding-bottom: .425rem;
+  margin-right: $navbar-padding-x;
+  margin-left:  $navbar-padding-x;
+  overflow: hidden;
+
+  &::before {
+    content: "\00a0";
+  }
+}
+
+
+// Navbar toggle
+//
+// Custom button for toggling the `.navbar-collapse`, powered by the collapse
+// Bootstrap JavaScript plugin.
+
+.navbar-toggler {
+  padding: .5rem .75rem;
+  font-size: $font-size-lg;
+  line-height: 1;
+  background: none;
+  border: $border-width solid transparent;
+  @include border-radius($btn-border-radius);
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+}
+
+// Navigation
+//
+// Custom navbar navigation built on the base `.nav` styles.
+
+.navbar-nav {
+  .nav-item {
+    float: left;
+  }
+
+  .nav-link {
+    display: block;
+    padding-top:    .425rem;
+    padding-bottom: .425rem;
+
+    + .nav-link {
+      margin-left: 1rem;
+    }
+  }
+
+  .nav-item + .nav-item {
+    margin-left: 1rem;
+  }
+}
+
+// Dark links against a light background
+.navbar-light {
+  .navbar-brand {
+    color: $navbar-light-active-color;
+
+    @include hover-focus {
+      color: $navbar-light-active-color;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-light-color;
+
+      @include hover-focus {
+        color: $navbar-light-hover-color;
+      }
+    }
+
+    .open > .nav-link,
+    .active > .nav-link,
+    .nav-link.open,
+    .nav-link.active {
+      @include plain-hover-focus {
+        color: $navbar-light-active-color;
+      }
+    }
+  }
+
+  .navbar-divider {
+    background-color: rgba(0,0,0,.075);
+  }
+}
+
+// White links against a dark background
+.navbar-dark {
+  .navbar-brand {
+    color: $navbar-dark-active-color;
+
+    @include hover-focus {
+      color: $navbar-dark-active-color;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-dark-color;
+
+      @include hover-focus {
+        color: $navbar-dark-hover-color;
+      }
+    }
+
+    .open > .nav-link,
+    .active > .nav-link,
+    .nav-link.open,
+    .nav-link.active {
+      @include plain-hover-focus {
+        color: $navbar-dark-active-color;
+      }
+    }
+  }
+
+  .navbar-divider {
+    background-color: rgba(255,255,255,.075);
+  }
+}
+
+
+// Navbar toggleable
+//
+// Custom override for collapse plugin in navbar.
+
+// scss-lint:disable ImportantRule
+.navbar-toggleable-xs {
+  @include clearfix;
+  @include media-breakpoint-down(xs, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    .navbar-nav .nav-item {
+      float: none;
+      margin-left: 0;
+    }
+  }
+  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    display: block !important;
+  }
+}
+
+.navbar-toggleable-sm {
+  @include clearfix;
+  @include media-breakpoint-down(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    .navbar-nav .nav-item {
+      float: none;
+      margin-left: 0;
+    }
+  }
+  @include media-breakpoint-up(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    display: block !important;
+  }
+}
+
+.navbar-toggleable-md {
+  @include clearfix;
+  @include media-breakpoint-down(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    .navbar-nav .nav-item {
+      float: none;
+      margin-left: 0;
+    }
+  }
+  @include media-breakpoint-up(lg, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+    display: block !important;
+  }
+}
+
+// scss-lint:enable ImportantRule
+
+//
+// Base styles
+//
+
+.card {
+  position: relative;
+  display: block;
+  margin-bottom: $card-spacer-y;
+  background-color: $card-bg;
+  // border: $card-border-width solid $card-border-color;
+  @include border-radius($card-border-radius);
+  border: $card-border-width solid $card-border-color;
+}
+
+.card-block {
+  @include clearfix;
+  padding: $card-spacer-x;
+}
+
+.card-title {
+  margin-bottom: $card-spacer-y;
+}
+
+.card-subtitle {
+  margin-top: -($card-spacer-y / 2);
+  margin-bottom: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+// .card-actions {
+//   padding: $card-spacer-y $card-spacer-x;
+
+//   .card-link + .card-link {
+//     margin-left: $card-spacer-x;
+//   }
+// }
+
+.card-link {
+  @include hover {
+    text-decoration: none;
+  }
+
+  + .card-link {
+    margin-left: $card-spacer-x;
+  }
+}
+
+.card {
+  > .list-group:first-child {
+    .list-group-item:first-child {
+      @include border-top-radius($card-border-radius);
+    }
+  }
+
+  > .list-group:last-child {
+    .list-group-item:last-child {
+      @include border-bottom-radius($card-border-radius);
+    }
+  }
+}
+
+
+//
+// Optional textual caps
+//
+
+.card-header {
+  @include clearfix;
+  padding: $card-spacer-y $card-spacer-x;
+  background-color: $card-cap-bg;
+  border-bottom: $card-border-width solid $card-border-color;
+
+  &:first-child {
+    @include border-radius($card-border-radius-inner $card-border-radius-inner 0 0);
+  }
+}
+
+.card-footer {
+  @include clearfix;
+  padding: $card-spacer-y $card-spacer-x;
+  background-color: $card-cap-bg;
+  border-top: $card-border-width solid $card-border-color;
+
+  &:last-child {
+    @include border-radius(0 0 $card-border-radius-inner $card-border-radius-inner);
+  }
+}
+
+
+//
+// Header navs
+//
+
+.card-header-tabs {
+  margin-right: -($card-spacer-x / 2);
+  margin-bottom: -$card-spacer-y;
+  margin-left: -($card-spacer-x / 2);
+  border-bottom: 0;
+}
+
+.card-header-pills {
+  margin-right: -($card-spacer-x / 2);
+  margin-left: -($card-spacer-x / 2);
+}
+
+
+//
+// Background variations
+//
+
+.card-primary {
+  @include card-variant($brand-primary, $brand-primary);
+}
+.card-success {
+  @include card-variant($brand-success, $brand-success);
+}
+.card-info {
+  @include card-variant($brand-info, $brand-info);
+}
+.card-warning {
+  @include card-variant($brand-warning, $brand-warning);
+}
+.card-danger {
+  @include card-variant($brand-danger, $brand-danger);
+}
+
+// Remove all backgrounds
+.card-outline-primary {
+  @include card-outline-variant($btn-primary-bg);
+}
+.card-outline-secondary {
+  @include card-outline-variant($btn-secondary-border);
+}
+.card-outline-info {
+  @include card-outline-variant($btn-info-bg);
+}
+.card-outline-success {
+  @include card-outline-variant($btn-success-bg);
+}
+.card-outline-warning {
+  @include card-outline-variant($btn-warning-bg);
+}
+.card-outline-danger {
+  @include card-outline-variant($btn-danger-bg);
+}
+
+//
+// Inverse text within a card for use with dark backgrounds
+//
+
+.card-inverse {
+  @include card-inverse;
+}
+
+//
+// Blockquote
+//
+
+.card-blockquote {
+  padding: 0;
+  margin-bottom: 0;
+  border-left: 0;
+}
+
+// Card image
+.card-img {
+  // margin: -1.325rem;
+  @include border-radius(.25rem);
+}
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: $card-img-overlay-padding;
+}
+
+
+
+// Card image caps
+.card-img-top {
+  @include border-top-radius($card-border-radius-inner);
+}
+.card-img-bottom {
+  @include border-bottom-radius($card-border-radius-inner);
+}
+
+
+// Card set
+//
+// Heads up! We do some funky style resetting here for margins across our two
+// variations (one flex, one table). Individual cards have margin-bottom by
+// default, but they're ignored due to table styles. For a consistent design,
+// we've done the same to the flex variation.
+//
+// Those changes are noted by `// Margin balancing`.
+
+@if $enable-flex {
+  @include media-breakpoint-up(sm) {
+    .card-deck {
+      display: flex;
+      flex-flow: row wrap;
+      margin-right: -$card-deck-margin;
+      margin-bottom: $card-spacer-y; // Margin balancing
+      margin-left: -$card-deck-margin;
+
+      .card {
+        flex: 1 0 0;
+        margin-right: $card-deck-margin;
+        margin-bottom: 0; // Margin balancing
+        margin-left: $card-deck-margin;
+      }
+    }
+  }
+} @else {
+  @include media-breakpoint-up(sm) {
+    $space-between-cards: (2 * $card-deck-margin);
+    .card-deck {
+      display: table;
+      width: 100%;
+      margin-bottom: $card-spacer-y; // Margin balancing
+      table-layout: fixed;
+      border-spacing: $space-between-cards 0;
+
+      .card {
+        display: table-cell;
+        margin-bottom: 0; // Margin balancing
+        vertical-align: top;
+      }
+    }
+    .card-deck-wrapper {
+      margin-right: (-$space-between-cards);
+      margin-left: (-$space-between-cards);
+    }
+  }
+}
+
+//
+// Card groups
+//
+
+@include media-breakpoint-up(sm) {
+  .card-group {
+    @if $enable-flex {
+      display: flex;
+      flex-flow: row wrap;
+    } @else {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .card {
+      @if $enable-flex {
+        flex: 1 0 0;
+      } @else {
+        display: table-cell;
+        vertical-align: top;
+      }
+
+      + .card {
+        margin-left: 0;
+        border-left: 0;
+      }
+
+      // Handle rounded corners
+      @if $enable-rounded {
+        &:first-child {
+          @include border-right-radius(0);
+
+          .card-img-top {
+            border-top-right-radius: 0;
+          }
+          .card-img-bottom {
+            border-bottom-right-radius: 0;
+          }
+        }
+        &:last-child {
+          @include border-left-radius(0);
+
+          .card-img-top {
+            border-top-left-radius: 0;
+          }
+          .card-img-bottom {
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: 0;
+
+          .card-img-top,
+          .card-img-bottom {
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//
+// Card
+//
+
+@include media-breakpoint-up(sm) {
+  .card-columns {
+    column-count: 3;
+    column-gap: $card-columns-sm-up-column-gap;
+
+    .card {
+      display: inline-block;
+      width: 100%; // Don't let them exceed the column width
+    }
+  }
+}
+
+.breadcrumb {
+  padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+  margin-bottom: $spacer-y;
+  list-style: none;
+  background-color: $breadcrumb-bg;
+  @include border-radius($border-radius);
+  @include clearfix;
+}
+
+.breadcrumb-item {
+  float: left;
+
+  // The separator between breadcrumbs (by default, a forward-slash: "/")
+  + .breadcrumb-item::before {
+    display: inline-block; // Suppress underlining of the separator in modern browsers
+    padding-right: $breadcrumb-item-padding;
+    padding-left: $breadcrumb-item-padding;
+    color: $breadcrumb-divider-color;
+    content: "#{$breadcrumb-divider}";
+  }
+
+  // IE9-11 hack to properly handle hyperlink underlines for breadcrumbs built
+  // without `<ul>`s. The `::before` pseudo-element generates an element
+  // *within* the .breadcrumb-item and thereby inherits the `text-decoration`.
+  //
+  // To trick IE into suppressing the underline, we give the pseudo-element an
+  // underline and then immediately remove it.
+  + .breadcrumb-item:hover::before {
+    text-decoration: underline;
+  }
+  + .breadcrumb-item:hover::before {
+    text-decoration: none;
+  }
+
+  &.active {
+    color: $breadcrumb-active-color;
+  }
+}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin-top: $spacer-y;
+  margin-bottom: $spacer-y;
+  @include border-radius();
+}
+
+.page-item {
+  display: inline; // Remove list-style and block-level defaults
+
+  &:first-child {
+    .page-link {
+      margin-left: 0;
+      @include border-left-radius($border-radius);
+    }
+  }
+  &:last-child {
+    .page-link {
+      @include border-right-radius($border-radius);
+    }
+  }
+
+  &.active .page-link {
+    @include plain-hover-focus {
+      z-index: 2;
+      color: $pagination-active-color;
+      cursor: default;
+      background-color: $pagination-active-bg;
+      border-color: $pagination-active-border;
+    }
+  }
+
+  &.disabled .page-link {
+    @include plain-hover-focus {
+      color: $pagination-disabled-color;
+      pointer-events: none;
+      cursor: $cursor-disabled;
+      background-color: $pagination-disabled-bg;
+      border-color: $pagination-disabled-border;
+    }
+  }
+}
+
+.page-link {
+  position: relative;
+  float: left; // Collapse white-space
+  padding: $pagination-padding-y $pagination-padding-x;
+  margin-left: -1px;
+  color: $pagination-color;
+  text-decoration: none;
+  background-color: $pagination-bg;
+  border: $pagination-border-width solid $pagination-border-color;
+
+  @include hover-focus {
+    color: $pagination-hover-color;
+    background-color: $pagination-hover-bg;
+    border-color: $pagination-hover-border;
+  }
+}
+
+
+//
+// Sizing
+//
+
+.pagination-lg {
+  @include pagination-size($pagination-padding-y-lg, $pagination-padding-x-lg, $font-size-lg, $line-height-lg, $border-radius-lg);
+}
+
+.pagination-sm {
+  @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $font-size-sm, $line-height-sm, $border-radius-sm);
+}
+
+// Base class
+//
+// Requires one of the contextual, color modifier classes for `color` and
+// `background-color`.
+
+.tag {
+  display: inline-block;
+  padding: $tag-padding-y $tag-padding-x;
+  font-size: $tag-font-size;
+  font-weight: $tag-font-weight;
+  line-height: 1;
+  color: $tag-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  @include border-radius();
+
+  // Empty tags collapse automatically
+  &:empty {
+    display: none;
+  }
+}
+
+// Quick fix for tags in buttons
+.btn .tag {
+  position: relative;
+  top: -1px;
+}
+
+// scss-lint:disable QualifyingElement
+// Add hover effects, but only for links
+a.tag {
+  @include hover-focus {
+    color: $tag-link-hover-color;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+// scss-lint:enable QualifyingElement
+
+// Pill tags
+//
+// Make them extra rounded with a modifier to replace v3's badges.
+
+.tag-pill {
+  padding-right: $tag-pill-padding-x;
+  padding-left: $tag-pill-padding-x;
+  @include border-radius($tag-pill-border-radius);
+}
+
+// Colors
+//
+// Contextual variations (linked tags get darker on :hover).
+
+.tag-default {
+  @include tag-variant($tag-default-bg);
+}
+
+.tag-primary {
+  @include tag-variant($tag-primary-bg);
+}
+
+.tag-success {
+  @include tag-variant($tag-success-bg);
+}
+
+.tag-info {
+  @include tag-variant($tag-info-bg);
+}
+
+.tag-warning {
+  @include tag-variant($tag-warning-bg);
+}
+
+.tag-danger {
+  @include tag-variant($tag-danger-bg);
+}
+
+.jumbotron {
+  padding: $jumbotron-padding ($jumbotron-padding / 2);
+  margin-bottom: $jumbotron-padding;
+  background-color: $jumbotron-bg;
+  @include border-radius($border-radius-lg);
+
+  @include media-breakpoint-up(sm) {
+    padding: ($jumbotron-padding * 2) $jumbotron-padding;
+  }
+}
+
+.jumbotron-hr {
+  border-top-color: darken($jumbotron-bg, 10%);
+}
+
+.jumbotron-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  @include border-radius(0);
+}
+
+//
+// Base styles
+//
+
+.alert {
+  padding: $alert-padding;
+  margin-bottom: $spacer-y;
+  border: $alert-border-width solid transparent;
+  @include border-radius($alert-border-radius);
+}
+
+// Headings for larger alerts
+.alert-heading {
+  // Specified to prevent conflicts of changing $headings-color
+  color: inherit;
+}
+
+// Provide class for links that match alerts
+.alert-link {
+  font-weight: $alert-link-font-weight;
+}
+
+
+// Dismissible alerts
+//
+// Expand the right padding and account for the close button's positioning.
+
+.alert-dismissible {
+  padding-right: ($alert-padding + 20px);
+
+  // Adjust close link position
+  .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+  }
+}
+
+
+// Alternate styles
+//
+// Generate contextual modifier classes for colorizing the alert.
+
+.alert-success {
+  @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+}
+.alert-info {
+  @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+}
+.alert-warning {
+  @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+}
+.alert-danger {
+  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+}
+
+//
+// Progress animations
+//
+
+@keyframes progress-bar-stripes {
+  from { background-position: $spacer-y 0; }
+  to { background-position: 0 0; }
+}
+
+
+//
+// Basic progress bar
+//
+
+.progress {
+  display: block;
+  width: 100%;
+  height: $spacer-y; // todo: make a new var for this
+  margin-bottom: $spacer-y;
+}
+.progress[value] {
+  // Set overall background
+  background-color: $progress-bg;
+  // Remove Firefox and Opera border
+  border: 0;
+  // Reset the default appearance
+  appearance: none;
+  // Set overall border radius
+  @include border-radius($border-radius);
+}
+
+// Filled-in portion of the bar
+.progress[value]::-ms-fill {
+  background-color: $progress-bar-color;
+  // Remove right-hand border of value bar from IE10+/Edge
+  border: 0;
+}
+.progress[value]::-moz-progress-bar {
+  background-color: $progress-bar-color;
+  @include border-left-radius($border-radius);
+}
+.progress[value]::-webkit-progress-value {
+  background-color: $progress-bar-color;
+  @include border-left-radius($border-radius);
+}
+// Tweaks for full progress bar
+.progress[value="100"]::-moz-progress-bar {
+  @include border-right-radius($border-radius);
+}
+.progress[value="100"]::-webkit-progress-value {
+  @include border-right-radius($border-radius);
+}
+
+// Unfilled portion of the bar
+.progress[value]::-webkit-progress-bar {
+  background-color: $progress-bg;
+  @include border-radius($border-radius);
+  @include box-shadow($progress-box-shadow);
+}
+base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make these styles Firefox-only
+.progress[value] {
+  background-color: $progress-bg;
+  @include border-radius($border-radius);
+  @include box-shadow($progress-box-shadow);
+}
+
+// IE9 hacks to accompany custom markup. We don't need to scope this via media queries, but I feel better doing it anyway.
+@media screen and (min-width:0\0) {
+  .progress {
+    background-color: $progress-bg;
+    @include border-radius($border-radius);
+    @include box-shadow($progress-box-shadow);
+  }
+  .progress-bar {
+    display: inline-block;
+    height: $spacer-y;
+    text-indent: -999rem; // Simulate hiding of value as in native `<progress>`
+    background-color: $progress-bar-color;
+    @include border-left-radius($border-radius);
+  }
+  .progress[width="100%"] {
+    @include border-right-radius($border-radius);
+  }
+}
+
+
+//
+// Striped
+//
+
+.progress-striped[value]::-webkit-progress-value {
+  @include gradient-striped();
+  background-size: $spacer-y $spacer-y;
+}
+.progress-striped[value]::-moz-progress-bar {
+  @include gradient-striped();
+  background-size: $spacer-y $spacer-y;
+}
+.progress-striped[value]::-ms-fill {
+  @include gradient-striped();
+  background-size: $spacer-y $spacer-y;
+}
+// IE9
+@media screen and (min-width:0\0) {
+  .progress-bar-striped {
+    @include gradient-striped();
+    background-size: $spacer-y $spacer-y;
+  }
+}
+
+
+//
+// Animated
+//
+
+.progress-animated[value]::-webkit-progress-value {
+  animation: progress-bar-stripes 2s linear infinite;
+}
+.progress-animated[value]::-moz-progress-bar {
+  animation: progress-bar-stripes 2s linear infinite;
+}
+// IE9
+@media screen and (min-width:0\0) {
+  .progress-animated .progress-bar-striped {
+    animation: progress-bar-stripes 2s linear infinite;
+  }
+}
+
+
+//
+// Variations
+//
+
+.progress-success {
+  @include progress-variant($progress-bar-success-bg);
+}
+.progress-info {
+  @include progress-variant($progress-bar-info-bg);
+}
+.progress-warning {
+  @include progress-variant($progress-bar-warning-bg);
+}
+.progress-danger {
+  @include progress-variant($progress-bar-danger-bg);
+}
+
+@if $enable-flex {
+  .media {
+    display: flex;
+    margin-bottom: $spacer;
+  }
+  .media-body {
+    flex: 1;
+  }
+  .media-middle {
+    align-self: center;
+  }
+  .media-bottom {
+    align-self: flex-end;
+  }
+} @else {
+  .media {
+    margin-top: $media-margin-top;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  .media,
+  .media-body {
+    overflow: hidden;
+  }
+  .media-body {
+    width: 10000px;
+  }
+  .media-left,
+  .media-right,
+  .media-body {
+    display: table-cell;
+    vertical-align: top;
+  }
+  .media-middle {
+    vertical-align: middle;
+  }
+  .media-bottom {
+    vertical-align: bottom;
+  }
+}
+
+
+//
+// Images/elements as the media anchor
+//
+
+.media-object {
+  display: block;
+
+  // Fix collapse in webkit from max-width: 100% and display: table-cell.
+  &.img-thumbnail {
+    max-width: none;
+  }
+}
+
+
+//
+// Alignment
+//
+
+.media-right {
+  padding-left: $media-alignment-padding-x;
+}
+
+.media-left {
+  padding-right: $media-alignment-padding-x;
+}
+
+
+//
+// Headings
+//
+
+.media-heading {
+  margin-top: 0;
+  margin-bottom: $media-heading-margin-bottom;
+}
+
+
+//
+// Media list variation
+//
+
+.media-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+// Base class
+//
+// Easily usable on <ul>, <ol>, or <div>.
+
+.list-group {
+  // No need to set list-style: none; since .list-group-item is block level
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 0;
+}
+
+
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.list-group` parent.
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: $list-group-item-padding-y $list-group-item-padding-x;
+  // Place the border on the list items and negative margin up for better styling
+  margin-bottom: -$list-group-border-width;
+  background-color: $list-group-bg;
+  border: $list-group-border-width solid $list-group-border-color;
+
+  &:first-child {
+    @include border-top-radius($list-group-border-radius);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+    @include border-bottom-radius($list-group-border-radius);
+  }
+
+  &.disabled {
+    @include plain-hover-focus {
+      color: $list-group-disabled-color;
+      cursor: $cursor-disabled;
+      background-color: $list-group-disabled-bg;
+
+      // Force color to inherit for custom content
+      .list-group-item-heading {
+        color: inherit;
+      }
+      .list-group-item-text {
+        color: $list-group-disabled-text-color;
+      }
+    }
+  }
+
+  &.active {
+    @include plain-hover-focus {
+      z-index: 2; // Place active items above their siblings for proper border styling
+      color: $list-group-active-color;
+      text-decoration: none; // Repeat here because it inherits global a:hover otherwise
+      background-color: $list-group-active-bg;
+      border-color: $list-group-active-border;
+
+      // Force color to inherit for custom content
+      .list-group-item-heading,
+      .list-group-item-heading > small,
+      .list-group-item-heading > .small {
+        color: inherit;
+      }
+      .list-group-item-text {
+        color: $list-group-active-text-color;
+      }
+    }
+  }
+}
+
+.list-group-flush {
+  .list-group-item {
+    border-radius: 0;
+  }
+}
+
+
+// Interactive list items
+//
+// Use anchor or button elements instead of `li`s or `div`s to create interactive
+// list items. Includes an extra `.active` modifier class for selected items.
+
+.list-group-item-action {
+  width: 100%; // For `<button>`s (anchors become 100% by default though)
+  color: $list-group-link-color;
+  text-align: inherit; // For `<button>`s (anchors inherit)
+
+  .list-group-item-heading {
+    color: $list-group-link-heading-color;
+  }
+
+  // Hover state
+  @include hover-focus {
+    color: $list-group-link-hover-color;
+    text-decoration: none;
+    background-color: $list-group-hover-bg;
+  }
+}
+
+
+// Contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@include list-group-item-variant(success, $state-success-bg, $state-success-text);
+@include list-group-item-variant(info, $state-info-bg, $state-info-text);
+@include list-group-item-variant(warning, $state-warning-bg, $state-warning-text);
+@include list-group-item-variant(danger, $state-danger-bg, $state-danger-text);
+
+
+// Custom content options
+//
+// Extra classes for creating well-formatted content within `.list-group-item`s.
+
+.list-group-item-heading {
+  margin-top: 0;
+  margin-bottom: $list-group-item-heading-margin-bottom;
+}
+.list-group-item-text {
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+// Credit: Nicolas Gallagher and SUIT CSS.
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+
+  .embed-responsive-item,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-21by9 {
+  padding-bottom: percentage(9 / 21);
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: percentage(9 / 16);
+}
+
+.embed-responsive-4by3 {
+  padding-bottom: percentage(3 / 4);
+}
+
+.embed-responsive-1by1 {
+  padding-bottom: percentage(1 / 1);
+}
+
+.close {
+  float: right;
+  font-size: ($font-size-base * 1.5);
+  font-weight: $close-font-weight;
+  line-height: 1;
+  color: $close-color;
+  text-shadow: $close-text-shadow;
+  opacity: .2;
+
+  @include hover-focus {
+    color: $close-color;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .5;
+  }
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+// scss-lint:disable QualifyingElement
+button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+// scss-lint:enable QualifyingElement
+
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+
+
+// Kill the scroll on the body
+.modal-open {
+  overflow: hidden;
+}
+
+// Container that the modal scrolls within
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal;
+  display: none;
+  overflow: hidden;
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+  -webkit-overflow-scrolling: touch;
+
+  // When fading in the modal, animate it to slide down
+  &.fade .modal-dialog {
+    transition: transform .3s ease-out;
+    transform: translate(0, -25%);
+  }
+  &.in .modal-dialog { transform: translate(0, 0); }
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: $modal-dialog-margin;
+}
+
+// Actual modal
+.modal-content {
+  position: relative;
+  background-color: $modal-content-bg;
+  background-clip: padding-box;
+  border: $modal-content-border-width solid $modal-content-border-color;
+  @include border-radius($border-radius-lg);
+  @include box-shadow($modal-content-xs-box-shadow);
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+// Modal background
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal-bg;
+  background-color: $modal-backdrop-bg;
+
+  // Fade for backdrop
+  &.fade { opacity: 0; }
+  &.in { opacity: $modal-backdrop-opacity; }
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  padding: $modal-title-padding;
+  border-bottom: $modal-header-border-width solid $modal-header-border-color;
+  @include clearfix;
+}
+// Close icon
+.modal-header .close {
+  margin-top: -2px;
+}
+
+// Title text within header
+.modal-title {
+  margin: 0;
+  line-height: $modal-title-line-height;
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  position: relative;
+  padding: $modal-inner-padding;
+}
+
+// Footer (for actions)
+.modal-footer {
+  padding: $modal-inner-padding;
+  text-align: right; // right align buttons
+  border-top: $modal-footer-border-width solid $modal-footer-border-color;
+  @include clearfix(); // clear it in case folks use .pull-* classes on buttons
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+// Scale up the modal
+@include media-breakpoint-up(sm) {
+  // Automatically set modal's width for larger viewports
+  .modal-dialog {
+    max-width: $modal-md;
+    margin: $modal-dialog-sm-up-margin-y auto;
+  }
+
+  .modal-content {
+    @include box-shadow($modal-content-sm-up-box-shadow);
+  }
+
+  .modal-sm { max-width: $modal-sm; }
+}
+
+@include media-breakpoint-up(lg) {
+  .modal-lg { max-width: $modal-lg; }
+}
+
+// Base class
+.tooltip {
+  position: absolute;
+  z-index: $zindex-tooltip;
+  display: block;
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  font-size: $font-size-sm;
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.in { opacity: $tooltip-opacity; }
+
+  &.tooltip-top,
+  &.bs-tether-element-attached-bottom {
+    padding: $tooltip-arrow-width 0;
+    margin-top: -$tooltip-margin;
+
+    .tooltip-arrow {
+      bottom: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-right,
+  &.bs-tether-element-attached-left {
+    padding: 0 $tooltip-arrow-width;
+    margin-left: $tooltip-margin;
+
+    .tooltip-arrow {
+      top: 50%;
+      left: 0;
+      margin-top: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-right-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-bottom,
+  &.bs-tether-element-attached-top {
+    padding: $tooltip-arrow-width 0;
+    margin-top: $tooltip-margin;
+
+    .tooltip-arrow {
+      top: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-left,
+  &.bs-tether-element-attached-right {
+    padding: 0 $tooltip-arrow-width;
+    margin-left: -$tooltip-margin;
+
+    .tooltip-arrow {
+      top: 50%;
+      right: 0;
+      margin-top: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-left-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  color: $tooltip-color;
+  text-align: center;
+  background-color: $tooltip-bg;
+  @include border-radius($border-radius);
+}
+
+// Arrows
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-popover;
+  display: block;
+  max-width: $popover-max-width;
+  padding: $popover-inner-padding;
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  font-size: $font-size-sm;
+  // Allow breaking very long words so they don't overflow the popover's bounds
+  word-wrap: break-word;
+  background-color: $popover-bg;
+  background-clip: padding-box;
+  border: $popover-border-width solid $popover-border-color;
+  @include border-radius($border-radius-lg);
+  @include box-shadow($popover-box-shadow);
+
+
+  // Popover directions
+
+  &.popover-top,
+  &.bs-tether-element-attached-bottom {
+    margin-top: -$popover-arrow-width;
+
+    .popover-arrow {
+      bottom: -$popover-arrow-outer-width;
+      left: 50%;
+      margin-left: -$popover-arrow-outer-width;
+      border-top-color: $popover-arrow-outer-color;
+      border-bottom-width: 0;
+      &::after {
+        bottom: 1px;
+        margin-left: -$popover-arrow-width;
+        content: "";
+        border-top-color: $popover-arrow-color;
+        border-bottom-width: 0;
+      }
+    }
+  }
+
+  &.popover-right,
+  &.bs-tether-element-attached-left {
+    margin-left: $popover-arrow-width;
+
+    .popover-arrow {
+      top: 50%;
+      left: -$popover-arrow-outer-width;
+      margin-top: -$popover-arrow-outer-width;
+      border-right-color: $popover-arrow-outer-color;
+      border-left-width: 0;
+      &::after {
+        bottom: -$popover-arrow-width;
+        left: 1px;
+        content: "";
+        border-right-color: $popover-arrow-color;
+        border-left-width: 0;
+      }
+    }
+  }
+
+  &.popover-bottom,
+  &.bs-tether-element-attached-top {
+    margin-top: $popover-arrow-width;
+
+    .popover-arrow {
+      top: -$popover-arrow-outer-width;
+      left: 50%;
+      margin-left: -$popover-arrow-outer-width;
+      border-top-width: 0;
+      border-bottom-color: $popover-arrow-outer-color;
+      &::after {
+        top: 1px;
+        margin-left: -$popover-arrow-width;
+        content: "";
+        border-top-width: 0;
+        border-bottom-color: $popover-arrow-color;
+      }
+    }
+  }
+
+  &.popover-left,
+  &.bs-tether-element-attached-right {
+    margin-left: -$popover-arrow-width;
+
+    .popover-arrow {
+      top: 50%;
+      right: -$popover-arrow-outer-width;
+      margin-top: -$popover-arrow-outer-width;
+      border-right-width: 0;
+      border-left-color: $popover-arrow-outer-color;
+      &::after {
+        right: 1px;
+        bottom: -$popover-arrow-width;
+        content: "";
+        border-right-width: 0;
+        border-left-color: $popover-arrow-color;
+      }
+    }
+  }
+}
+
+
+// Offset the popover to account for the popover arrow
+.popover-title {
+  padding: $popover-title-padding-y $popover-title-padding-x;
+  margin: 0; // reset heading margin
+  font-size: $font-size-base;
+  background-color: $popover-title-bg;
+  border-bottom: $popover-border-width solid darken($popover-title-bg, 5%);
+  $offset-border-width: ($border-width / $font-size-root);
+  @include border-radius(($border-radius-lg - $offset-border-width) ($border-radius-lg - $offset-border-width) 0 0);
+
+  &:empty {
+    display: none;
+  }
+}
+
+.popover-content {
+  padding: $popover-content-padding-y $popover-content-padding-x;
+}
+
+
+// Arrows
+//
+// .popover-arrow is outer, .popover-arrow::after is inner
+
+.popover-arrow {
+  &,
+  &::after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+.popover-arrow {
+  border-width: $popover-arrow-outer-width;
+}
+.popover-arrow::after {
+  content: "";
+  border-width: $popover-arrow-width;
+}
+
+// Wrapper for the slide container and indicators
+.carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  > .carousel-item {
+    position: relative;
+    display: none;
+    transition: .6s ease-in-out left;
+
+    // Account for jankitude on images
+    > img,
+    > a > img {
+      @extend .img-fluid;
+      line-height: 1;
+    }
+
+    // WebKit CSS3 transforms for supported devices
+    @media all and (transform-3d), (-webkit-transform-3d) {
+      transition: transform .6s ease-in-out;
+      backface-visibility: hidden;
+      perspective: 1000px;
+
+      &.next,
+      &.active.right {
+        left: 0;
+        transform: translate3d(100%, 0, 0);
+      }
+      &.prev,
+      &.active.left {
+        left: 0;
+        transform: translate3d(-100%, 0, 0);
+      }
+      &.next.left,
+      &.prev.right,
+      &.active {
+        left: 0;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  > .active,
+  > .next,
+  > .prev {
+    display: block;
+  }
+
+  > .active {
+    left: 0;
+  }
+
+  > .next,
+  > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  > .next {
+    left: 100%;
+  }
+  > .prev {
+    left: -100%;
+  }
+  > .next.left,
+  > .prev.right {
+    left: 0;
+  }
+
+  > .active.left {
+    left: -100%;
+  }
+  > .active.right {
+    left: 100%;
+  }
+}
+
+
+//
+// Left/right controls for nav
+//
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $carousel-control-width;
+  font-size: $carousel-control-font-size;
+  color: $carousel-control-color;
+  text-align: center;
+  text-shadow: $carousel-text-shadow;
+  opacity: $carousel-control-opacity;
+  // We can't have this transition here because WebKit cancels the carousel
+  // animation if you trip this while in the middle of another animation.
+
+  // Set gradients for backgrounds
+  &.left {
+    @include gradient-x($start-color: rgba(0,0,0,.5), $end-color: rgba(0,0,0,.0001));
+  }
+  &.right {
+    right: 0;
+    left: auto;
+    @include gradient-x($start-color: rgba(0,0,0,.0001), $end-color: rgba(0,0,0,.5));
+  }
+
+  // Hover/focus state
+  @include hover-focus {
+    color: $carousel-control-color;
+    text-decoration: none;
+    outline: 0;
+    opacity: .9;
+  }
+
+  // Toggles
+  .icon-prev,
+  .icon-next {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    width: $carousel-icon-width;
+    height: $carousel-icon-width;
+    margin-top: -($carousel-icon-width / 2);
+    font-family: serif;
+    line-height: 1;
+  }
+  .icon-prev {
+    left: 50%;
+    margin-left: -($carousel-icon-width / 2);
+  }
+  .icon-next {
+    right: 50%;
+    margin-right: -($carousel-icon-width / 2);
+  }
+
+  .icon-prev {
+    &::before {
+      content: "\2039";// SINGLE LEFT-POINTING ANGLE QUOTATION MARK (U+2039)
+    }
+  }
+  .icon-next {
+    &::before {
+      content: "\203a";// SINGLE RIGHT-POINTING ANGLE QUOTATION MARK (U+203A)
+    }
+  }
+}
+
+
+// Optional indicator pips
+//
+// Add an unordered list with the following class and add a list item for each
+// slide your carousel holds.
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 15;
+  width: $carousel-indicators-width;
+  padding-left: 0;
+  margin-left: -($carousel-indicators-width / 2);
+  text-align: center;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    width: $carousel-indicator-size;
+    height: $carousel-indicator-size;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    // IE9 hack for event handling
+    //
+    // Internet Explorer 9 does not properly handle clicks on elements with a `background-color` of `transparent`,
+    // so we use `rgba(0,0,0,0)` instead since it's a non-buggy equivalent.
+    // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Internet_Explorer
+    background-color: rgba(0,0,0,0); // IE9
+    border: 1px solid $carousel-indicator-border-color;
+    border-radius: $carousel-indicator-size;
+  }
+
+  .active {
+    width: $carousel-indicator-active-size;
+    height: $carousel-indicator-active-size;
+    margin: 0;
+    background-color: $carousel-indicator-active-bg;
+  }
+}
+
+
+// Optional captions
+//
+// Hidden by default for smaller viewports.
+
+.carousel-caption {
+  position: absolute;
+  right: ((100% - $carousel-caption-width) / 2);
+  bottom: 20px;
+  left: ((100% - $carousel-caption-width) / 2);
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: $carousel-caption-color;
+  text-align: center;
+  text-shadow: $carousel-text-shadow;
+
+  .btn {
+    text-shadow: none; // No shadow for button elements in carousel-caption
+  }
+}
+
+
+//
+// Responsive variations
+//
+
+@include media-breakpoint-up(sm) {
+  // Scale up the controls a smidge
+  .carousel-control {
+    .icon-prev,
+    .icon-next {
+      width: $carousel-control-sm-up-size;
+      height: $carousel-control-sm-up-size;
+      margin-top: -($carousel-control-sm-up-size / 2);
+      font-size: $carousel-control-sm-up-size;
+    }
+    .icon-prev {
+      margin-left: -($carousel-control-sm-up-size / 2);
+    }
+    .icon-next {
+      margin-right: -($carousel-control-sm-up-size / 2);
+    }
+  }
+
+  // Show and left align the captions
+  .carousel-caption {
+    right: ((100% - $carousel-caption-sm-up-width) / 2);
+    left: ((100% - $carousel-caption-sm-up-width) / 2);
+    padding-bottom: 30px;
+  }
+
+  // Move up the indicators
+  .carousel-indicators {
+    bottom: 20px;
+  }
+}
+
+//
+// Contextual backgrounds
+//
+
+.bg-inverse {
+  background-color: $brand-inverse;
+}
+
+.bg-faded {
+  background-color: $gray-lightest;
+}
+
+@include bg-variant('.bg-primary', $brand-primary);
+
+@include bg-variant('.bg-success', $brand-success);
+
+@include bg-variant('.bg-info', $brand-info);
+
+@include bg-variant('.bg-warning', $brand-warning);
+
+@include bg-variant('.bg-danger', $brand-danger);
+
+.clearfix {
+  @include clearfix();
+}
+
+//
+// Display utilities
+//
+
+.d-block {
+  display: block !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+
+// Flex variation
+//
+// Custom styles for additional flex alignment options.
+
+@if $enable-flex {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    // Flex column reordering
+    @include media-breakpoint-up($breakpoint) {
+      .flex-#{$breakpoint}-first { order: -1; }
+      .flex-#{$breakpoint}-last { order: 1; }
+      .flex-#{$breakpoint}-unordered { order: 0; }
+    }
+
+    // Alignment for every item
+    @include media-breakpoint-up($breakpoint) {
+      .flex-items-#{$breakpoint}-top { align-items: flex-start; }
+      .flex-items-#{$breakpoint}-middle { align-items: center; }
+      .flex-items-#{$breakpoint}-bottom { align-items: flex-end; }
+    }
+
+    // Alignment per item
+    @include media-breakpoint-up($breakpoint) {
+      .flex-#{$breakpoint}-top   { align-self: flex-start; }
+      .flex-#{$breakpoint}-middle { align-self: center; }
+      .flex-#{$breakpoint}-bottom { align-self: flex-end; }
+    }
+
+    // Horizontal alignment of item
+    @include media-breakpoint-up($breakpoint) {
+      .flex-items-#{$breakpoint}-left { justify-content: flex-start; }
+      .flex-items-#{$breakpoint}-center { justify-content: center; }
+      .flex-items-#{$breakpoint}-right { justify-content: flex-end; }
+      .flex-items-#{$breakpoint}-around { justify-content: space-around; }
+      .flex-items-#{$breakpoint}-between { justify-content: space-between; }
+    }
+  }
+}
+
+$breakpoint: xs;
+@include media-breakpoint-up($breakpoint) {
+  .pull-#{$breakpoint}-left {
+    @include pull-left();
+  }
+  .pull-#{$breakpoint}-right {
+    @include pull-right();
+  }
+  .pull-#{$breakpoint}-none {
+    float: none !important;
+  }
+}
+
+$breakpoint: sm;
+@include media-breakpoint-up($breakpoint) {
+  .pull-#{$breakpoint}-left {
+    @include pull-left();
+  }
+  .pull-#{$breakpoint}-right {
+    @include pull-right();
+  }
+  .pull-#{$breakpoint}-none {
+    float: none !important;
+  }
+}
+
+$breakpoint: md;
+@include media-breakpoint-up($breakpoint) {
+  .pull-#{$breakpoint}-left {
+    @include pull-left();
+  }
+  .pull-#{$breakpoint}-right {
+    @include pull-right();
+  }
+  .pull-#{$breakpoint}-none {
+    float: none !important;
+  }
+}
+
+$breakpoint: lg;
+@include media-breakpoint-up($breakpoint) {
+  .pull-#{$breakpoint}-left {
+    @include pull-left();
+  }
+  .pull-#{$breakpoint}-right {
+    @include pull-right();
+  }
+  .pull-#{$breakpoint}-none {
+    float: none !important;
+  }
+}
+
+$breakpoint: xl;
+@include media-breakpoint-up($breakpoint) {
+  .pull-#{$breakpoint}-left {
+    @include pull-left();
+  }
+  .pull-#{$breakpoint}-right {
+    @include pull-right();
+  }
+  .pull-#{$breakpoint}-none {
+    float: none !important;
+  }
+}
+
+
+
+
+
+//
+// Screenreaders
+//
+
+.sr-only {
+  @include sr-only();
+}
+
+.sr-only-focusable {
+  @include sr-only-focusable();
+}
+
+// Width
+
+.w-100 { width: 100% !important; }
+
+// Margin and Padding
+
+.m-x-auto {
+  margin-right: auto !important;
+  margin-left:  auto !important;
+}
+
+@mixin spacing($prop, $abbrev, $size, $length-x, $length-y) {
+  .#{$abbrev}-a-#{$size} { #{$prop}:        $length-y $length-x !important; } // a = All sides
+  .#{$abbrev}-t-#{$size} { #{$prop}-top:    $length-y !important; }
+  .#{$abbrev}-r-#{$size} { #{$prop}-right:  $length-x !important; }
+  .#{$abbrev}-b-#{$size} { #{$prop}-bottom: $length-y !important; }
+  .#{$abbrev}-l-#{$size} { #{$prop}-left:   $length-x !important; }
+
+  // Axes
+  .#{$abbrev}-x-#{$size} {
+    #{$prop}-right:  $length-x !important;
+    #{$prop}-left:   $length-x !important;
+  }
+  .#{$abbrev}-y-#{$size} {
+    #{$prop}-top:    $length-y !important;
+    #{$prop}-bottom: $length-y !important;
+  }
+}
+
+@include spacing(m, xs, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(p, xs, 0, $spacers-x-0, $spacers-y-0);
+
+@include spacing(m, sm, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(p, sm, 0, $spacers-x-0, $spacers-y-0);
+
+@include spacing(m, md, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(p, md, 0, $spacers-x-0, $spacers-y-0);
+
+@include spacing(m, xl, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(p, xl, 0, $spacers-x-0, $spacers-y-0);
+
+
+@include spacing(m, xs, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(p, xs, 1, $spacers-x-1, $spacers-y-1);
+
+@include spacing(m, sm, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(p, sm, 1, $spacers-x-1, $spacers-y-1);
+
+@include spacing(m, md, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(p, md, 1, $spacers-x-1, $spacers-y-1);
+
+@include spacing(m, xl, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(p, xl, 1, $spacers-x-1, $spacers-y-1);
+
+
+@include spacing(m, xs, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(p, xs, 2, $spacers-x-2, $spacers-y-2);
+
+@include spacing(m, sm, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(p, sm, 2, $spacers-x-2, $spacers-y-2);
+
+@include spacing(m, md, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(p, md, 2, $spacers-x-2, $spacers-y-2);
+
+@include spacing(m, xl, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(p, xl, 2, $spacers-x-2, $spacers-y-2);
+
+
+@include spacing(m, xs, 3, $spacers-x-3, $spacers-y-3);
+@include spacing(p, xs, 3, $spacers-x-3, $spacers-y-3);
+
+@include spacing(m, sm, 3, $spacers-x-3, $spacers-y-3);
+@include spacing(p, sm, 3, $spacers-x-3, $spacers-y-3);
+
+@include spacing(m, md, 3, $spacers-x-3, $spacers-y-3);
+@include spacing(p, md, 3, $spacers-x-3, $spacers-y-3);
+
+@include spacing(m, xl, 3, $spacers-x-3, $spacers-y-3);
+@include spacing(p, xl, 3, $spacers-x-3, $spacers-y-3);
+
+
+// Positioning
+
+.pos-f-t {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-navbar-fixed;
+}
+
+//
+// Text
+//
+
+// Alignment
+
+.text-justify        { text-align: justify !important; }
+.text-nowrap         { white-space: nowrap !important; }
+.text-truncate       { @include text-truncate; }
+
+// Responsive alignment
+
+$breakpoint: xs;
+@include media-breakpoint-up($breakpoint) {
+  .text-#{$breakpoint}-left   { text-align: left !important; }
+  .text-#{$breakpoint}-right  { text-align: right !important; }
+  .text-#{$breakpoint}-center { text-align: center !important; }
+}
+
+$breakpoint: sm;
+@include media-breakpoint-up($breakpoint) {
+  .text-#{$breakpoint}-left   { text-align: left !important; }
+  .text-#{$breakpoint}-right  { text-align: right !important; }
+  .text-#{$breakpoint}-center { text-align: center !important; }
+}
+
+$breakpoint: md;
+@include media-breakpoint-up($breakpoint) {
+  .text-#{$breakpoint}-left   { text-align: left !important; }
+  .text-#{$breakpoint}-right  { text-align: right !important; }
+  .text-#{$breakpoint}-center { text-align: center !important; }
+}
+
+$breakpoint: lg;
+@include media-breakpoint-up($breakpoint) {
+  .text-#{$breakpoint}-left   { text-align: left !important; }
+  .text-#{$breakpoint}-right  { text-align: right !important; }
+  .text-#{$breakpoint}-center { text-align: center !important; }
+}
+
+$breakpoint: xl;
+@include media-breakpoint-up($breakpoint) {
+  .text-#{$breakpoint}-left   { text-align: left !important; }
+  .text-#{$breakpoint}-right  { text-align: right !important; }
+  .text-#{$breakpoint}-center { text-align: center !important; }
+}
+
+
+
+// Transformation
+
+.text-lowercase      { text-transform: lowercase !important; }
+.text-uppercase      { text-transform: uppercase !important; }
+.text-capitalize     { text-transform: capitalize !important; }
+
+// Weight and italics
+
+.font-weight-normal  { font-weight: normal; }
+.font-weight-bold    { font-weight: bold; }
+.font-italic         { font-style: italic; }
+
+// Contextual colors
+
+@include text-emphasis-variant('.text-muted', $text-muted);
+
+@include text-emphasis-variant('.text-primary', $brand-primary);
+
+@include text-emphasis-variant('.text-success', $brand-success);
+
+@include text-emphasis-variant('.text-info', $brand-info);
+
+@include text-emphasis-variant('.text-warning', $brand-warning);
+
+@include text-emphasis-variant('.text-danger', $brand-danger);
+
+// Misc
+
+.text-hide {
+  @include text-hide();
+}
+
+// scss-lint:disable ImportantRule
+
+//
+// Visibility utilities
+//
+
+.invisible {
+  visibility: hidden !important;
+}
+
+// Responsive visibility utilities
+
+$bp: xs;
+.hidden-#{$bp}-up {
+  @include media-breakpoint-up($bp) {
+    display: none !important;
+  }
+}
+.hidden-#{$bp}-down {
+  @include media-breakpoint-down($bp) {
+    display: none !important;
+  }
+}
+
+$bp: sm;
+.hidden-#{$bp}-up {
+  @include media-breakpoint-up($bp) {
+    display: none !important;
+  }
+}
+.hidden-#{$bp}-down {
+  @include media-breakpoint-down($bp) {
+    display: none !important;
+  }
+}
+
+$bp: md;
+.hidden-#{$bp}-up {
+  @include media-breakpoint-up($bp) {
+    display: none !important;
+  }
+}
+.hidden-#{$bp}-down {
+  @include media-breakpoint-down($bp) {
+    display: none !important;
+  }
+}
+
+$bp: lg;
+.hidden-#{$bp}-up {
+  @include media-breakpoint-up($bp) {
+    display: none !important;
+  }
+}
+.hidden-#{$bp}-down {
+  @include media-breakpoint-down($bp) {
+    display: none !important;
+  }
+}
+
+$bp: xs;
+.hidden-#{$bp}-up {
+  @include media-breakpoint-up($bp) {
+    display: none !important;
+  }
+}
+.hidden-#{$bp}-down {
+  @include media-breakpoint-down($bp) {
+    display: none !important;
+  }
+}
+
+// Print utilities
+//
+// Media queries are placed on the inside to be mixin-friendly.
+
+.visible-print-block {
+  display: none !important;
+
+  @media print {
+    display: block !important;
+  }
+}
+.visible-print-inline {
+  display: none !important;
+
+  @media print {
+    display: inline !important;
+  }
+}
+.visible-print-inline-block {
+  display: none !important;
+
+  @media print {
+    display: inline-block !important;
+  }
+}
+
+.hidden-print {
+  @media print {
+    display: none !important;
   }
 }

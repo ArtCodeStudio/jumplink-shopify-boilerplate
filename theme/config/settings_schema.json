@@ -1,0 +1,16 @@
+[  
+   {  
+      "name":"theme_info",
+      "logo":"",
+      "settings":[  
+         {  
+            "type":"header",
+            "content":"Shopify Boilerplate 0.0.1 by [JumpLink](https://jumplink.eu)"
+         },
+         {  
+            "type":"paragraph",
+            "content":"For theme support please contact us at [info@jumplink.eu](mailto:info@jumplink.eu)"
+         }
+      ]
+   }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "jumplink-shopify-boilerplate",
+  "description": "Shopify theme framework based on Bootstrap 4",
+  "main": "gulpfile.js",
+  "authors": [
+    "Pascal Garber <pascal@jumplink.eu>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "JumpLink",
+    "Bootstrap4",
+    "Shopify"
+  ],
+  "homepage": "https://github.com/JumpLinkNetwork/jumplink-shopify-boilerplate",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.3"
+  }
+}

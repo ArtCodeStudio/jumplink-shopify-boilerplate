@@ -35,21 +35,71 @@
 // Fonts
 // Components
 
-@mixin _assert-ascending($map, $map-name) {
+@mixin _assert-ascending($xs, $sm, $md, $lg, $xl) {
   $prev-key: null;
   $prev-num: null;
-  // TODO
-  // @each $key, $num in $map {
-  //   @if $prev-num == null {
-  //     // Do nothing
-  //   } @else if not comparable($prev-num, $num) {
-  //     @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-  //   } @else if $prev-num >= $num {
-  //     @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
-  //   }
-  //   $prev-key: $key;
-  //   $prev-num: $num;
-  // }
+  $key: 'xs';
+  $map-name: 'xs';
+  $num: $xs;
+  @if $prev-num == null {
+    // Do nothing
+  } @else if not comparable($prev-num, $num) {
+    @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  } @else if $prev-num >= $num {
+    @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  }
+
+  $prev-key: $key;
+  $prev-num: $num;
+  $key: 'sm';
+  $map-name: 'sm';
+  $num: $sm;
+  @if $prev-num == null {
+    // Do nothing
+  } @else if not comparable($prev-num, $num) {
+    @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  } @else if $prev-num >= $num {
+    @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  }
+
+  $prev-key: $key;
+  $prev-num: $num;
+  $key: 'md';
+  $map-name: 'md';
+  $num: $md;
+  @if $prev-num == null {
+    // Do nothing
+  } @else if not comparable($prev-num, $num) {
+    @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  } @else if $prev-num >= $num {
+    @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  }
+
+  $prev-key: $key;
+  $prev-num: $num;
+  $key: 'lg';
+  $map-name: 'lg';
+  $num: $lg;
+  @if $prev-num == null {
+    // Do nothing
+  } @else if not comparable($prev-num, $num) {
+    @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  } @else if $prev-num >= $num {
+    @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  }
+
+  $prev-key: $key;
+  $prev-num: $num;
+  $key: 'xl';
+  $map-name: 'xl';
+  $num: $xl;
+  @if $prev-num == null {
+    // Do nothing
+  } @else if not comparable($prev-num, $num) {
+    @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  } @else if $prev-num >= $num {
+    @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+  }
 }
 
 // General variable structure
@@ -140,20 +190,20 @@ $grid-breakpoints-md: 768px !default;
 $grid-breakpoints-lg: 992px !default;
 $grid-breakpoints-xl: 1200px !default;
 
-// @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-ascending($grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl);
 
 
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
 
-$container-max-widths-xs: 576px !default;
+$container-max-widths-xs: null !default;
 $container-max-widths-sm: 576px !default;
 $container-max-widths-md: 720px !default;
 $container-max-widths-lg: 940px !default;
 $container-max-widths-xl: 1140px !default;
 
-// @include _assert-ascending($container-max-widths, "$container-max-widths");
+@include _assert-ascending($container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xl);
 
 
 // Grid columns
@@ -431,7 +481,6 @@ $custom-file-button-bg:     #eee !default;
 $custom-file-text-placeholder-en: "Choose file..." !default;
 $custom-file-text-button-label-en: "Browse" !default;
 
-
 // Form validation icons
 $form-icon-success: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%235cb85c' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3E%3C/svg%3E") !default;
 $form-icon-warning: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23f0ad4e' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E") !default;
@@ -690,7 +739,7 @@ $modal-sm:                    300px !default;
 //
 // Define alert colors, border radius, and padding.
 
-$alert-padding:               15px !default;
+$alert-padding:               1rem !default;
 $alert-border-radius:         $border-radius !default;
 $alert-link-font-weight:      bold !default;
 $alert-border-width:          $border-width !default;
@@ -872,8 +921,11 @@ $pre-scrollable-max-height:   340px !default;
 @function breakpoint-min($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
   $result: $grid-breakpoints-xs;
 
-  @if($name == sm) {
+  @if($name == xs) {
     $result: null;
+  }
+  @if($name == sm) {
+    $result: $sm;
   }
   @if($name == md) {
     $result: $md;
@@ -881,7 +933,7 @@ $pre-scrollable-max-height:   340px !default;
   @if($name == lg) {
     $result: $lg;
   }
-  @if($name == lg) {
+  @if($name == xl) {
     $result: $xl;
   }
 
@@ -928,7 +980,7 @@ $pre-scrollable-max-height:   340px !default;
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
 // Makes the @content apply to the given breakpoint and narrower.
 @mixin media-breakpoint-down($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
-  $max: breakpoint-max($name, $xs, $sm, $md, $lg, $xl);
+  $max: breakpoint-max($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl);
   @if $max {
     @media (max-width: $max) {
       @content;
@@ -942,8 +994,8 @@ $pre-scrollable-max-height:   340px !default;
 // No minimum for the smallest breakpoint, and no maximum for the largest one.
 // Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
 @mixin media-breakpoint-only($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
-  @include media-breakpoint-up($name, $xs, $sm, $md, $lg, $xl) {
-    @include media-breakpoint-down($name, $xs, $sm, $md, $lg, $xl) {
+  @include media-breakpoint-up($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+    @include media-breakpoint-down($name, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
       @content;
     }
   }
@@ -952,8 +1004,8 @@ $pre-scrollable-max-height:   340px !default;
 // Media that spans multiple breakpoint widths.
 // Makes the @content apply between the min and max breakpoints
 @mixin media-breakpoint-between($lower, $upper, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
-  @include media-breakpoint-up($lower, $xs, $sm, $md, $lg, $xl) {
-    @include media-breakpoint-down($upper, $xs, $sm, $md, $lg, $xl) {
+  @include media-breakpoint-up($lower, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+    @include media-breakpoint-down($upper, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
       @content;
     }
   }
@@ -1051,7 +1103,7 @@ $pre-scrollable-max-height:   340px !default;
   only screen and (min-resolution: 192dpi), // IE9-11 don't support dppx
   only screen and (min-resolution: 2dppx) { // Standardized
     background-image: url($file-2x);
-    background-size: $width-1x $height-1x;
+    @include vp-background-size($width-1x $height-1x);
   }
 }
 
@@ -1159,7 +1211,7 @@ $pre-scrollable-max-height:   340px !default;
   }
   a#{$parent} {
     @include hover-focus {
-      color: darken($color, 10%);
+      color: darken($color, 10%) !important;
     }
   }
 }
@@ -1436,14 +1488,8 @@ $pre-scrollable-max-height:   340px !default;
   // Color the label and help text
   .form-control-feedback,
   .form-control-label,
-  .radio,
-  .checkbox,
-  .radio-inline,
-  .checkbox-inline,
-  &.radio label,
-  &.checkbox label,
-  &.radio-inline label,
-  &.checkbox-inline label,
+  .form-check-label,
+  .form-check-inline,
   .custom-control {
     color: $color;
   }
@@ -1632,7 +1678,9 @@ $pre-scrollable-max-height:   340px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9.
 @mixin gradient-x($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+  // https://www.sitepoint.com/building-linear-gradient-mixin-sass/
+  @include vp-linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+  //background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9
 }
@@ -1642,22 +1690,26 @@ $pre-scrollable-max-height:   340px !default;
 // Creates two color stops, start and end, by specifying a color and position for each color stop.
 // Color stops are not available in IE9.
 @mixin gradient-y($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
-  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+  @include vp-linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+  //background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9
 }
 
 @mixin gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg) {
   background-repeat: repeat-x;
-  background-image: linear-gradient($deg, $start-color, $end-color);
+  @include vp-linear-gradient($deg, $start-color, $end-color);
+  //background-image: linear-gradient($deg, $start-color, $end-color);
 }
 @mixin gradient-x-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
-  background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+  @include vp-linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+  // background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
   background-repeat: no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 gets no color-stop at all for proper fallback
 }
 @mixin gradient-y-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
-  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  @include vp-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  //background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
   background-repeat: no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 gets no color-stop at all for proper fallback
 }
@@ -1666,7 +1718,8 @@ $pre-scrollable-max-height:   340px !default;
   background-repeat: no-repeat;
 }
 @mixin gradient-striped($color: rgba(255,255,255,.15), $angle: 45deg) {
-  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+  @include vp-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+  // background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
 }
 @mixin clearfix() {
   &::after {
@@ -1681,7 +1734,54 @@ $pre-scrollable-max-height:   340px !default;
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width) {
+@mixin make-grid-column($breakpoint, $breakpoint-counter, $columns: $grid-columns, $gutter: $grid-gutter-width, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
+
+  @for $i from 1 through $columns {
+    .col-#{$breakpoint}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  @include media-breakpoint-up($breakpoint, $xs, $sm, $md, $lg, $xl) {
+    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+    @if $enable-flex {
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-right: ($grid-gutter-width / 2);
+        padding-left:  ($grid-gutter-width / 2);
+      }
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i, $columns);
+      }
+    }
+
+    @each $modifier in (pull, push) {
+      @for $i from 0 through $columns {
+        .#{$modifier}-#{$breakpoint}-#{$i} {
+          @include make-col-modifier($modifier, $i, $columns)
+        }
+      }
+    }
+
+    // `$columns - 1` because offsetting by the width of an entire row isn't possible
+    @for $i from 0 through ($columns - 1) {
+      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-modifier(offset, $i, $columns)
+        }
+      }
+    }
+  }
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $xs: $grid-breakpoints-xs, $sm: $grid-breakpoints-sm, $md: $grid-breakpoints-md, $lg: $grid-breakpoints-lg, $xl: $grid-breakpoints-xl) {
 
   // Common properties for all breakpoints
   %grid-column {
@@ -1698,295 +1798,26 @@ $pre-scrollable-max-height:   340px !default;
   }
 
   $breakpoint-counter: 0;
-  // @each $breakpoint in map-keys($breakpoints) {
-  //   $breakpoint-counter: ($breakpoint-counter + 1);
 
-  //   @for $i from 1 through $columns {
-  //     .col-#{$breakpoint}-#{$i} {
-  //       @extend %grid-column;
-  //     }
-  //   }
-
-  //   @include media-breakpoint-up($breakpoint, $breakpoints) {
-  //     // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-  //     @if $enable-flex {
-  //       .col-#{$breakpoint} {
-  //         position: relative;
-  //         flex-basis: 0;
-  //         flex-grow: 1;
-  //         max-width: 100%;
-  //         min-height: 1px;
-  //         padding-right: ($grid-gutter-width / 2);
-  //         padding-left:  ($grid-gutter-width / 2);
-  //       }
-  //     }
-
-  //     @for $i from 1 through $columns {
-  //       .col-#{$breakpoint}-#{$i} {
-  //         @include make-col($i, $columns, $gutter);
-  //       }
-  //     }
-
-  //     @each $modifier in (pull, push) {
-  //       @for $i from 0 through $columns {
-  //         .#{$modifier}-#{$breakpoint}-#{$i} {
-  //           @include make-col-modifier($modifier, $i, $columns)
-  //         }
-  //       }
-  //     }
-
-  //     // `$columns - 1` because offsetting by the width of an entire row isn't possible
-  //     @for $i from 0 through ($columns - 1) {
-  //       @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-  //         .offset-#{$breakpoint}-#{$i} {
-  //           @include make-col-modifier(offset, $i, $columns)
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-  // xs
   $breakpoint: xs;
   $breakpoint-counter: ($breakpoint-counter + 1);
+  @include make-grid-column($breakpoint, $breakpoint-counter, $columns, $gutter, $xs, $sm, $md, $lg, $xl);
 
-  @for $i from 1 through $columns {
-    .col-#{$breakpoint}-#{$i} {
-      @extend %grid-column;
-    }
-  }
-
-  @include media-breakpoint-up(xs, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
-    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-    @if $enable-flex {
-      .col-#{$breakpoint} {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        padding-right: ($grid-gutter-width / 2);
-        padding-left:  ($grid-gutter-width / 2);
-      }
-    }
-
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-col($i, $columns, $gutter);
-      }
-    }
-
-    @each $modifier in (pull, push) {
-      @for $i from 0 through $columns {
-        .#{$modifier}-#{$breakpoint}-#{$i} {
-          @include make-col-modifier($modifier, $i, $columns)
-        }
-      }
-    }
-
-    // `$columns - 1` because offsetting by the width of an entire row isn't possible
-    @for $i from 0 through ($columns - 1) {
-      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-        .offset-#{$breakpoint}-#{$i} {
-          @include make-col-modifier(offset, $i, $columns)
-        }
-      }
-    }
-  }
-
-  // sm
   $breakpoint: sm;
   $breakpoint-counter: ($breakpoint-counter + 1);
+  @include make-grid-column($breakpoint, $breakpoint-counter, $columns, $gutter, $xs, $sm, $md, $lg, $xl);
 
-  @for $i from 1 through $columns {
-    .col-#{$breakpoint}-#{$i} {
-      @extend %grid-column;
-    }
-  }
-
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
-    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-    @if $enable-flex {
-      .col-#{$breakpoint} {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        padding-right: ($grid-gutter-width / 2);
-        padding-left:  ($grid-gutter-width / 2);
-      }
-    }
-
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-col($i, $columns, $gutter);
-      }
-    }
-
-    @each $modifier in (pull, push) {
-      @for $i from 0 through $columns {
-        .#{$modifier}-#{$breakpoint}-#{$i} {
-          @include make-col-modifier($modifier, $i, $columns)
-        }
-      }
-    }
-
-    // `$columns - 1` because offsetting by the width of an entire row isn't possible
-    @for $i from 0 through ($columns - 1) {
-      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-        .offset-#{$breakpoint}-#{$i} {
-          @include make-col-modifier(offset, $i, $columns)
-        }
-      }
-    }
-  }
-
-  // md
   $breakpoint: md;
   $breakpoint-counter: ($breakpoint-counter + 1);
+  @include make-grid-column($breakpoint, $breakpoint-counter, $columns, $gutter, $xs, $sm, $md, $lg, $xl);
 
-  @for $i from 1 through $columns {
-    .col-#{$breakpoint}-#{$i} {
-      @extend %grid-column;
-    }
-  }
-
-  @include media-breakpoint-up(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
-    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-    @if $enable-flex {
-      .col-#{$breakpoint} {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        padding-right: ($grid-gutter-width / 2);
-        padding-left:  ($grid-gutter-width / 2);
-      }
-    }
-
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-col($i, $columns, $gutter);
-      }
-    }
-
-    @each $modifier in (pull, push) {
-      @for $i from 0 through $columns {
-        .#{$modifier}-#{$breakpoint}-#{$i} {
-          @include make-col-modifier($modifier, $i, $columns)
-        }
-      }
-    }
-
-    // `$columns - 1` because offsetting by the width of an entire row isn't possible
-    @for $i from 0 through ($columns - 1) {
-      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-        .offset-#{$breakpoint}-#{$i} {
-          @include make-col-modifier(offset, $i, $columns)
-        }
-      }
-    }
-  }
-
-  // lg
   $breakpoint: lg;
   $breakpoint-counter: ($breakpoint-counter + 1);
+  @include make-grid-column($breakpoint, $breakpoint-counter, $columns, $gutter, $xs, $sm, $md, $lg, $xl);
 
-  @for $i from 1 through $columns {
-    .col-#{$breakpoint}-#{$i} {
-      @extend %grid-column;
-    }
-  }
-
-  @include media-breakpoint-up(lg, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
-    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-    @if $enable-flex {
-      .col-#{$breakpoint} {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        padding-right: ($grid-gutter-width / 2);
-        padding-left:  ($grid-gutter-width / 2);
-      }
-    }
-
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-col($i, $columns, $gutter);
-      }
-    }
-
-    @each $modifier in (pull, push) {
-      @for $i from 0 through $columns {
-        .#{$modifier}-#{$breakpoint}-#{$i} {
-          @include make-col-modifier($modifier, $i, $columns)
-        }
-      }
-    }
-
-    // `$columns - 1` because offsetting by the width of an entire row isn't possible
-    @for $i from 0 through ($columns - 1) {
-      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-        .offset-#{$breakpoint}-#{$i} {
-          @include make-col-modifier(offset, $i, $columns)
-        }
-      }
-    }
-  }
-
-  // xl
   $breakpoint: xl;
   $breakpoint-counter: ($breakpoint-counter + 1);
-
-  @for $i from 1 through $columns {
-    .col-#{$breakpoint}-#{$i} {
-      @extend %grid-column;
-    }
-  }
-
-  @include media-breakpoint-up(xl, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
-    // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-    @if $enable-flex {
-      .col-#{$breakpoint} {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        padding-right: ($grid-gutter-width / 2);
-        padding-left:  ($grid-gutter-width / 2);
-      }
-    }
-
-    @for $i from 1 through $columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-col($i, $columns, $gutter);
-      }
-    }
-
-    @each $modifier in (pull, push) {
-      @for $i from 0 through $columns {
-        .#{$modifier}-#{$breakpoint}-#{$i} {
-          @include make-col-modifier($modifier, $i, $columns)
-        }
-      }
-    }
-
-    // `$columns - 1` because offsetting by the width of an entire row isn't possible
-    @for $i from 0 through ($columns - 1) {
-      @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
-        .offset-#{$breakpoint}-#{$i} {
-          @include make-col-modifier(offset, $i, $columns)
-        }
-      }
-    }
-  }
-
-
+  @include make-grid-column($breakpoint, $breakpoint-counter, $columns, $gutter, $xs, $sm, $md, $lg, $xl);
 }
 
 /// Grid system
@@ -2003,22 +1834,30 @@ $pre-scrollable-max-height:   340px !default;
   }
 }
 
+
 // For each breakpoint, define the maximum width of the container in a media query
-@mixin make-container-max-widths() {
-  @include media-breakpoint-up(sm, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+// @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+//   @each $breakpoint, $container-max-width in $max-widths {
+//     @include media-breakpoint-up($breakpoint, $breakpoints) {
+//       max-width: $container-max-width;
+//     }
+//   }
+// }
+
+@mixin make-container-max-widths($container-max-widths-xs: $container-max-widths-xs, $container-max-widths-sm: $container-max-widths-sm, $container-max-widths-md: $container-max-widths-md, $container-max-widths-lg: $container-max-widths-lg, $container-max-widths-xs: $container-max-widths-xs, $breakpoints-xs: $grid-breakpoints-xs, $breakpoints-sm: $grid-breakpoints-sm, $breakpoints-md: $grid-breakpoints-md, $breakpoints-lg: $grid-breakpoints-lg, $breakpoints-xl: $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm, $breakpoints-xs, $breakpoints-sm, $breakpoints-md, $breakpoints-lg, $breakpoints-xl) {
     max-width: $container-max-widths-sm;
   }
-  @include media-breakpoint-up(md, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+  @include media-breakpoint-up(md, $breakpoints-xs, $breakpoints-sm, $breakpoints-md, $breakpoints-lg, $breakpoints-xl) {
     max-width: $container-max-widths-md;
   }
-  @include media-breakpoint-up(lg, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+  @include media-breakpoint-up(lg, $breakpoints-xs, $breakpoints-sm, $breakpoints-md, $breakpoints-lg, $breakpoints-xl) {
     max-width: $container-max-widths-lg;
   }
-  @include media-breakpoint-up(xl, $container-max-widths-xs, $container-max-widths-sm, $container-max-widths-md, $container-max-widths-lg, $container-max-widths-xs) {
+  @include media-breakpoint-up(xl, $breakpoints-xs, $breakpoints-sm, $breakpoints-md, $breakpoints-lg, $breakpoints-xl) {
     max-width: $container-max-widths-xl;
   }
 }
-
 
 @mixin make-row($gutter: $grid-gutter-width) {
   @if $enable-flex {
@@ -2031,7 +1870,7 @@ $pre-scrollable-max-height:   340px !default;
   margin-right: ($gutter / -2);
 }
 
-@mixin make-col-ready($size, $columns: $grid-columns, $gutter: $grid-gutter-width) {
+@mixin make-col-ready($gutter: $grid-gutter-width) {
   position: relative;
   min-height: 1px; // Prevent collapsing
   padding-right: ($gutter / 2);
@@ -2045,7 +1884,7 @@ $pre-scrollable-max-height:   340px !default;
   }
 }
 
-@mixin make-col($size, $columns: $grid-columns, $gutter: $grid-gutter-width) {
+@mixin make-col($size, $columns: $grid-columns) {
   @if $enable-flex {
     flex: 0 0 percentage($size / $columns);
     // Add a `max-width` to ensure content within each column does not blow out
@@ -2329,7 +2168,7 @@ figure {
 //
 
 hr {
-  box-sizing: content-box; // 1
+  @include vp-box-sizing(content-box); // 1
   height: 0; // 1
   overflow: visible; // 2
 }
@@ -2459,7 +2298,7 @@ fieldset {
 //
 
 legend {
-  box-sizing: border-box; // 1
+  @include vp-box-sizing(border-box); // 1
   color: inherit; // 2
   display: table; // 1
   max-width: 100%; // 1
@@ -2482,7 +2321,7 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-  box-sizing: border-box; // 1
+  @include vp-box-sizing(border-box); // 1
   padding: 0; // 2
 }
 
@@ -2513,7 +2352,7 @@ textarea {
   -webkit-appearance: none;
 }
 
-// scss-lint:disable ImportantRule, QualifyingElement
+// scss-lint:disable QualifyingElement
 
 // Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
 
@@ -2535,7 +2374,7 @@ textarea {
                                 //   http://www.sanbeiji.com/archives/953
       text-shadow: none !important;
       //background: transparent !important;
-      box-shadow: none !important;
+      @include vp-box-shadow(none !important);
     }
 
     a,
@@ -2803,7 +2642,7 @@ mark,
   background-color: $thumbnail-bg;
   border: $thumbnail-border-width solid $thumbnail-border-color;
   @include border-radius($thumbnail-border-radius);
-  transition: all .2s ease-in-out;
+  @include vp-transition(all .2s ease-in-out);
   @include box-shadow($thumbnail-box-shadow);
 
   // Keep them at most 100% wide
@@ -3035,7 +2874,7 @@ pre {
 
 // Inverse styles
 //
-// Same table markup, but inverted color scheme-dark background and light text.
+// Same table markup, but inverted color scheme: dark background and light text.
 
 .thead-inverse {
   th {
@@ -3065,6 +2904,70 @@ pre {
     border: 0;
   }
 }
+
+
+
+// Responsive tables
+//
+// Wrap your tables in `.table-responsive` and we'll make them mobile friendly
+// by enabling horizontal scrolling. Only applies <768px. Everything above that
+// will display normally.
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  min-height: .01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+  overflow-x: auto;
+
+  // TODO: find out if we need this still.
+  //
+  // border: $table-border-width solid $table-border-color;
+  // -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+}
+
+
+.table-reflow {
+  thead {
+    float: left;
+  }
+
+  tbody {
+    display: block;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    border-top: $table-border-width solid $table-border-color;
+    border-left: $table-border-width solid $table-border-color;
+
+    &:last-child {
+      border-right: $table-border-width solid $table-border-color;
+    }
+  }
+
+  thead,
+  tbody,
+  tfoot {
+    &:last-child {
+      tr:last-child th,
+      tr:last-child td {
+        border-bottom: $table-border-width solid $table-border-color;
+      }
+    }
+  }
+
+  tr {
+    float: left;
+
+    th,
+    td {
+      display: block !important;
+      border: $table-border-width solid $table-border-color;
+    }
+  }
+}
+
 // scss-lint:disable QualifyingElement
 
 //
@@ -3083,7 +2986,7 @@ pre {
   background-color: $input-bg;
   // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
   background-image: none;
-  background-clip: padding-box;
+  @include vp-background-clip(padding-box);
   border: $input-btn-border-width solid $input-border-color;
   // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
   @include border-radius($input-border-radius);
@@ -3100,11 +3003,7 @@ pre {
   @include form-control-focus();
 
   // Placeholder
-  &::placeholder {
-    color: $input-color-placeholder;
-    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
-    opacity: 1;
-  }
+  @include vp-placeholder($input-color-placeholder, 1); // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
 
   // Disabled and read-only inputs
   //
@@ -3325,7 +3224,8 @@ select.form-control-lg {
   padding-right: ($input-padding-x * 3);
   background-repeat: no-repeat;
   background-position: center right ($input-height / 4);
-  background-size: ($input-height / 2) ($input-height / 2);
+  @include vp-background-size(($input-height / 2) ($input-height / 2));
+  
 }
 
 // Form validation states
@@ -3366,7 +3266,7 @@ select.form-control-lg {
 .form-inline {
 
   // Kick in the inline
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     // Inline-block all the things for "inline"
     .form-group {
       display: inline-block;
@@ -3444,7 +3344,7 @@ select.form-control-lg {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  user-select: none;
+  @include vp-user-select(none);
   border: $input-btn-border-width solid transparent;
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
   @include transition(all .2s ease-in-out);
@@ -3609,7 +3509,7 @@ input[type="button"] {
 
 .fade {
   opacity: 0;
-  transition: opacity .15s linear;
+  @include vp-transition(opacity .15s linear);
 
   &.in {
     opacity: 1;
@@ -3630,9 +3530,9 @@ input[type="button"] {
   position: relative;
   height: 0;
   overflow: hidden;
-  transition-timing-function: ease;
-  transition-duration: .35s;
-  transition-property: height;
+  @include vp-transition-timing-function(ease);
+  @include vp-transition-duration(.35s);
+  @include vp-transition-property(height);
 }
 
 // The dropdown wrapper (`<div>`)
@@ -3686,7 +3586,7 @@ input[type="button"] {
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   list-style: none;
   background-color: $dropdown-bg;
-  background-clip: padding-box;
+  @include vp-background-clip(padding-box);
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($border-radius);
   @include box-shadow($dropdown-box-shadow);
@@ -4142,18 +4042,18 @@ input[type="button"] {
   text-align: center;
   background-color: $input-group-addon-bg;
   border: $input-btn-border-width solid $input-group-addon-border-color;
-  @include border-radius($border-radius);
+  @include border-radius($input-border-radius);
 
   // Sizing
   &.form-control-sm {
     padding: $input-padding-y-sm $input-padding-x-sm;
     font-size: $font-size-sm;
-    @include border-radius($border-radius-sm);
+    @include border-radius($input-border-radius-sm);
   }
   &.form-control-lg {
     padding: $input-padding-y-lg $input-padding-x-lg;
     font-size: $font-size-lg;
-    @include border-radius($border-radius-lg);
+    @include border-radius($input-border-radius-lg);
   }
 
   // scss-lint:disable QualifyingElement
@@ -4274,7 +4174,7 @@ input[type="button"] {
 
   &:focus ~ .custom-control-indicator {
     // the mixin is not used here to make sure there is feedback
-    box-shadow: $custom-control-focus-indicator-box-shadow;
+    @include vp-box-shadow($custom-control-focus-indicator-box-shadow);
   }
 
   &:active ~ .custom-control-indicator {
@@ -4308,11 +4208,11 @@ input[type="button"] {
   width: $custom-control-indicator-size;
   height: $custom-control-indicator-size;
   pointer-events: none;
-  user-select: none;
+  @include vp-user-select(none);
   background-color: $custom-control-indicator-bg;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: $custom-control-indicator-bg-size;
+  @include vp-background-size($custom-control-indicator-bg-size);
   @include box-shadow($custom-control-indicator-box-shadow);
 }
 
@@ -4389,7 +4289,7 @@ input[type="button"] {
   vertical-align: middle;
   background: $custom-select-bg $custom-select-indicator no-repeat right $custom-select-padding-x center;
   background-image: none \9;
-  background-size: $custom-select-bg-size;
+  @include vp-background-size($custom-select-bg-size);
   border: $custom-select-border-width solid $custom-select-border-color;
   @include border-radius($custom-select-border-radius);
   // Use vendor prefixes as `appearance` isn't part of the CSS spec.
@@ -4470,7 +4370,7 @@ input[type="button"] {
   padding: $custom-file-padding-x $custom-file-padding-y;
   line-height: $custom-file-line-height;
   color: $custom-file-color;
-  user-select: none;
+  @include vp-user-select(none);
   background-color: $custom-file-bg;
   border: $custom-file-border-width solid $custom-file-border-color;
   @include border-radius($custom-file-border-radius);
@@ -4503,7 +4403,6 @@ input[type="button"] {
   &:lang(#{$lang})::before {
     content: $text;
   }
-
 }
 
 // Base class
@@ -4674,7 +4573,7 @@ input[type="button"] {
   padding: $navbar-padding-y $navbar-padding-x;
   @include clearfix;
 
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     @include border-radius($navbar-border-radius);
   }
 }
@@ -4689,7 +4588,7 @@ input[type="button"] {
 .navbar-full {
   z-index: $zindex-navbar;
 
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     @include border-radius(0);
   }
 }
@@ -4703,7 +4602,7 @@ input[type="button"] {
   z-index: $zindex-navbar-fixed;
 
   // Undo the rounded corners
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     @include border-radius(0);
   }
 }
@@ -4717,13 +4616,13 @@ input[type="button"] {
 }
 
 .navbar-sticky-top {
-  position: sticky;
+  @include vp-position(sticky);
   top: 0;
   z-index: $zindex-navbar-sticky;
   width: 100%;
 
   // Undo the rounded corners
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     @include border-radius(0);
   }
 }
@@ -4880,47 +4779,44 @@ input[type="button"] {
 //
 // Custom override for collapse plugin in navbar.
 
-// scss-lint:disable ImportantRule
 .navbar-toggleable-xs {
   @include clearfix;
-  @include media-breakpoint-down(xs, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-down(xs) {
     .navbar-nav .nav-item {
       float: none;
       margin-left: 0;
     }
   }
-  @include media-breakpoint-up(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(sm) {
     display: block !important;
   }
 }
 
 .navbar-toggleable-sm {
   @include clearfix;
-  @include media-breakpoint-down(sm, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-down(sm) {
     .navbar-nav .nav-item {
       float: none;
       margin-left: 0;
     }
   }
-  @include media-breakpoint-up(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(md) {
     display: block !important;
   }
 }
 
 .navbar-toggleable-md {
   @include clearfix;
-  @include media-breakpoint-down(md, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-down(md) {
     .navbar-nav .nav-item {
       float: none;
       margin-left: 0;
     }
   }
-  @include media-breakpoint-up(lg, $grid-breakpoints-xs, $grid-breakpoints-sm, $grid-breakpoints-md, $grid-breakpoints-lg, $grid-breakpoints-xl) {
+  @include media-breakpoint-up(lg) {
     display: block !important;
   }
 }
-
-// scss-lint:enable ImportantRule
 
 //
 // Base styles
@@ -5234,11 +5130,10 @@ input[type="button"] {
 
 @include media-breakpoint-up(sm) {
   .card-columns {
-    column-count: 3;
-    column-gap: $card-columns-sm-up-column-gap;
+    @include vp-column-count(3);
+    @include vp-column-gap($card-columns-sm-up-column-gap);
 
     .card {
-      display: inline-block;
       width: 100%; // Don't let them exceed the column width
     }
   }
@@ -5484,13 +5379,13 @@ a.tag {
 // Expand the right padding and account for the close button's positioning.
 
 .alert-dismissible {
-  padding-right: ($alert-padding + 20px);
+  padding-right: ($alert-padding * 2);
 
   // Adjust close link position
   .close {
     position: relative;
-    top: -2px;
-    right: -21px;
+    top: -.125rem;
+    right: -$alert-padding;
     color: inherit;
   }
 }
@@ -5517,11 +5412,10 @@ a.tag {
 // Progress animations
 //
 
-@keyframes progress-bar-stripes {
+@include vp-keyframes(progress-bar-stripes) {
   from { background-position: $spacer-y 0; }
   to { background-position: 0 0; }
 }
-
 
 //
 // Basic progress bar
@@ -5539,9 +5433,9 @@ a.tag {
   // Remove Firefox and Opera border
   border: 0;
   // Reset the default appearance
-  appearance: none;
+  @include vp-appearance(none);
   // Set overall border radius
-  @include border-radius($border-radius);
+  @include border-radius($progress-border-radius);
 }
 
 // Filled-in portion of the bar
@@ -5552,30 +5446,30 @@ a.tag {
 }
 .progress[value]::-moz-progress-bar {
   background-color: $progress-bar-color;
-  @include border-left-radius($border-radius);
+  @include border-left-radius($progress-border-radius);
 }
 .progress[value]::-webkit-progress-value {
   background-color: $progress-bar-color;
-  @include border-left-radius($border-radius);
+  @include border-left-radius($progress-border-radius);
 }
 // Tweaks for full progress bar
 .progress[value="100"]::-moz-progress-bar {
-  @include border-right-radius($border-radius);
+  @include border-right-radius($progress-border-radius);
 }
 .progress[value="100"]::-webkit-progress-value {
-  @include border-right-radius($border-radius);
+  @include border-right-radius($progress-border-radius);
 }
 
 // Unfilled portion of the bar
 .progress[value]::-webkit-progress-bar {
   background-color: $progress-bg;
-  @include border-radius($border-radius);
+  @include border-radius($progress-border-radius);
   @include box-shadow($progress-box-shadow);
 }
 base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make these styles Firefox-only
 .progress[value] {
   background-color: $progress-bg;
-  @include border-radius($border-radius);
+  @include border-radius($progress-border-radius);
   @include box-shadow($progress-box-shadow);
 }
 
@@ -5583,7 +5477,7 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
 @media screen and (min-width:0\0) {
   .progress {
     background-color: $progress-bg;
-    @include border-radius($border-radius);
+    @include border-radius($progress-border-radius);
     @include box-shadow($progress-box-shadow);
   }
   .progress-bar {
@@ -5591,10 +5485,10 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
     height: $spacer-y;
     text-indent: -999rem; // Simulate hiding of value as in native `<progress>`
     background-color: $progress-bar-color;
-    @include border-left-radius($border-radius);
+    @include border-left-radius($progress-border-radius);
   }
   .progress[width="100%"] {
-    @include border-right-radius($border-radius);
+    @include border-right-radius($progress-border-radius);
   }
 }
 
@@ -5605,21 +5499,21 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
 
 .progress-striped[value]::-webkit-progress-value {
   @include gradient-striped();
-  background-size: $spacer-y $spacer-y;
+  @include vp-background-size($spacer-y $spacer-y);
 }
 .progress-striped[value]::-moz-progress-bar {
   @include gradient-striped();
-  background-size: $spacer-y $spacer-y;
+  @include vp-background-size($spacer-y $spacer-y);
 }
 .progress-striped[value]::-ms-fill {
   @include gradient-striped();
-  background-size: $spacer-y $spacer-y;
+  @include vp-background-size($spacer-y $spacer-y);
 }
 // IE9
 @media screen and (min-width:0\0) {
   .progress-bar-striped {
     @include gradient-striped();
-    background-size: $spacer-y $spacer-y;
+    @include vp-background-size($spacer-y $spacer-y);
   }
 }
 
@@ -5629,15 +5523,15 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
 //
 
 .progress-animated[value]::-webkit-progress-value {
-  animation: progress-bar-stripes 2s linear infinite;
+  @include vp-animation(progress-bar-stripes 2s linear infinite);
 }
 .progress-animated[value]::-moz-progress-bar {
-  animation: progress-bar-stripes 2s linear infinite;
+  @include vp-animation(progress-bar-stripes 2s linear infinite);
 }
 // IE9
 @media screen and (min-width:0\0) {
   .progress-animated .progress-bar-striped {
-    animation: progress-bar-stripes 2s linear infinite;
+    @include vp-animation(progress-bar-stripes 2s linear infinite);
   }
 }
 
@@ -5662,7 +5556,6 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
 @if $enable-flex {
   .media {
     display: flex;
-    margin-bottom: $spacer;
   }
   .media-body {
     flex: 1;
@@ -5674,13 +5567,6 @@ base::-moz-progress-bar, // Absurd-but-syntactically-valid selector to make thes
     align-self: flex-end;
   }
 } @else {
-  .media {
-    margin-top: $media-margin-top;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
   .media,
   .media-body {
     overflow: hidden;
@@ -5955,7 +5841,6 @@ button.close {
 .modal-open {
   overflow: hidden;
 }
-
 // Container that the modal scrolls within
 .modal {
   position: fixed;
@@ -5973,10 +5858,10 @@ button.close {
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-    transition: transform .3s ease-out;
-    transform: translate(0, -25%);
+    @include vp-transition(transform .3s ease-out);
+    @include vp-transform(translate(0, -25%));
   }
-  &.in .modal-dialog { transform: translate(0, 0); }
+  &.in .modal-dialog {  @include vp-transform(translate(0, 0)); }
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -5994,7 +5879,7 @@ button.close {
 .modal-content {
   position: relative;
   background-color: $modal-content-bg;
-  background-clip: padding-box;
+  @include vp-background-clip(padding-box);
   border: $modal-content-border-width solid $modal-content-border-color;
   @include border-radius($border-radius-lg);
   @include box-shadow($modal-content-xs-box-shadow);
@@ -6181,7 +6066,7 @@ button.close {
   // Allow breaking very long words so they don't overflow the popover's bounds
   word-wrap: break-word;
   background-color: $popover-bg;
-  background-clip: padding-box;
+  @include vp-background-clip(padding-box);
   border: $popover-border-width solid $popover-border-color;
   @include border-radius($border-radius-lg);
   @include box-shadow($popover-box-shadow);
@@ -6327,7 +6212,7 @@ button.close {
   > .carousel-item {
     position: relative;
     display: none;
-    transition: .6s ease-in-out left;
+    @include vp-transition(.6s ease-in-out left);
 
     // Account for jankitude on images
     > img,
@@ -6338,25 +6223,25 @@ button.close {
 
     // WebKit CSS3 transforms for supported devices
     @media all and (transform-3d), (-webkit-transform-3d) {
-      transition: transform .6s ease-in-out;
+      @include vp-transition(transform .6s ease-in-out);
       backface-visibility: hidden;
-      perspective: 1000px;
+      @include vp-perspective(1000px);
 
       &.next,
       &.active.right {
         left: 0;
-        transform: translate3d(100%, 0, 0);
+        @include vp-transform(translate3d(100%, 0, 0));
       }
       &.prev,
       &.active.left {
         left: 0;
-        transform: translate3d(-100%, 0, 0);
+        @include vp-transform(translate3d(-100%, 0, 0));
       }
       &.next.left,
       &.prev.right,
       &.active {
         left: 0;
-        transform: translate3d(0, 0, 0);
+        @include vp-transform(translate3d(0, 0, 0));
       }
     }
   }
@@ -6572,10 +6457,6 @@ button.close {
 // Contextual backgrounds
 //
 
-.bg-inverse {
-  background-color: $brand-inverse;
-}
-
 .bg-faded {
   background-color: $gray-lightest;
 }
@@ -6589,6 +6470,8 @@ button.close {
 @include bg-variant('.bg-warning', $brand-warning);
 
 @include bg-variant('.bg-danger', $brand-danger);
+
+@include bg-variant('.bg-inverse', $brand-inverse);
 
 .clearfix {
   @include clearfix();
@@ -6612,38 +6495,43 @@ button.close {
 //
 // Custom styles for additional flex alignment options.
 
-@if $enable-flex {
-  @each $breakpoint in map-keys($grid-breakpoints) {
-    // Flex column reordering
-    @include media-breakpoint-up($breakpoint) {
-      .flex-#{$breakpoint}-first { order: -1; }
-      .flex-#{$breakpoint}-last { order: 1; }
-      .flex-#{$breakpoint}-unordered { order: 0; }
-    }
-
-    // Alignment for every item
-    @include media-breakpoint-up($breakpoint) {
-      .flex-items-#{$breakpoint}-top { align-items: flex-start; }
-      .flex-items-#{$breakpoint}-middle { align-items: center; }
-      .flex-items-#{$breakpoint}-bottom { align-items: flex-end; }
-    }
-
-    // Alignment per item
-    @include media-breakpoint-up($breakpoint) {
-      .flex-#{$breakpoint}-top   { align-self: flex-start; }
-      .flex-#{$breakpoint}-middle { align-self: center; }
-      .flex-#{$breakpoint}-bottom { align-self: flex-end; }
-    }
-
-    // Horizontal alignment of item
-    @include media-breakpoint-up($breakpoint) {
-      .flex-items-#{$breakpoint}-left { justify-content: flex-start; }
-      .flex-items-#{$breakpoint}-center { justify-content: center; }
-      .flex-items-#{$breakpoint}-right { justify-content: flex-end; }
-      .flex-items-#{$breakpoint}-around { justify-content: space-around; }
-      .flex-items-#{$breakpoint}-between { justify-content: space-between; }
-    }
+@mixin flex-responsive-alignment($breakpoint) {
+  @include media-breakpoint-up($breakpoint) {
+    .flex-#{$breakpoint}-first { order: -1; }
+    .flex-#{$breakpoint}-last { order: 1; }
+    .flex-#{$breakpoint}-unordered { order: 0; }
   }
+
+  // Alignment for every item
+  @include media-breakpoint-up($breakpoint) {
+    .flex-items-#{$breakpoint}-top { align-items: flex-start; }
+    .flex-items-#{$breakpoint}-middle { align-items: center; }
+    .flex-items-#{$breakpoint}-bottom { align-items: flex-end; }
+  }
+
+  // Alignment per item
+  @include media-breakpoint-up($breakpoint) {
+    .flex-#{$breakpoint}-top   { align-self: flex-start; }
+    .flex-#{$breakpoint}-middle { align-self: center; }
+    .flex-#{$breakpoint}-bottom { align-self: flex-end; }
+  }
+
+  // Horizontal alignment of item
+  @include media-breakpoint-up($breakpoint) {
+    .flex-items-#{$breakpoint}-left { justify-content: flex-start; }
+    .flex-items-#{$breakpoint}-center { justify-content: center; }
+    .flex-items-#{$breakpoint}-right { justify-content: flex-end; }
+    .flex-items-#{$breakpoint}-around { justify-content: space-around; }
+    .flex-items-#{$breakpoint}-between { justify-content: space-between; }
+  }
+}
+
+@if $enable-flex {
+  @include flex-responsive-alignment(xs);
+  @include flex-responsive-alignment(sm);
+  @include flex-responsive-alignment(md);
+  @include flex-responsive-alignment(lg);
+  @include flex-responsive-alignment(xl);
 }
 
 $breakpoint: xs;
@@ -6710,7 +6598,6 @@ $breakpoint: xl;
     float: none !important;
   }
 }
-
 
 
 
@@ -6756,57 +6643,15 @@ $breakpoint: xl;
   }
 }
 
-@include spacing(m, xs, 0, $spacers-x-0, $spacers-y-0);
-@include spacing(p, xs, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(margin, m, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(margin, m, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(margin, m, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(margin, m, 3, $spacers-x-3, $spacers-y-3);
 
-@include spacing(m, sm, 0, $spacers-x-0, $spacers-y-0);
-@include spacing(p, sm, 0, $spacers-x-0, $spacers-y-0);
-
-@include spacing(m, md, 0, $spacers-x-0, $spacers-y-0);
-@include spacing(p, md, 0, $spacers-x-0, $spacers-y-0);
-
-@include spacing(m, xl, 0, $spacers-x-0, $spacers-y-0);
-@include spacing(p, xl, 0, $spacers-x-0, $spacers-y-0);
-
-
-@include spacing(m, xs, 1, $spacers-x-1, $spacers-y-1);
-@include spacing(p, xs, 1, $spacers-x-1, $spacers-y-1);
-
-@include spacing(m, sm, 1, $spacers-x-1, $spacers-y-1);
-@include spacing(p, sm, 1, $spacers-x-1, $spacers-y-1);
-
-@include spacing(m, md, 1, $spacers-x-1, $spacers-y-1);
-@include spacing(p, md, 1, $spacers-x-1, $spacers-y-1);
-
-@include spacing(m, xl, 1, $spacers-x-1, $spacers-y-1);
-@include spacing(p, xl, 1, $spacers-x-1, $spacers-y-1);
-
-
-@include spacing(m, xs, 2, $spacers-x-2, $spacers-y-2);
-@include spacing(p, xs, 2, $spacers-x-2, $spacers-y-2);
-
-@include spacing(m, sm, 2, $spacers-x-2, $spacers-y-2);
-@include spacing(p, sm, 2, $spacers-x-2, $spacers-y-2);
-
-@include spacing(m, md, 2, $spacers-x-2, $spacers-y-2);
-@include spacing(p, md, 2, $spacers-x-2, $spacers-y-2);
-
-@include spacing(m, xl, 2, $spacers-x-2, $spacers-y-2);
-@include spacing(p, xl, 2, $spacers-x-2, $spacers-y-2);
-
-
-@include spacing(m, xs, 3, $spacers-x-3, $spacers-y-3);
-@include spacing(p, xs, 3, $spacers-x-3, $spacers-y-3);
-
-@include spacing(m, sm, 3, $spacers-x-3, $spacers-y-3);
-@include spacing(p, sm, 3, $spacers-x-3, $spacers-y-3);
-
-@include spacing(m, md, 3, $spacers-x-3, $spacers-y-3);
-@include spacing(p, md, 3, $spacers-x-3, $spacers-y-3);
-
-@include spacing(m, xl, 3, $spacers-x-3, $spacers-y-3);
-@include spacing(p, xl, 3, $spacers-x-3, $spacers-y-3);
-
+@include spacing(padding, p, 0, $spacers-x-0, $spacers-y-0);
+@include spacing(padding, p, 1, $spacers-x-1, $spacers-y-1);
+@include spacing(padding, p, 2, $spacers-x-2, $spacers-y-2);
+@include spacing(padding, p, 3, $spacers-x-3, $spacers-y-3);
 
 // Positioning
 
@@ -6829,43 +6674,19 @@ $breakpoint: xl;
 .text-truncate       { @include text-truncate; }
 
 // Responsive alignment
-
-$breakpoint: xs;
-@include media-breakpoint-up($breakpoint) {
-  .text-#{$breakpoint}-left   { text-align: left !important; }
-  .text-#{$breakpoint}-right  { text-align: right !important; }
-  .text-#{$breakpoint}-center { text-align: center !important; }
+@mixin responsive-text-alignment($breakpoint) {
+  @include media-breakpoint-up($breakpoint) {
+    .text-#{$breakpoint}-left   { text-align: left !important; }
+    .text-#{$breakpoint}-right  { text-align: right !important; }
+    .text-#{$breakpoint}-center { text-align: center !important; }
+  }
 }
 
-$breakpoint: sm;
-@include media-breakpoint-up($breakpoint) {
-  .text-#{$breakpoint}-left   { text-align: left !important; }
-  .text-#{$breakpoint}-right  { text-align: right !important; }
-  .text-#{$breakpoint}-center { text-align: center !important; }
-}
-
-$breakpoint: md;
-@include media-breakpoint-up($breakpoint) {
-  .text-#{$breakpoint}-left   { text-align: left !important; }
-  .text-#{$breakpoint}-right  { text-align: right !important; }
-  .text-#{$breakpoint}-center { text-align: center !important; }
-}
-
-$breakpoint: lg;
-@include media-breakpoint-up($breakpoint) {
-  .text-#{$breakpoint}-left   { text-align: left !important; }
-  .text-#{$breakpoint}-right  { text-align: right !important; }
-  .text-#{$breakpoint}-center { text-align: center !important; }
-}
-
-$breakpoint: xl;
-@include media-breakpoint-up($breakpoint) {
-  .text-#{$breakpoint}-left   { text-align: left !important; }
-  .text-#{$breakpoint}-right  { text-align: right !important; }
-  .text-#{$breakpoint}-center { text-align: center !important; }
-}
-
-
+@include responsive-text-alignment(xs);
+@include responsive-text-alignment(sm);
+@include responsive-text-alignment(md);
+@include responsive-text-alignment(lg);
+@include responsive-text-alignment(xl);
 
 // Transformation
 
@@ -6899,8 +6720,6 @@ $breakpoint: xl;
   @include text-hide();
 }
 
-// scss-lint:disable ImportantRule
-
 //
 // Visibility utilities
 //
@@ -6911,65 +6730,24 @@ $breakpoint: xl;
 
 // Responsive visibility utilities
 
-$bp: xs;
-.hidden-#{$bp}-up {
-  @include media-breakpoint-up($bp) {
-    display: none !important;
+@mixin responsive-visibility-utilities($bp) {
+  .hidden-#{$bp}-up {
+    @include media-breakpoint-up($bp) {
+      display: none !important;
+    }
   }
-}
-.hidden-#{$bp}-down {
-  @include media-breakpoint-down($bp) {
-    display: none !important;
-  }
-}
-
-$bp: sm;
-.hidden-#{$bp}-up {
-  @include media-breakpoint-up($bp) {
-    display: none !important;
-  }
-}
-.hidden-#{$bp}-down {
-  @include media-breakpoint-down($bp) {
-    display: none !important;
+  .hidden-#{$bp}-down {
+    @include media-breakpoint-down($bp) {
+      display: none !important;
+    }
   }
 }
 
-$bp: md;
-.hidden-#{$bp}-up {
-  @include media-breakpoint-up($bp) {
-    display: none !important;
-  }
-}
-.hidden-#{$bp}-down {
-  @include media-breakpoint-down($bp) {
-    display: none !important;
-  }
-}
-
-$bp: lg;
-.hidden-#{$bp}-up {
-  @include media-breakpoint-up($bp) {
-    display: none !important;
-  }
-}
-.hidden-#{$bp}-down {
-  @include media-breakpoint-down($bp) {
-    display: none !important;
-  }
-}
-
-$bp: xs;
-.hidden-#{$bp}-up {
-  @include media-breakpoint-up($bp) {
-    display: none !important;
-  }
-}
-.hidden-#{$bp}-down {
-  @include media-breakpoint-down($bp) {
-    display: none !important;
-  }
-}
+@include responsive-visibility-utilities(xs);
+@include responsive-visibility-utilities(sm);
+@include responsive-visibility-utilities(md);
+@include responsive-visibility-utilities(lg);
+@include responsive-visibility-utilities(xl);
 
 // Print utilities
 //

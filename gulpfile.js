@@ -52,6 +52,7 @@ gulp.task('bootstrap_sass_test_build', function () {
 // SASS_CONCAT: Pull our scss files together and move them into the themes assets
 gulp.task('sass_concat', function () {
   var paths = new SassImport('./src/scss/styles.scss');
+  console.log(paths);
   return gulp.src(paths)
     .pipe(plumber({
       errorHandler: onError

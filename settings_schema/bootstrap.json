@@ -1035,12 +1035,6 @@
       "default": "$border-radius-sm"
     },
     {
-      "type": "text",
-      "id": "bs4-input-bg-focus",
-      "label": "input-bg-focus",
-      "default": "$input-bg"
-    },
-    {
       "type": "color",
       "id": "bs4-input-border-focus",
       "label": "input-border-focus",
@@ -1051,12 +1045,6 @@
       "id": "bs4-input-box-shadow-focus",
       "label": "input-box-shadow-focus",
       "default": "rgba(102,175,233,.6)"
-    },
-    {
-      "type": "text",
-      "id": "bs4-input-color-focus",
-      "label": "input-color-focus",
-      "default": "$input-color"
     },
     {
       "type": "color",
@@ -1239,22 +1227,10 @@
       "default": "$border-radius"
     },
     {
-      "type": "text",
-      "id": "bs4-custom-checkbox-checked-icon",
-      "label": "custom-checkbox-checked-icon",
-      "default": "url(\"data:image/svg+xml"
-    },
-    {
       "type": "color",
       "id": "bs4-custom-checkbox-indeterminate-bg",
       "label": "custom-checkbox-indeterminate-bg",
       "default": "#0074d9"
-    },
-    {
-      "type": "text",
-      "id": "bs4-custom-checkbox-indeterminate-icon",
-      "label": "custom-checkbox-indeterminate-icon",
-      "default": "url(\"data:image/svg+xml"
     },
     {
       "type": "text",
@@ -1267,12 +1243,6 @@
       "id": "bs4-custom-radio-radius",
       "label": "custom-radio-radius",
       "default": "50%"
-    },
-    {
-      "type": "text",
-      "id": "bs4-custom-radio-checked-icon",
-      "label": "custom-radio-checked-icon",
-      "default": "url(\"data:image/svg+xml"
     },
     {
       "type": "text",
@@ -1321,12 +1291,6 @@
       "id": "bs4-custom-select-bg-size",
       "label": "custom-select-bg-size",
       "default": "8px 10px"
-    },
-    {
-      "type": "text",
-      "id": "bs4-custom-select-indicator",
-      "label": "custom-select-indicator",
-      "default": "url(\"data:image/svg+xml"
     },
     {
       "type": "text",
@@ -1465,27 +1429,6 @@
       "id": "bs4-custom-file-text-button-label-en",
       "label": "custom-file-text-button-label-en",
       "default": "\"Browse\""
-    },
-    {
-      "type": "text",
-      "id": "bs4-form-icon-success",
-      "label": "form-icon-success",
-      "default": "url(\"data:image/svg+xml",
-      "info": "Success form validation icon \n"
-    },
-    {
-      "type": "text",
-      "id": "bs4-form-icon-warning",
-      "label": "form-icon-warning",
-      "default": "url(\"data:image/svg+xml",
-      "info": "Warning form validation icon \n"
-    },
-    {
-      "type": "text",
-      "id": "bs4-form-icon-danger",
-      "label": "form-icon-danger",
-      "default": "url(\"data:image/svg+xml",
-      "info": "Danger form validation icon \n"
     },
     {
       "type": "header",

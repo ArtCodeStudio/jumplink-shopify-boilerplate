@@ -20,7 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "JumpLinkNetwork/bootstrap#v4-0-0-alpha-3-scss-backward",
+    "bootstrap-backward": "JumpLinkNetwork/bootstrap-backward#v4-0-0-alpha-4-scss-backward",
     "sass-autoprefixer": "JumpLinkNetwork/sass-autoprefixer"
   }
 }

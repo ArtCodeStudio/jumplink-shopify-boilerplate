@@ -98,7 +98,8 @@ gulp.task('bootstrap_theme_settings_scss', ['theme_settings'], function () {
       case 'number':
       case 'checkbox':
       case 'text':
-        liquidLine = "{% if settings.id %} $value: {{settings.id}}; {% endif %}";
+        // liquidLine = "{% unless settings.id == blank %} $value: {{settings.id}}; {% endunless %}";
+        liquidLine = "$value: {{settings.id}};";
         liquidLine = liquidLine.replace(/id/g, setting.id);
         liquidLine = liquidLine.replace(/value/g, setting.id.replace('bs4-', ''));
         break;
@@ -181,7 +182,7 @@ gulp.task('bootstrap_theme_settings', function () {
           type: "checkbox",
           id: 'bs4-'+variableDefs.context.name,
           label: variableDefs.context.name,
-          default: Boolean(variableDefs.context.value),
+          default: variableDefs.context.value === 'true',
           info: variableDefs.description
 
         });
@@ -200,12 +201,17 @@ gulp.task('bootstrap_theme_settings', function () {
     }
   }, this);
 
+  var toTitleCase = function(str)
+  {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
   // write groups to settings and clean up 
   for(var name in groups) { 
     var group = groups[name];
     bootstrap_theme_settings.settings.push({
       "type": "header",
-      "content": name
+      "content": toTitleCase(name),
     });
     group.forEach(function(groupContext) {
       if(!groupContext.info || groupContext.info == "" || groupContext.info == "\n") {

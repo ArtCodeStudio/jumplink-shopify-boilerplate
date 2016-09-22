@@ -1,546 +1,546 @@
 
 {% comment %} Bootstrap 4 [fork](https://github.com/JumpLinkNetwork/bootstrap-backward) with backward compatibility for Shopify by [JumpLink](https://www.jumplink.eu) {% endcomment %}
 
-{% comment %} alerts {% endcomment %}
-{% if settings.bs4-alert-padding %} $alert-padding: {{settings.bs4-alert-padding}}; {% endif %}
-{% if settings.bs4-alert-border-radius %} $alert-border-radius: {{settings.bs4-alert-border-radius}}; {% endif %}
-{% if settings.bs4-alert-link-font-weight %} $alert-link-font-weight: {{settings.bs4-alert-link-font-weight}}; {% endif %}
-{% if settings.bs4-alert-border-width %} $alert-border-width: {{settings.bs4-alert-border-width}}; {% endif %}
-{% if settings.bs4-alert-success-bg %} $alert-success-bg: {{settings.bs4-alert-success-bg}}; {% endif %}
-{% if settings.bs4-alert-success-text %} $alert-success-text: {{settings.bs4-alert-success-text}}; {% endif %}
-{% if settings.bs4-alert-success-border %} $alert-success-border: {{settings.bs4-alert-success-border}}; {% endif %}
-{% if settings.bs4-alert-info-bg %} $alert-info-bg: {{settings.bs4-alert-info-bg}}; {% endif %}
-{% if settings.bs4-alert-info-text %} $alert-info-text: {{settings.bs4-alert-info-text}}; {% endif %}
-{% if settings.bs4-alert-info-border %} $alert-info-border: {{settings.bs4-alert-info-border}}; {% endif %}
-{% if settings.bs4-alert-warning-bg %} $alert-warning-bg: {{settings.bs4-alert-warning-bg}}; {% endif %}
-{% if settings.bs4-alert-warning-text %} $alert-warning-text: {{settings.bs4-alert-warning-text}}; {% endif %}
-{% if settings.bs4-alert-warning-border %} $alert-warning-border: {{settings.bs4-alert-warning-border}}; {% endif %}
-{% if settings.bs4-alert-danger-bg %} $alert-danger-bg: {{settings.bs4-alert-danger-bg}}; {% endif %}
-{% if settings.bs4-alert-danger-text %} $alert-danger-text: {{settings.bs4-alert-danger-text}}; {% endif %}
-{% if settings.bs4-alert-danger-border %} $alert-danger-border: {{settings.bs4-alert-danger-border}}; {% endif %}
+{% comment %} Colors {% endcomment %}
+$gray-dark: {{settings.bs4-gray-dark}};
+$gray: {{settings.bs4-gray}};
+$gray-light: {{settings.bs4-gray-light}};
+$gray-lighter: {{settings.bs4-gray-lighter}};
+$gray-lightest: {{settings.bs4-gray-lightest}};
+$brand-primary: {{settings.bs4-brand-primary}};
+$brand-success: {{settings.bs4-brand-success}};
+$brand-info: {{settings.bs4-brand-info}};
+$brand-warning: {{settings.bs4-brand-warning}};
+$brand-danger: {{settings.bs4-brand-danger}};
+$brand-inverse: {{settings.bs4-brand-inverse}};
 
-{% comment %} body {% endcomment %}
-{% if settings.bs4-body-bg %} $body-bg: {{settings.bs4-body-bg}}; {% endif %}
-{% if settings.bs4-body-color %} $body-color: {{settings.bs4-body-color}}; {% endif %}
+{% comment %} Options {% endcomment %}
+$enable-flex: {{settings.bs4-enable-flex}};
+$enable-rounded: {{settings.bs4-enable-rounded}};
+$enable-shadows: {{settings.bs4-enable-shadows}};
+$enable-gradients: {{settings.bs4-enable-gradients}};
+$enable-transitions: {{settings.bs4-enable-transitions}};
+$enable-hover-media-query: {{settings.bs4-enable-hover-media-query}};
+$enable-grid-classes: {{settings.bs4-enable-grid-classes}};
+$enable-print-styles: {{settings.bs4-enable-print-styles}};
 
-{% comment %} breadcrumbs {% endcomment %}
-{% if settings.bs4-breadcrumb-padding-y %} $breadcrumb-padding-y: {{settings.bs4-breadcrumb-padding-y}}; {% endif %}
-{% if settings.bs4-breadcrumb-padding-x %} $breadcrumb-padding-x: {{settings.bs4-breadcrumb-padding-x}}; {% endif %}
-{% if settings.bs4-breadcrumb-item-padding %} $breadcrumb-item-padding: {{settings.bs4-breadcrumb-item-padding}}; {% endif %}
-{% if settings.bs4-breadcrumb-bg %} $breadcrumb-bg: {{settings.bs4-breadcrumb-bg}}; {% endif %}
-{% if settings.bs4-breadcrumb-divider-color %} $breadcrumb-divider-color: {{settings.bs4-breadcrumb-divider-color}}; {% endif %}
-{% if settings.bs4-breadcrumb-active-color %} $breadcrumb-active-color: {{settings.bs4-breadcrumb-active-color}}; {% endif %}
-{% if settings.bs4-breadcrumb-divider %} $breadcrumb-divider: {{settings.bs4-breadcrumb-divider}}; {% endif %}
+{% comment %} Spacing {% endcomment %}
+$spacer: {{settings.bs4-spacer}};
+$spacer-x: {{settings.bs4-spacer-x}};
+$spacer-y: {{settings.bs4-spacer-y}};
+$spacers-x-0: {{settings.bs4-spacers-x-0}};
+$spacers-y-0: {{settings.bs4-spacers-y-0}};
+$spacers-x-1: {{settings.bs4-spacers-x-1}};
+$spacers-y-1: {{settings.bs4-spacers-y-1}};
+$spacers-x-2: {{settings.bs4-spacers-x-2}};
+$spacers-y-2: {{settings.bs4-spacers-y-2}};
+$spacers-x-3: {{settings.bs4-spacers-x-3}};
+$spacers-y-3: {{settings.bs4-spacers-y-3}};
+$border-width: {{settings.bs4-border-width}};
 
-{% comment %} buttons {% endcomment %}
-{% if settings.bs4-btn-padding-x %} $btn-padding-x: {{settings.bs4-btn-padding-x}}; {% endif %}
-{% if settings.bs4-btn-padding-y %} $btn-padding-y: {{settings.bs4-btn-padding-y}}; {% endif %}
-{% if settings.bs4-btn-line-height %} $btn-line-height: {{settings.bs4-btn-line-height}}; {% endif %}
-{% if settings.bs4-btn-font-weight %} $btn-font-weight: {{settings.bs4-btn-font-weight}}; {% endif %}
-{% if settings.bs4-btn-box-shadow %} $btn-box-shadow: {{settings.bs4-btn-box-shadow}}; {% endif %}
-{% if settings.bs4-btn-active-box-shadow %} $btn-active-box-shadow: {{settings.bs4-btn-active-box-shadow}}; {% endif %}
-{% if settings.bs4-btn-primary-color %} $btn-primary-color: {{settings.bs4-btn-primary-color}}; {% endif %}
-{% if settings.bs4-btn-primary-bg %} $btn-primary-bg: {{settings.bs4-btn-primary-bg}}; {% endif %}
-{% if settings.bs4-btn-primary-border %} $btn-primary-border: {{settings.bs4-btn-primary-border}}; {% endif %}
-{% if settings.bs4-btn-secondary-color %} $btn-secondary-color: {{settings.bs4-btn-secondary-color}}; {% endif %}
-{% if settings.bs4-btn-secondary-bg %} $btn-secondary-bg: {{settings.bs4-btn-secondary-bg}}; {% endif %}
-{% if settings.bs4-btn-secondary-border %} $btn-secondary-border: {{settings.bs4-btn-secondary-border}}; {% endif %}
-{% if settings.bs4-btn-info-color %} $btn-info-color: {{settings.bs4-btn-info-color}}; {% endif %}
-{% if settings.bs4-btn-info-bg %} $btn-info-bg: {{settings.bs4-btn-info-bg}}; {% endif %}
-{% if settings.bs4-btn-info-border %} $btn-info-border: {{settings.bs4-btn-info-border}}; {% endif %}
-{% if settings.bs4-btn-success-color %} $btn-success-color: {{settings.bs4-btn-success-color}}; {% endif %}
-{% if settings.bs4-btn-success-bg %} $btn-success-bg: {{settings.bs4-btn-success-bg}}; {% endif %}
-{% if settings.bs4-btn-success-border %} $btn-success-border: {{settings.bs4-btn-success-border}}; {% endif %}
-{% if settings.bs4-btn-warning-color %} $btn-warning-color: {{settings.bs4-btn-warning-color}}; {% endif %}
-{% if settings.bs4-btn-warning-bg %} $btn-warning-bg: {{settings.bs4-btn-warning-bg}}; {% endif %}
-{% if settings.bs4-btn-warning-border %} $btn-warning-border: {{settings.bs4-btn-warning-border}}; {% endif %}
-{% if settings.bs4-btn-danger-color %} $btn-danger-color: {{settings.bs4-btn-danger-color}}; {% endif %}
-{% if settings.bs4-btn-danger-bg %} $btn-danger-bg: {{settings.bs4-btn-danger-bg}}; {% endif %}
-{% if settings.bs4-btn-danger-border %} $btn-danger-border: {{settings.bs4-btn-danger-border}}; {% endif %}
-{% if settings.bs4-btn-link-disabled-color %} $btn-link-disabled-color: {{settings.bs4-btn-link-disabled-color}}; {% endif %}
-{% if settings.bs4-btn-padding-x-sm %} $btn-padding-x-sm: {{settings.bs4-btn-padding-x-sm}}; {% endif %}
-{% if settings.bs4-btn-padding-y-sm %} $btn-padding-y-sm: {{settings.bs4-btn-padding-y-sm}}; {% endif %}
-{% if settings.bs4-btn-padding-x-lg %} $btn-padding-x-lg: {{settings.bs4-btn-padding-x-lg}}; {% endif %}
-{% if settings.bs4-btn-padding-y-lg %} $btn-padding-y-lg: {{settings.bs4-btn-padding-y-lg}}; {% endif %}
-{% if settings.bs4-btn-block-spacing-y %} $btn-block-spacing-y: {{settings.bs4-btn-block-spacing-y}}; {% endif %}
-{% if settings.bs4-btn-toolbar-margin %} $btn-toolbar-margin: {{settings.bs4-btn-toolbar-margin}}; {% endif %}
-{% if settings.bs4-btn-border-radius %} $btn-border-radius: {{settings.bs4-btn-border-radius}}; {% endif %}
-{% if settings.bs4-btn-border-radius-lg %} $btn-border-radius-lg: {{settings.bs4-btn-border-radius-lg}}; {% endif %}
-{% if settings.bs4-btn-border-radius-sm %} $btn-border-radius-sm: {{settings.bs4-btn-border-radius-sm}}; {% endif %}
+{% comment %} Body {% endcomment %}
+$body-bg: {{settings.bs4-body-bg}};
+$body-color: {{settings.bs4-body-color}};
 
-{% comment %} cards {% endcomment %}
-{% if settings.bs4-card-spacer-x %} $card-spacer-x: {{settings.bs4-card-spacer-x}}; {% endif %}
-{% if settings.bs4-card-spacer-y %} $card-spacer-y: {{settings.bs4-card-spacer-y}}; {% endif %}
-{% if settings.bs4-card-border-width %} $card-border-width: {{settings.bs4-card-border-width}}; {% endif %}
-{% if settings.bs4-card-border-radius %} $card-border-radius: {{settings.bs4-card-border-radius}}; {% endif %}
-{% if settings.bs4-card-border-color %} $card-border-color: {{settings.bs4-card-border-color}}; {% endif %}
-{% if settings.bs4-card-border-radius-inner %} $card-border-radius-inner: {{settings.bs4-card-border-radius-inner}}; {% endif %}
-{% if settings.bs4-card-cap-bg %} $card-cap-bg: {{settings.bs4-card-cap-bg}}; {% endif %}
-{% if settings.bs4-card-bg %} $card-bg: {{settings.bs4-card-bg}}; {% endif %}
-{% if settings.bs4-card-link-hover-color %} $card-link-hover-color: {{settings.bs4-card-link-hover-color}}; {% endif %}
-{% if settings.bs4-card-img-overlay-padding %} $card-img-overlay-padding: {{settings.bs4-card-img-overlay-padding}}; {% endif %}
-{% if settings.bs4-card-deck-margin %} $card-deck-margin: {{settings.bs4-card-deck-margin}}; {% endif %}
-{% if settings.bs4-card-columns-sm-up-column-gap %} $card-columns-sm-up-column-gap: {{settings.bs4-card-columns-sm-up-column-gap}}; {% endif %}
+{% comment %} Links {% endcomment %}
+$link-color: {{settings.bs4-link-color}};
+$link-decoration: {{settings.bs4-link-decoration}};
+$link-hover-color: {{settings.bs4-link-hover-color}};
+$link-hover-decoration: {{settings.bs4-link-hover-decoration}};
 
-{% comment %} carousel {% endcomment %}
-{% if settings.bs4-carousel-text-shadow %} $carousel-text-shadow: {{settings.bs4-carousel-text-shadow}}; {% endif %}
-{% if settings.bs4-carousel-control-color %} $carousel-control-color: {{settings.bs4-carousel-control-color}}; {% endif %}
-{% if settings.bs4-carousel-control-width %} $carousel-control-width: {{settings.bs4-carousel-control-width}}; {% endif %}
-{% if settings.bs4-carousel-control-sm-up-size %} $carousel-control-sm-up-size: {{settings.bs4-carousel-control-sm-up-size}}; {% endif %}
-{% if settings.bs4-carousel-control-opacity %} $carousel-control-opacity: {{settings.bs4-carousel-control-opacity}}; {% endif %}
-{% if settings.bs4-carousel-control-font-size %} $carousel-control-font-size: {{settings.bs4-carousel-control-font-size}}; {% endif %}
-{% if settings.bs4-carousel-indicators-width %} $carousel-indicators-width: {{settings.bs4-carousel-indicators-width}}; {% endif %}
-{% if settings.bs4-carousel-indicator-size %} $carousel-indicator-size: {{settings.bs4-carousel-indicator-size}}; {% endif %}
-{% if settings.bs4-carousel-indicator-active-size %} $carousel-indicator-active-size: {{settings.bs4-carousel-indicator-active-size}}; {% endif %}
-{% if settings.bs4-carousel-indicator-active-bg %} $carousel-indicator-active-bg: {{settings.bs4-carousel-indicator-active-bg}}; {% endif %}
-{% if settings.bs4-carousel-indicator-border-color %} $carousel-indicator-border-color: {{settings.bs4-carousel-indicator-border-color}}; {% endif %}
-{% if settings.bs4-carousel-caption-width %} $carousel-caption-width: {{settings.bs4-carousel-caption-width}}; {% endif %}
-{% if settings.bs4-carousel-caption-sm-up-width %} $carousel-caption-sm-up-width: {{settings.bs4-carousel-caption-sm-up-width}}; {% endif %}
-{% if settings.bs4-carousel-caption-color %} $carousel-caption-color: {{settings.bs4-carousel-caption-color}}; {% endif %}
-{% if settings.bs4-carousel-icon-width %} $carousel-icon-width: {{settings.bs4-carousel-icon-width}}; {% endif %}
+{% comment %} Grid Breakpoints {% endcomment %}
+$grid-breakpoints-xs: {{settings.bs4-grid-breakpoints-xs}};
+$grid-breakpoints-sm: {{settings.bs4-grid-breakpoints-sm}};
+$grid-breakpoints-md: {{settings.bs4-grid-breakpoints-md}};
+$grid-breakpoints-lg: {{settings.bs4-grid-breakpoints-lg}};
+$grid-breakpoints-xl: {{settings.bs4-grid-breakpoints-xl}};
 
-{% comment %} close {% endcomment %}
-{% if settings.bs4-close-font-weight %} $close-font-weight: {{settings.bs4-close-font-weight}}; {% endif %}
-{% if settings.bs4-close-color %} $close-color: {{settings.bs4-close-color}}; {% endif %}
-{% if settings.bs4-close-text-shadow %} $close-text-shadow: {{settings.bs4-close-text-shadow}}; {% endif %}
+{% comment %} Grid Containers {% endcomment %}
+$container-max-widths-xs: {{settings.bs4-container-max-widths-xs}};
+$container-max-widths-sm: {{settings.bs4-container-max-widths-sm}};
+$container-max-widths-md: {{settings.bs4-container-max-widths-md}};
+$container-max-widths-lg: {{settings.bs4-container-max-widths-lg}};
+$container-max-widths-xl: {{settings.bs4-container-max-widths-xl}};
 
-{% comment %} code {% endcomment %}
-{% if settings.bs4-code-font-size %} $code-font-size: {{settings.bs4-code-font-size}}; {% endif %}
-{% if settings.bs4-code-padding-x %} $code-padding-x: {{settings.bs4-code-padding-x}}; {% endif %}
-{% if settings.bs4-code-padding-y %} $code-padding-y: {{settings.bs4-code-padding-y}}; {% endif %}
-{% if settings.bs4-code-color %} $code-color: {{settings.bs4-code-color}}; {% endif %}
-{% if settings.bs4-code-bg %} $code-bg: {{settings.bs4-code-bg}}; {% endif %}
-{% if settings.bs4-kbd-color %} $kbd-color: {{settings.bs4-kbd-color}}; {% endif %}
-{% if settings.bs4-kbd-bg %} $kbd-bg: {{settings.bs4-kbd-bg}}; {% endif %}
-{% if settings.bs4-pre-bg %} $pre-bg: {{settings.bs4-pre-bg}}; {% endif %}
-{% if settings.bs4-pre-color %} $pre-color: {{settings.bs4-pre-color}}; {% endif %}
-{% if settings.bs4-pre-border-color %} $pre-border-color: {{settings.bs4-pre-border-color}}; {% endif %}
-{% if settings.bs4-pre-scrollable-max-height %} $pre-scrollable-max-height: {{settings.bs4-pre-scrollable-max-height}}; {% endif %}
+{% comment %} Grid Columns {% endcomment %}
+$grid-columns: {{settings.bs4-grid-columns}};
+$grid-gutter-width: {{settings.bs4-grid-gutter-width}};
 
-{% comment %} colors {% endcomment %}
-{% if settings.bs4-gray-dark %} $gray-dark: {{settings.bs4-gray-dark}}; {% endif %}
-{% if settings.bs4-gray %} $gray: {{settings.bs4-gray}}; {% endif %}
-{% if settings.bs4-gray-light %} $gray-light: {{settings.bs4-gray-light}}; {% endif %}
-{% if settings.bs4-gray-lighter %} $gray-lighter: {{settings.bs4-gray-lighter}}; {% endif %}
-{% if settings.bs4-gray-lightest %} $gray-lightest: {{settings.bs4-gray-lightest}}; {% endif %}
-{% if settings.bs4-brand-primary %} $brand-primary: {{settings.bs4-brand-primary}}; {% endif %}
-{% if settings.bs4-brand-success %} $brand-success: {{settings.bs4-brand-success}}; {% endif %}
-{% if settings.bs4-brand-info %} $brand-info: {{settings.bs4-brand-info}}; {% endif %}
-{% if settings.bs4-brand-warning %} $brand-warning: {{settings.bs4-brand-warning}}; {% endif %}
-{% if settings.bs4-brand-danger %} $brand-danger: {{settings.bs4-brand-danger}}; {% endif %}
-{% if settings.bs4-brand-inverse %} $brand-inverse: {{settings.bs4-brand-inverse}}; {% endif %}
+{% comment %} Typography {% endcomment %}
+$font-family-sans-serif: {{settings.bs4-font-family-sans-serif}};
+$font-family-serif: {{settings.bs4-font-family-serif}};
+$font-family-monospace: {{settings.bs4-font-family-monospace}};
+$font-family-base: {{settings.bs4-font-family-base}};
+$font-size-root: {{settings.bs4-font-size-root}};
+$font-size-base: {{settings.bs4-font-size-base}};
+$font-size-lg: {{settings.bs4-font-size-lg}};
+$font-size-sm: {{settings.bs4-font-size-sm}};
+$font-size-xs: {{settings.bs4-font-size-xs}};
+$line-height-base: {{settings.bs4-line-height-base}};
+$font-size-h1: {{settings.bs4-font-size-h1}};
+$font-size-h2: {{settings.bs4-font-size-h2}};
+$font-size-h3: {{settings.bs4-font-size-h3}};
+$font-size-h4: {{settings.bs4-font-size-h4}};
+$font-size-h5: {{settings.bs4-font-size-h5}};
+$font-size-h6: {{settings.bs4-font-size-h6}};
+$display1-size: {{settings.bs4-display1-size}};
+$display2-size: {{settings.bs4-display2-size}};
+$display3-size: {{settings.bs4-display3-size}};
+$display4-size: {{settings.bs4-display4-size}};
+$display1-weight: {{settings.bs4-display1-weight}};
+$display2-weight: {{settings.bs4-display2-weight}};
+$display3-weight: {{settings.bs4-display3-weight}};
+$display4-weight: {{settings.bs4-display4-weight}};
+$headings-margin-bottom: {{settings.bs4-headings-margin-bottom}};
+$headings-font-family: {{settings.bs4-headings-font-family}};
+$headings-font-weight: {{settings.bs4-headings-font-weight}};
+$headings-line-height: {{settings.bs4-headings-line-height}};
+$headings-color: {{settings.bs4-headings-color}};
+$lead-font-size: {{settings.bs4-lead-font-size}};
+$lead-font-weight: {{settings.bs4-lead-font-weight}};
+$small-font-size: {{settings.bs4-small-font-size}};
+$text-muted: {{settings.bs4-text-muted}};
+$abbr-border-color: {{settings.bs4-abbr-border-color}};
+$blockquote-small-color: {{settings.bs4-blockquote-small-color}};
+$blockquote-font-size: {{settings.bs4-blockquote-font-size}};
+$blockquote-border-color: {{settings.bs4-blockquote-border-color}};
+$blockquote-border-width: {{settings.bs4-blockquote-border-width}};
+$hr-border-color: {{settings.bs4-hr-border-color}};
+$hr-border-width: {{settings.bs4-hr-border-width}};
+$mark-padding: {{settings.bs4-mark-padding}};
+$dt-font-weight: {{settings.bs4-dt-font-weight}};
+$kbd-box-shadow: {{settings.bs4-kbd-box-shadow}};
+$nested-kbd-font-weight: {{settings.bs4-nested-kbd-font-weight}};
+$list-inline-padding: {{settings.bs4-list-inline-padding}};
 
-{% comment %} components {% endcomment %}
-{% if settings.bs4-line-height-lg %} $line-height-lg: {{settings.bs4-line-height-lg}}; {% endif %}
-{% if settings.bs4-line-height-sm %} $line-height-sm: {{settings.bs4-line-height-sm}}; {% endif %}
-{% if settings.bs4-border-radius %} $border-radius: {{settings.bs4-border-radius}}; {% endif %}
-{% if settings.bs4-border-radius-lg %} $border-radius-lg: {{settings.bs4-border-radius-lg}}; {% endif %}
-{% if settings.bs4-border-radius-sm %} $border-radius-sm: {{settings.bs4-border-radius-sm}}; {% endif %}
-{% if settings.bs4-component-active-color %} $component-active-color: {{settings.bs4-component-active-color}}; {% endif %}
-{% if settings.bs4-component-active-bg %} $component-active-bg: {{settings.bs4-component-active-bg}}; {% endif %}
-{% if settings.bs4-caret-width %} $caret-width: {{settings.bs4-caret-width}}; {% endif %}
-{% if settings.bs4-caret-width-lg %} $caret-width-lg: {{settings.bs4-caret-width-lg}}; {% endif %}
+{% comment %} Components {% endcomment %}
+$line-height-lg: {{settings.bs4-line-height-lg}};
+$line-height-sm: {{settings.bs4-line-height-sm}};
+$border-radius: {{settings.bs4-border-radius}};
+$border-radius-lg: {{settings.bs4-border-radius-lg}};
+$border-radius-sm: {{settings.bs4-border-radius-sm}};
+$component-active-color: {{settings.bs4-component-active-color}};
+$component-active-bg: {{settings.bs4-component-active-bg}};
+$caret-width: {{settings.bs4-caret-width}};
+$caret-width-lg: {{settings.bs4-caret-width-lg}};
 
-{% comment %} dropdowns {% endcomment %}
-{% if settings.bs4-dropdown-min-width %} $dropdown-min-width: {{settings.bs4-dropdown-min-width}}; {% endif %}
-{% if settings.bs4-dropdown-padding-y %} $dropdown-padding-y: {{settings.bs4-dropdown-padding-y}}; {% endif %}
-{% if settings.bs4-dropdown-margin-top %} $dropdown-margin-top: {{settings.bs4-dropdown-margin-top}}; {% endif %}
-{% if settings.bs4-dropdown-bg %} $dropdown-bg: {{settings.bs4-dropdown-bg}}; {% endif %}
-{% if settings.bs4-dropdown-border-color %} $dropdown-border-color: {{settings.bs4-dropdown-border-color}}; {% endif %}
-{% if settings.bs4-dropdown-border-width %} $dropdown-border-width: {{settings.bs4-dropdown-border-width}}; {% endif %}
-{% if settings.bs4-dropdown-divider-bg %} $dropdown-divider-bg: {{settings.bs4-dropdown-divider-bg}}; {% endif %}
-{% if settings.bs4-dropdown-box-shadow %} $dropdown-box-shadow: {{settings.bs4-dropdown-box-shadow}}; {% endif %}
-{% if settings.bs4-dropdown-link-color %} $dropdown-link-color: {{settings.bs4-dropdown-link-color}}; {% endif %}
-{% if settings.bs4-dropdown-link-hover-color %} $dropdown-link-hover-color: {{settings.bs4-dropdown-link-hover-color}}; {% endif %}
-{% if settings.bs4-dropdown-link-hover-bg %} $dropdown-link-hover-bg: {{settings.bs4-dropdown-link-hover-bg}}; {% endif %}
-{% if settings.bs4-dropdown-link-active-color %} $dropdown-link-active-color: {{settings.bs4-dropdown-link-active-color}}; {% endif %}
-{% if settings.bs4-dropdown-link-active-bg %} $dropdown-link-active-bg: {{settings.bs4-dropdown-link-active-bg}}; {% endif %}
-{% if settings.bs4-dropdown-link-disabled-color %} $dropdown-link-disabled-color: {{settings.bs4-dropdown-link-disabled-color}}; {% endif %}
-{% if settings.bs4-dropdown-item-padding-x %} $dropdown-item-padding-x: {{settings.bs4-dropdown-item-padding-x}}; {% endif %}
-{% if settings.bs4-dropdown-header-color %} $dropdown-header-color: {{settings.bs4-dropdown-header-color}}; {% endif %}
+{% comment %} Tables {% endcomment %}
+$table-cell-padding: {{settings.bs4-table-cell-padding}};
+$table-sm-cell-padding: {{settings.bs4-table-sm-cell-padding}};
+$table-bg: {{settings.bs4-table-bg}};
+$table-bg-accent: {{settings.bs4-table-bg-accent}};
+$table-bg-hover: {{settings.bs4-table-bg-hover}};
+$table-bg-active: {{settings.bs4-table-bg-active}};
+$table-border-width: {{settings.bs4-table-border-width}};
+$table-border-color: {{settings.bs4-table-border-color}};
 
-{% comment %} figures {% endcomment %}
-{% if settings.bs4-figure-caption-font-size %} $figure-caption-font-size: {{settings.bs4-figure-caption-font-size}}; {% endif %}
+{% comment %} Buttons {% endcomment %}
+$btn-padding-x: {{settings.bs4-btn-padding-x}};
+$btn-padding-y: {{settings.bs4-btn-padding-y}};
+$btn-line-height: {{settings.bs4-btn-line-height}};
+$btn-font-weight: {{settings.bs4-btn-font-weight}};
+$btn-box-shadow: {{settings.bs4-btn-box-shadow}};
+$btn-active-box-shadow: {{settings.bs4-btn-active-box-shadow}};
+$btn-primary-color: {{settings.bs4-btn-primary-color}};
+$btn-primary-bg: {{settings.bs4-btn-primary-bg}};
+$btn-primary-border: {{settings.bs4-btn-primary-border}};
+$btn-secondary-color: {{settings.bs4-btn-secondary-color}};
+$btn-secondary-bg: {{settings.bs4-btn-secondary-bg}};
+$btn-secondary-border: {{settings.bs4-btn-secondary-border}};
+$btn-info-color: {{settings.bs4-btn-info-color}};
+$btn-info-bg: {{settings.bs4-btn-info-bg}};
+$btn-info-border: {{settings.bs4-btn-info-border}};
+$btn-success-color: {{settings.bs4-btn-success-color}};
+$btn-success-bg: {{settings.bs4-btn-success-bg}};
+$btn-success-border: {{settings.bs4-btn-success-border}};
+$btn-warning-color: {{settings.bs4-btn-warning-color}};
+$btn-warning-bg: {{settings.bs4-btn-warning-bg}};
+$btn-warning-border: {{settings.bs4-btn-warning-border}};
+$btn-danger-color: {{settings.bs4-btn-danger-color}};
+$btn-danger-bg: {{settings.bs4-btn-danger-bg}};
+$btn-danger-border: {{settings.bs4-btn-danger-border}};
+$btn-link-disabled-color: {{settings.bs4-btn-link-disabled-color}};
+$btn-padding-x-sm: {{settings.bs4-btn-padding-x-sm}};
+$btn-padding-y-sm: {{settings.bs4-btn-padding-y-sm}};
+$btn-padding-x-lg: {{settings.bs4-btn-padding-x-lg}};
+$btn-padding-y-lg: {{settings.bs4-btn-padding-y-lg}};
+$btn-block-spacing-y: {{settings.bs4-btn-block-spacing-y}};
+$btn-toolbar-margin: {{settings.bs4-btn-toolbar-margin}};
+$btn-border-radius: {{settings.bs4-btn-border-radius}};
+$btn-border-radius-lg: {{settings.bs4-btn-border-radius-lg}};
+$btn-border-radius-sm: {{settings.bs4-btn-border-radius-sm}};
 
-{% comment %} form states and alerts {% endcomment %}
-{% if settings.bs4-state-success-text %} $state-success-text: {{settings.bs4-state-success-text}}; {% endif %}
-{% if settings.bs4-state-success-bg %} $state-success-bg: {{settings.bs4-state-success-bg}}; {% endif %}
-{% if settings.bs4-state-success-border %} $state-success-border: {{settings.bs4-state-success-border}}; {% endif %}
-{% if settings.bs4-state-info-text %} $state-info-text: {{settings.bs4-state-info-text}}; {% endif %}
-{% if settings.bs4-state-info-bg %} $state-info-bg: {{settings.bs4-state-info-bg}}; {% endif %}
-{% if settings.bs4-state-info-border %} $state-info-border: {{settings.bs4-state-info-border}}; {% endif %}
-{% if settings.bs4-state-warning-text %} $state-warning-text: {{settings.bs4-state-warning-text}}; {% endif %}
-{% if settings.bs4-state-warning-bg %} $state-warning-bg: {{settings.bs4-state-warning-bg}}; {% endif %}
-{% if settings.bs4-mark-bg %} $mark-bg: {{settings.bs4-mark-bg}}; {% endif %}
-{% if settings.bs4-state-warning-border %} $state-warning-border: {{settings.bs4-state-warning-border}}; {% endif %}
-{% if settings.bs4-state-danger-text %} $state-danger-text: {{settings.bs4-state-danger-text}}; {% endif %}
-{% if settings.bs4-state-danger-bg %} $state-danger-bg: {{settings.bs4-state-danger-bg}}; {% endif %}
-{% if settings.bs4-state-danger-border %} $state-danger-border: {{settings.bs4-state-danger-border}}; {% endif %}
+{% comment %} Forms {% endcomment %}
+$input-padding-x: {{settings.bs4-input-padding-x}};
+$input-padding-y: {{settings.bs4-input-padding-y}};
+$input-line-height: {{settings.bs4-input-line-height}};
+$input-bg: {{settings.bs4-input-bg}};
+$input-bg-disabled: {{settings.bs4-input-bg-disabled}};
+$input-color: {{settings.bs4-input-color}};
+$input-border-color: {{settings.bs4-input-border-color}};
+$input-btn-border-width: {{settings.bs4-input-btn-border-width}};
+$input-box-shadow: {{settings.bs4-input-box-shadow}};
+$input-border-radius: {{settings.bs4-input-border-radius}};
+$input-border-radius-lg: {{settings.bs4-input-border-radius-lg}};
+$input-border-radius-sm: {{settings.bs4-input-border-radius-sm}};
+$input-border-focus: {{settings.bs4-input-border-focus}};
+$input-box-shadow-focus: {{settings.bs4-input-box-shadow-focus}};
+$input-color-placeholder: {{settings.bs4-input-color-placeholder}};
+$input-padding-x-sm: {{settings.bs4-input-padding-x-sm}};
+$input-padding-y-sm: {{settings.bs4-input-padding-y-sm}};
+$input-padding-x-lg: {{settings.bs4-input-padding-x-lg}};
+$input-padding-y-lg: {{settings.bs4-input-padding-y-lg}};
+$input-height: {{settings.bs4-input-height}};
+$input-height-lg: {{settings.bs4-input-height-lg}};
+$input-height-sm: {{settings.bs4-input-height-sm}};
+$form-group-margin-bottom: {{settings.bs4-form-group-margin-bottom}};
+$input-group-addon-bg: {{settings.bs4-input-group-addon-bg}};
+$input-group-addon-border-color: {{settings.bs4-input-group-addon-border-color}};
+$cursor-disabled: {{settings.bs4-cursor-disabled}};
+$custom-control-gutter: {{settings.bs4-custom-control-gutter}};
+$custom-control-spacer-x: {{settings.bs4-custom-control-spacer-x}};
+$custom-control-spacer-y: {{settings.bs4-custom-control-spacer-y}};
+$custom-control-indicator-size: {{settings.bs4-custom-control-indicator-size}};
+$custom-control-indicator-bg: {{settings.bs4-custom-control-indicator-bg}};
+$custom-control-indicator-bg-size: {{settings.bs4-custom-control-indicator-bg-size}};
+$custom-control-indicator-box-shadow: {{settings.bs4-custom-control-indicator-box-shadow}};
+$custom-control-disabled-cursor: {{settings.bs4-custom-control-disabled-cursor}};
+$custom-control-disabled-indicator-bg: {{settings.bs4-custom-control-disabled-indicator-bg}};
+$custom-control-disabled-description-color: {{settings.bs4-custom-control-disabled-description-color}};
+$custom-control-checked-indicator-color: {{settings.bs4-custom-control-checked-indicator-color}};
+$custom-control-checked-indicator-bg: {{settings.bs4-custom-control-checked-indicator-bg}};
+$custom-control-checked-indicator-box-shadow: {{settings.bs4-custom-control-checked-indicator-box-shadow}};
+$custom-control-focus-indicator-box-shadow: {{settings.bs4-custom-control-focus-indicator-box-shadow}};
+$custom-control-active-indicator-color: {{settings.bs4-custom-control-active-indicator-color}};
+$custom-control-active-indicator-bg: {{settings.bs4-custom-control-active-indicator-bg}};
+$custom-control-active-indicator-box-shadow: {{settings.bs4-custom-control-active-indicator-box-shadow}};
+$custom-checkbox-radius: {{settings.bs4-custom-checkbox-radius}};
+$custom-checkbox-indeterminate-bg: {{settings.bs4-custom-checkbox-indeterminate-bg}};
+$custom-checkbox-indeterminate-box-shadow: {{settings.bs4-custom-checkbox-indeterminate-box-shadow}};
+$custom-radio-radius: {{settings.bs4-custom-radio-radius}};
+$custom-select-padding-x: {{settings.bs4-custom-select-padding-x}};
+$custom-select-padding-y: {{settings.bs4-custom-select-padding-y}};
+$custom-select-indicator-padding: {{settings.bs4-custom-select-indicator-padding}};
+$custom-select-color: {{settings.bs4-custom-select-color}};
+$custom-select-disabled-color: {{settings.bs4-custom-select-disabled-color}};
+$custom-select-bg: {{settings.bs4-custom-select-bg}};
+$custom-select-disabled-bg: {{settings.bs4-custom-select-disabled-bg}};
+$custom-select-bg-size: {{settings.bs4-custom-select-bg-size}};
+$custom-select-border-width: {{settings.bs4-custom-select-border-width}};
+$custom-select-border-color: {{settings.bs4-custom-select-border-color}};
+$custom-select-border-radius: {{settings.bs4-custom-select-border-radius}};
+$custom-select-focus-border-color: {{settings.bs4-custom-select-focus-border-color}};
+$custom-select-focus-box-shadow: {{settings.bs4-custom-select-focus-box-shadow}};
+$custom-select-sm-padding-y: {{settings.bs4-custom-select-sm-padding-y}};
+$custom-select-sm-font-size: {{settings.bs4-custom-select-sm-font-size}};
+$custom-file-height: {{settings.bs4-custom-file-height}};
+$custom-file-width: {{settings.bs4-custom-file-width}};
+$custom-file-focus-box-shadow: {{settings.bs4-custom-file-focus-box-shadow}};
+$custom-file-padding-x: {{settings.bs4-custom-file-padding-x}};
+$custom-file-padding-y: {{settings.bs4-custom-file-padding-y}};
+$custom-file-line-height: {{settings.bs4-custom-file-line-height}};
+$custom-file-color: {{settings.bs4-custom-file-color}};
+$custom-file-bg: {{settings.bs4-custom-file-bg}};
+$custom-file-border-width: {{settings.bs4-custom-file-border-width}};
+$custom-file-border-color: {{settings.bs4-custom-file-border-color}};
+$custom-file-border-radius: {{settings.bs4-custom-file-border-radius}};
+$custom-file-box-shadow: {{settings.bs4-custom-file-box-shadow}};
+$custom-file-button-color: {{settings.bs4-custom-file-button-color}};
+$custom-file-button-bg: {{settings.bs4-custom-file-button-bg}};
+$custom-file-text-placeholder-en: {{settings.bs4-custom-file-text-placeholder-en}};
+$custom-file-text-button-label-en: {{settings.bs4-custom-file-text-button-label-en}};
 
-{% comment %} forms {% endcomment %}
-{% if settings.bs4-input-padding-x %} $input-padding-x: {{settings.bs4-input-padding-x}}; {% endif %}
-{% if settings.bs4-input-padding-y %} $input-padding-y: {{settings.bs4-input-padding-y}}; {% endif %}
-{% if settings.bs4-input-line-height %} $input-line-height: {{settings.bs4-input-line-height}}; {% endif %}
-{% if settings.bs4-input-bg %} $input-bg: {{settings.bs4-input-bg}}; {% endif %}
-{% if settings.bs4-input-bg-disabled %} $input-bg-disabled: {{settings.bs4-input-bg-disabled}}; {% endif %}
-{% if settings.bs4-input-color %} $input-color: {{settings.bs4-input-color}}; {% endif %}
-{% if settings.bs4-input-border-color %} $input-border-color: {{settings.bs4-input-border-color}}; {% endif %}
-{% if settings.bs4-input-btn-border-width %} $input-btn-border-width: {{settings.bs4-input-btn-border-width}}; {% endif %}
-{% if settings.bs4-input-box-shadow %} $input-box-shadow: {{settings.bs4-input-box-shadow}}; {% endif %}
-{% if settings.bs4-input-border-radius %} $input-border-radius: {{settings.bs4-input-border-radius}}; {% endif %}
-{% if settings.bs4-input-border-radius-lg %} $input-border-radius-lg: {{settings.bs4-input-border-radius-lg}}; {% endif %}
-{% if settings.bs4-input-border-radius-sm %} $input-border-radius-sm: {{settings.bs4-input-border-radius-sm}}; {% endif %}
-{% if settings.bs4-input-border-focus %} $input-border-focus: {{settings.bs4-input-border-focus}}; {% endif %}
-{% if settings.bs4-input-box-shadow-focus %} $input-box-shadow-focus: {{settings.bs4-input-box-shadow-focus}}; {% endif %}
-{% if settings.bs4-input-color-placeholder %} $input-color-placeholder: {{settings.bs4-input-color-placeholder}}; {% endif %}
-{% if settings.bs4-input-padding-x-sm %} $input-padding-x-sm: {{settings.bs4-input-padding-x-sm}}; {% endif %}
-{% if settings.bs4-input-padding-y-sm %} $input-padding-y-sm: {{settings.bs4-input-padding-y-sm}}; {% endif %}
-{% if settings.bs4-input-padding-x-lg %} $input-padding-x-lg: {{settings.bs4-input-padding-x-lg}}; {% endif %}
-{% if settings.bs4-input-padding-y-lg %} $input-padding-y-lg: {{settings.bs4-input-padding-y-lg}}; {% endif %}
-{% if settings.bs4-input-height %} $input-height: {{settings.bs4-input-height}}; {% endif %}
-{% if settings.bs4-input-height-lg %} $input-height-lg: {{settings.bs4-input-height-lg}}; {% endif %}
-{% if settings.bs4-input-height-sm %} $input-height-sm: {{settings.bs4-input-height-sm}}; {% endif %}
-{% if settings.bs4-form-group-margin-bottom %} $form-group-margin-bottom: {{settings.bs4-form-group-margin-bottom}}; {% endif %}
-{% if settings.bs4-input-group-addon-bg %} $input-group-addon-bg: {{settings.bs4-input-group-addon-bg}}; {% endif %}
-{% if settings.bs4-input-group-addon-border-color %} $input-group-addon-border-color: {{settings.bs4-input-group-addon-border-color}}; {% endif %}
-{% if settings.bs4-cursor-disabled %} $cursor-disabled: {{settings.bs4-cursor-disabled}}; {% endif %}
-{% if settings.bs4-custom-control-gutter %} $custom-control-gutter: {{settings.bs4-custom-control-gutter}}; {% endif %}
-{% if settings.bs4-custom-control-spacer-x %} $custom-control-spacer-x: {{settings.bs4-custom-control-spacer-x}}; {% endif %}
-{% if settings.bs4-custom-control-spacer-y %} $custom-control-spacer-y: {{settings.bs4-custom-control-spacer-y}}; {% endif %}
-{% if settings.bs4-custom-control-indicator-size %} $custom-control-indicator-size: {{settings.bs4-custom-control-indicator-size}}; {% endif %}
-{% if settings.bs4-custom-control-indicator-bg %} $custom-control-indicator-bg: {{settings.bs4-custom-control-indicator-bg}}; {% endif %}
-{% if settings.bs4-custom-control-indicator-bg-size %} $custom-control-indicator-bg-size: {{settings.bs4-custom-control-indicator-bg-size}}; {% endif %}
-{% if settings.bs4-custom-control-indicator-box-shadow %} $custom-control-indicator-box-shadow: {{settings.bs4-custom-control-indicator-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-control-disabled-cursor %} $custom-control-disabled-cursor: {{settings.bs4-custom-control-disabled-cursor}}; {% endif %}
-{% if settings.bs4-custom-control-disabled-indicator-bg %} $custom-control-disabled-indicator-bg: {{settings.bs4-custom-control-disabled-indicator-bg}}; {% endif %}
-{% if settings.bs4-custom-control-disabled-description-color %} $custom-control-disabled-description-color: {{settings.bs4-custom-control-disabled-description-color}}; {% endif %}
-{% if settings.bs4-custom-control-checked-indicator-color %} $custom-control-checked-indicator-color: {{settings.bs4-custom-control-checked-indicator-color}}; {% endif %}
-{% if settings.bs4-custom-control-checked-indicator-bg %} $custom-control-checked-indicator-bg: {{settings.bs4-custom-control-checked-indicator-bg}}; {% endif %}
-{% if settings.bs4-custom-control-checked-indicator-box-shadow %} $custom-control-checked-indicator-box-shadow: {{settings.bs4-custom-control-checked-indicator-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-control-focus-indicator-box-shadow %} $custom-control-focus-indicator-box-shadow: {{settings.bs4-custom-control-focus-indicator-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-control-active-indicator-color %} $custom-control-active-indicator-color: {{settings.bs4-custom-control-active-indicator-color}}; {% endif %}
-{% if settings.bs4-custom-control-active-indicator-bg %} $custom-control-active-indicator-bg: {{settings.bs4-custom-control-active-indicator-bg}}; {% endif %}
-{% if settings.bs4-custom-control-active-indicator-box-shadow %} $custom-control-active-indicator-box-shadow: {{settings.bs4-custom-control-active-indicator-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-checkbox-radius %} $custom-checkbox-radius: {{settings.bs4-custom-checkbox-radius}}; {% endif %}
-{% if settings.bs4-custom-checkbox-indeterminate-bg %} $custom-checkbox-indeterminate-bg: {{settings.bs4-custom-checkbox-indeterminate-bg}}; {% endif %}
-{% if settings.bs4-custom-checkbox-indeterminate-box-shadow %} $custom-checkbox-indeterminate-box-shadow: {{settings.bs4-custom-checkbox-indeterminate-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-radio-radius %} $custom-radio-radius: {{settings.bs4-custom-radio-radius}}; {% endif %}
-{% if settings.bs4-custom-select-padding-x %} $custom-select-padding-x: {{settings.bs4-custom-select-padding-x}}; {% endif %}
-{% if settings.bs4-custom-select-padding-y %} $custom-select-padding-y: {{settings.bs4-custom-select-padding-y}}; {% endif %}
-{% if settings.bs4-custom-select-indicator-padding %} $custom-select-indicator-padding: {{settings.bs4-custom-select-indicator-padding}}; {% endif %}
-{% if settings.bs4-custom-select-color %} $custom-select-color: {{settings.bs4-custom-select-color}}; {% endif %}
-{% if settings.bs4-custom-select-disabled-color %} $custom-select-disabled-color: {{settings.bs4-custom-select-disabled-color}}; {% endif %}
-{% if settings.bs4-custom-select-bg %} $custom-select-bg: {{settings.bs4-custom-select-bg}}; {% endif %}
-{% if settings.bs4-custom-select-disabled-bg %} $custom-select-disabled-bg: {{settings.bs4-custom-select-disabled-bg}}; {% endif %}
-{% if settings.bs4-custom-select-bg-size %} $custom-select-bg-size: {{settings.bs4-custom-select-bg-size}}; {% endif %}
-{% if settings.bs4-custom-select-border-width %} $custom-select-border-width: {{settings.bs4-custom-select-border-width}}; {% endif %}
-{% if settings.bs4-custom-select-border-color %} $custom-select-border-color: {{settings.bs4-custom-select-border-color}}; {% endif %}
-{% if settings.bs4-custom-select-border-radius %} $custom-select-border-radius: {{settings.bs4-custom-select-border-radius}}; {% endif %}
-{% if settings.bs4-custom-select-focus-border-color %} $custom-select-focus-border-color: {{settings.bs4-custom-select-focus-border-color}}; {% endif %}
-{% if settings.bs4-custom-select-focus-box-shadow %} $custom-select-focus-box-shadow: {{settings.bs4-custom-select-focus-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-select-sm-padding-y %} $custom-select-sm-padding-y: {{settings.bs4-custom-select-sm-padding-y}}; {% endif %}
-{% if settings.bs4-custom-select-sm-font-size %} $custom-select-sm-font-size: {{settings.bs4-custom-select-sm-font-size}}; {% endif %}
-{% if settings.bs4-custom-file-height %} $custom-file-height: {{settings.bs4-custom-file-height}}; {% endif %}
-{% if settings.bs4-custom-file-width %} $custom-file-width: {{settings.bs4-custom-file-width}}; {% endif %}
-{% if settings.bs4-custom-file-focus-box-shadow %} $custom-file-focus-box-shadow: {{settings.bs4-custom-file-focus-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-file-padding-x %} $custom-file-padding-x: {{settings.bs4-custom-file-padding-x}}; {% endif %}
-{% if settings.bs4-custom-file-padding-y %} $custom-file-padding-y: {{settings.bs4-custom-file-padding-y}}; {% endif %}
-{% if settings.bs4-custom-file-line-height %} $custom-file-line-height: {{settings.bs4-custom-file-line-height}}; {% endif %}
-{% if settings.bs4-custom-file-color %} $custom-file-color: {{settings.bs4-custom-file-color}}; {% endif %}
-{% if settings.bs4-custom-file-bg %} $custom-file-bg: {{settings.bs4-custom-file-bg}}; {% endif %}
-{% if settings.bs4-custom-file-border-width %} $custom-file-border-width: {{settings.bs4-custom-file-border-width}}; {% endif %}
-{% if settings.bs4-custom-file-border-color %} $custom-file-border-color: {{settings.bs4-custom-file-border-color}}; {% endif %}
-{% if settings.bs4-custom-file-border-radius %} $custom-file-border-radius: {{settings.bs4-custom-file-border-radius}}; {% endif %}
-{% if settings.bs4-custom-file-box-shadow %} $custom-file-box-shadow: {{settings.bs4-custom-file-box-shadow}}; {% endif %}
-{% if settings.bs4-custom-file-button-color %} $custom-file-button-color: {{settings.bs4-custom-file-button-color}}; {% endif %}
-{% if settings.bs4-custom-file-button-bg %} $custom-file-button-bg: {{settings.bs4-custom-file-button-bg}}; {% endif %}
-{% if settings.bs4-custom-file-text-placeholder-en %} $custom-file-text-placeholder-en: {{settings.bs4-custom-file-text-placeholder-en}}; {% endif %}
-{% if settings.bs4-custom-file-text-button-label-en %} $custom-file-text-button-label-en: {{settings.bs4-custom-file-text-button-label-en}}; {% endif %}
+{% comment %} Dropdowns {% endcomment %}
+$dropdown-min-width: {{settings.bs4-dropdown-min-width}};
+$dropdown-padding-y: {{settings.bs4-dropdown-padding-y}};
+$dropdown-margin-top: {{settings.bs4-dropdown-margin-top}};
+$dropdown-bg: {{settings.bs4-dropdown-bg}};
+$dropdown-border-color: {{settings.bs4-dropdown-border-color}};
+$dropdown-border-width: {{settings.bs4-dropdown-border-width}};
+$dropdown-divider-bg: {{settings.bs4-dropdown-divider-bg}};
+$dropdown-box-shadow: {{settings.bs4-dropdown-box-shadow}};
+$dropdown-link-color: {{settings.bs4-dropdown-link-color}};
+$dropdown-link-hover-color: {{settings.bs4-dropdown-link-hover-color}};
+$dropdown-link-hover-bg: {{settings.bs4-dropdown-link-hover-bg}};
+$dropdown-link-active-color: {{settings.bs4-dropdown-link-active-color}};
+$dropdown-link-active-bg: {{settings.bs4-dropdown-link-active-bg}};
+$dropdown-link-disabled-color: {{settings.bs4-dropdown-link-disabled-color}};
+$dropdown-item-padding-x: {{settings.bs4-dropdown-item-padding-x}};
+$dropdown-header-color: {{settings.bs4-dropdown-header-color}};
 
-{% comment %} grid breakpoints {% endcomment %}
-{% if settings.bs4-grid-breakpoints-xs %} $grid-breakpoints-xs: {{settings.bs4-grid-breakpoints-xs}}; {% endif %}
-{% if settings.bs4-grid-breakpoints-sm %} $grid-breakpoints-sm: {{settings.bs4-grid-breakpoints-sm}}; {% endif %}
-{% if settings.bs4-grid-breakpoints-md %} $grid-breakpoints-md: {{settings.bs4-grid-breakpoints-md}}; {% endif %}
-{% if settings.bs4-grid-breakpoints-lg %} $grid-breakpoints-lg: {{settings.bs4-grid-breakpoints-lg}}; {% endif %}
-{% if settings.bs4-grid-breakpoints-xl %} $grid-breakpoints-xl: {{settings.bs4-grid-breakpoints-xl}}; {% endif %}
+{% comment %} Z-index Master List {% endcomment %}
+$zindex-dropdown-backdrop: {{settings.bs4-zindex-dropdown-backdrop}};
+$zindex-navbar: {{settings.bs4-zindex-navbar}};
+$zindex-dropdown: {{settings.bs4-zindex-dropdown}};
+$zindex-popover: {{settings.bs4-zindex-popover}};
+$zindex-tooltip: {{settings.bs4-zindex-tooltip}};
+$zindex-navbar-fixed: {{settings.bs4-zindex-navbar-fixed}};
+$zindex-navbar-sticky: {{settings.bs4-zindex-navbar-sticky}};
+$zindex-modal-bg: {{settings.bs4-zindex-modal-bg}};
+$zindex-modal: {{settings.bs4-zindex-modal}};
 
-{% comment %} grid columns {% endcomment %}
-{% if settings.bs4-grid-columns %} $grid-columns: {{settings.bs4-grid-columns}}; {% endif %}
-{% if settings.bs4-grid-gutter-width %} $grid-gutter-width: {{settings.bs4-grid-gutter-width}}; {% endif %}
+{% comment %} Navbar {% endcomment %}
+$navbar-border-radius: {{settings.bs4-navbar-border-radius}};
+$navbar-padding-x: {{settings.bs4-navbar-padding-x}};
+$navbar-padding-y: {{settings.bs4-navbar-padding-y}};
+$navbar-brand-padding-y: {{settings.bs4-navbar-brand-padding-y}};
+$navbar-dark-color: {{settings.bs4-navbar-dark-color}};
+$navbar-dark-hover-color: {{settings.bs4-navbar-dark-hover-color}};
+$navbar-dark-active-color: {{settings.bs4-navbar-dark-active-color}};
+$navbar-dark-disabled-color: {{settings.bs4-navbar-dark-disabled-color}};
+$navbar-light-color: {{settings.bs4-navbar-light-color}};
+$navbar-light-hover-color: {{settings.bs4-navbar-light-hover-color}};
+$navbar-light-active-color: {{settings.bs4-navbar-light-active-color}};
+$navbar-light-disabled-color: {{settings.bs4-navbar-light-disabled-color}};
 
-{% comment %} grid containers {% endcomment %}
-{% if settings.bs4-container-max-widths-xs %} $container-max-widths-xs: {{settings.bs4-container-max-widths-xs}}; {% endif %}
-{% if settings.bs4-container-max-widths-sm %} $container-max-widths-sm: {{settings.bs4-container-max-widths-sm}}; {% endif %}
-{% if settings.bs4-container-max-widths-md %} $container-max-widths-md: {{settings.bs4-container-max-widths-md}}; {% endif %}
-{% if settings.bs4-container-max-widths-lg %} $container-max-widths-lg: {{settings.bs4-container-max-widths-lg}}; {% endif %}
-{% if settings.bs4-container-max-widths-xl %} $container-max-widths-xl: {{settings.bs4-container-max-widths-xl}}; {% endif %}
+{% comment %} Navs {% endcomment %}
+$nav-item-margin: {{settings.bs4-nav-item-margin}};
+$nav-item-inline-spacer: {{settings.bs4-nav-item-inline-spacer}};
+$nav-link-padding: {{settings.bs4-nav-link-padding}};
+$nav-link-hover-bg: {{settings.bs4-nav-link-hover-bg}};
+$nav-disabled-link-color: {{settings.bs4-nav-disabled-link-color}};
+$nav-disabled-link-hover-color: {{settings.bs4-nav-disabled-link-hover-color}};
+$nav-disabled-link-hover-bg: {{settings.bs4-nav-disabled-link-hover-bg}};
+$nav-tabs-border-color: {{settings.bs4-nav-tabs-border-color}};
+$nav-tabs-border-width: {{settings.bs4-nav-tabs-border-width}};
+$nav-tabs-border-radius: {{settings.bs4-nav-tabs-border-radius}};
+$nav-tabs-link-hover-border-color: {{settings.bs4-nav-tabs-link-hover-border-color}};
+$nav-tabs-active-link-hover-color: {{settings.bs4-nav-tabs-active-link-hover-color}};
+$nav-tabs-active-link-hover-bg: {{settings.bs4-nav-tabs-active-link-hover-bg}};
+$nav-tabs-active-link-hover-border-color: {{settings.bs4-nav-tabs-active-link-hover-border-color}};
+$nav-tabs-justified-link-border-color: {{settings.bs4-nav-tabs-justified-link-border-color}};
+$nav-tabs-justified-active-link-border-color: {{settings.bs4-nav-tabs-justified-active-link-border-color}};
+$nav-pills-border-radius: {{settings.bs4-nav-pills-border-radius}};
+$nav-pills-active-link-color: {{settings.bs4-nav-pills-active-link-color}};
+$nav-pills-active-link-bg: {{settings.bs4-nav-pills-active-link-bg}};
 
-{% comment %} image thumbnails {% endcomment %}
-{% if settings.bs4-thumbnail-padding %} $thumbnail-padding: {{settings.bs4-thumbnail-padding}}; {% endif %}
-{% if settings.bs4-thumbnail-bg %} $thumbnail-bg: {{settings.bs4-thumbnail-bg}}; {% endif %}
-{% if settings.bs4-thumbnail-border-width %} $thumbnail-border-width: {{settings.bs4-thumbnail-border-width}}; {% endif %}
-{% if settings.bs4-thumbnail-border-color %} $thumbnail-border-color: {{settings.bs4-thumbnail-border-color}}; {% endif %}
-{% if settings.bs4-thumbnail-border-radius %} $thumbnail-border-radius: {{settings.bs4-thumbnail-border-radius}}; {% endif %}
-{% if settings.bs4-thumbnail-box-shadow %} $thumbnail-box-shadow: {{settings.bs4-thumbnail-box-shadow}}; {% endif %}
+{% comment %} Pagination {% endcomment %}
+$pagination-padding-x: {{settings.bs4-pagination-padding-x}};
+$pagination-padding-y: {{settings.bs4-pagination-padding-y}};
+$pagination-padding-x-sm: {{settings.bs4-pagination-padding-x-sm}};
+$pagination-padding-y-sm: {{settings.bs4-pagination-padding-y-sm}};
+$pagination-padding-x-lg: {{settings.bs4-pagination-padding-x-lg}};
+$pagination-padding-y-lg: {{settings.bs4-pagination-padding-y-lg}};
+$pagination-color: {{settings.bs4-pagination-color}};
+$pagination-bg: {{settings.bs4-pagination-bg}};
+$pagination-border-width: {{settings.bs4-pagination-border-width}};
+$pagination-border-color: {{settings.bs4-pagination-border-color}};
+$pagination-hover-color: {{settings.bs4-pagination-hover-color}};
+$pagination-hover-bg: {{settings.bs4-pagination-hover-bg}};
+$pagination-hover-border: {{settings.bs4-pagination-hover-border}};
+$pagination-active-color: {{settings.bs4-pagination-active-color}};
+$pagination-active-bg: {{settings.bs4-pagination-active-bg}};
+$pagination-active-border: {{settings.bs4-pagination-active-border}};
+$pagination-disabled-color: {{settings.bs4-pagination-disabled-color}};
+$pagination-disabled-bg: {{settings.bs4-pagination-disabled-bg}};
+$pagination-disabled-border: {{settings.bs4-pagination-disabled-border}};
 
-{% comment %} jumbotron {% endcomment %}
-{% if settings.bs4-jumbotron-padding %} $jumbotron-padding: {{settings.bs4-jumbotron-padding}}; {% endif %}
-{% if settings.bs4-jumbotron-bg %} $jumbotron-bg: {{settings.bs4-jumbotron-bg}}; {% endif %}
+{% comment %} Jumbotron {% endcomment %}
+$jumbotron-padding: {{settings.bs4-jumbotron-padding}};
+$jumbotron-bg: {{settings.bs4-jumbotron-bg}};
 
-{% comment %} links {% endcomment %}
-{% if settings.bs4-link-color %} $link-color: {{settings.bs4-link-color}}; {% endif %}
-{% if settings.bs4-link-decoration %} $link-decoration: {{settings.bs4-link-decoration}}; {% endif %}
-{% if settings.bs4-link-hover-color %} $link-hover-color: {{settings.bs4-link-hover-color}}; {% endif %}
-{% if settings.bs4-link-hover-decoration %} $link-hover-decoration: {{settings.bs4-link-hover-decoration}}; {% endif %}
+{% comment %} Form States And Alerts {% endcomment %}
+$state-success-text: {{settings.bs4-state-success-text}};
+$state-success-bg: {{settings.bs4-state-success-bg}};
+$state-success-border: {{settings.bs4-state-success-border}};
+$state-info-text: {{settings.bs4-state-info-text}};
+$state-info-bg: {{settings.bs4-state-info-bg}};
+$state-info-border: {{settings.bs4-state-info-border}};
+$state-warning-text: {{settings.bs4-state-warning-text}};
+$state-warning-bg: {{settings.bs4-state-warning-bg}};
+$mark-bg: {{settings.bs4-mark-bg}};
+$state-warning-border: {{settings.bs4-state-warning-border}};
+$state-danger-text: {{settings.bs4-state-danger-text}};
+$state-danger-bg: {{settings.bs4-state-danger-bg}};
+$state-danger-border: {{settings.bs4-state-danger-border}};
 
-{% comment %} list group {% endcomment %}
-{% if settings.bs4-list-group-bg %} $list-group-bg: {{settings.bs4-list-group-bg}}; {% endif %}
-{% if settings.bs4-list-group-border-color %} $list-group-border-color: {{settings.bs4-list-group-border-color}}; {% endif %}
-{% if settings.bs4-list-group-border-width %} $list-group-border-width: {{settings.bs4-list-group-border-width}}; {% endif %}
-{% if settings.bs4-list-group-border-radius %} $list-group-border-radius: {{settings.bs4-list-group-border-radius}}; {% endif %}
-{% if settings.bs4-list-group-hover-bg %} $list-group-hover-bg: {{settings.bs4-list-group-hover-bg}}; {% endif %}
-{% if settings.bs4-list-group-active-color %} $list-group-active-color: {{settings.bs4-list-group-active-color}}; {% endif %}
-{% if settings.bs4-list-group-active-bg %} $list-group-active-bg: {{settings.bs4-list-group-active-bg}}; {% endif %}
-{% if settings.bs4-list-group-active-border %} $list-group-active-border: {{settings.bs4-list-group-active-border}}; {% endif %}
-{% if settings.bs4-list-group-active-text-color %} $list-group-active-text-color: {{settings.bs4-list-group-active-text-color}}; {% endif %}
-{% if settings.bs4-list-group-disabled-color %} $list-group-disabled-color: {{settings.bs4-list-group-disabled-color}}; {% endif %}
-{% if settings.bs4-list-group-disabled-bg %} $list-group-disabled-bg: {{settings.bs4-list-group-disabled-bg}}; {% endif %}
-{% if settings.bs4-list-group-disabled-text-color %} $list-group-disabled-text-color: {{settings.bs4-list-group-disabled-text-color}}; {% endif %}
-{% if settings.bs4-list-group-link-color %} $list-group-link-color: {{settings.bs4-list-group-link-color}}; {% endif %}
-{% if settings.bs4-list-group-link-hover-color %} $list-group-link-hover-color: {{settings.bs4-list-group-link-hover-color}}; {% endif %}
-{% if settings.bs4-list-group-link-heading-color %} $list-group-link-heading-color: {{settings.bs4-list-group-link-heading-color}}; {% endif %}
-{% if settings.bs4-list-group-item-padding-x %} $list-group-item-padding-x: {{settings.bs4-list-group-item-padding-x}}; {% endif %}
-{% if settings.bs4-list-group-item-padding-y %} $list-group-item-padding-y: {{settings.bs4-list-group-item-padding-y}}; {% endif %}
-{% if settings.bs4-list-group-item-heading-margin-bottom %} $list-group-item-heading-margin-bottom: {{settings.bs4-list-group-item-heading-margin-bottom}}; {% endif %}
+{% comment %} Cards {% endcomment %}
+$card-spacer-x: {{settings.bs4-card-spacer-x}};
+$card-spacer-y: {{settings.bs4-card-spacer-y}};
+$card-border-width: {{settings.bs4-card-border-width}};
+$card-border-radius: {{settings.bs4-card-border-radius}};
+$card-border-color: {{settings.bs4-card-border-color}};
+$card-border-radius-inner: {{settings.bs4-card-border-radius-inner}};
+$card-cap-bg: {{settings.bs4-card-cap-bg}};
+$card-bg: {{settings.bs4-card-bg}};
+$card-link-hover-color: {{settings.bs4-card-link-hover-color}};
+$card-img-overlay-padding: {{settings.bs4-card-img-overlay-padding}};
+$card-deck-margin: {{settings.bs4-card-deck-margin}};
+$card-columns-sm-up-column-gap: {{settings.bs4-card-columns-sm-up-column-gap}};
 
-{% comment %} media objects {% endcomment %}
-{% if settings.bs4-media-margin-top %} $media-margin-top: {{settings.bs4-media-margin-top}}; {% endif %}
-{% if settings.bs4-media-heading-margin-bottom %} $media-heading-margin-bottom: {{settings.bs4-media-heading-margin-bottom}}; {% endif %}
-{% if settings.bs4-media-alignment-padding-x %} $media-alignment-padding-x: {{settings.bs4-media-alignment-padding-x}}; {% endif %}
+{% comment %} Tooltips {% endcomment %}
+$tooltip-max-width: {{settings.bs4-tooltip-max-width}};
+$tooltip-color: {{settings.bs4-tooltip-color}};
+$tooltip-bg: {{settings.bs4-tooltip-bg}};
+$tooltip-opacity: {{settings.bs4-tooltip-opacity}};
+$tooltip-padding-y: {{settings.bs4-tooltip-padding-y}};
+$tooltip-padding-x: {{settings.bs4-tooltip-padding-x}};
+$tooltip-margin: {{settings.bs4-tooltip-margin}};
+$tooltip-arrow-width: {{settings.bs4-tooltip-arrow-width}};
+$tooltip-arrow-color: {{settings.bs4-tooltip-arrow-color}};
 
-{% comment %} modals {% endcomment %}
-{% if settings.bs4-modal-inner-padding %} $modal-inner-padding: {{settings.bs4-modal-inner-padding}}; {% endif %}
-{% if settings.bs4-modal-dialog-margin %} $modal-dialog-margin: {{settings.bs4-modal-dialog-margin}}; {% endif %}
-{% if settings.bs4-modal-dialog-sm-up-margin-y %} $modal-dialog-sm-up-margin-y: {{settings.bs4-modal-dialog-sm-up-margin-y}}; {% endif %}
-{% if settings.bs4-modal-title-padding %} $modal-title-padding: {{settings.bs4-modal-title-padding}}; {% endif %}
-{% if settings.bs4-modal-title-line-height %} $modal-title-line-height: {{settings.bs4-modal-title-line-height}}; {% endif %}
-{% if settings.bs4-modal-content-bg %} $modal-content-bg: {{settings.bs4-modal-content-bg}}; {% endif %}
-{% if settings.bs4-modal-content-border-color %} $modal-content-border-color: {{settings.bs4-modal-content-border-color}}; {% endif %}
-{% if settings.bs4-modal-content-border-width %} $modal-content-border-width: {{settings.bs4-modal-content-border-width}}; {% endif %}
-{% if settings.bs4-modal-content-xs-box-shadow %} $modal-content-xs-box-shadow: {{settings.bs4-modal-content-xs-box-shadow}}; {% endif %}
-{% if settings.bs4-modal-content-sm-up-box-shadow %} $modal-content-sm-up-box-shadow: {{settings.bs4-modal-content-sm-up-box-shadow}}; {% endif %}
-{% if settings.bs4-modal-backdrop-bg %} $modal-backdrop-bg: {{settings.bs4-modal-backdrop-bg}}; {% endif %}
-{% if settings.bs4-modal-backdrop-opacity %} $modal-backdrop-opacity: {{settings.bs4-modal-backdrop-opacity}}; {% endif %}
-{% if settings.bs4-modal-header-border-color %} $modal-header-border-color: {{settings.bs4-modal-header-border-color}}; {% endif %}
-{% if settings.bs4-modal-footer-border-color %} $modal-footer-border-color: {{settings.bs4-modal-footer-border-color}}; {% endif %}
-{% if settings.bs4-modal-header-border-width %} $modal-header-border-width: {{settings.bs4-modal-header-border-width}}; {% endif %}
-{% if settings.bs4-modal-footer-border-width %} $modal-footer-border-width: {{settings.bs4-modal-footer-border-width}}; {% endif %}
-{% if settings.bs4-modal-lg %} $modal-lg: {{settings.bs4-modal-lg}}; {% endif %}
-{% if settings.bs4-modal-md %} $modal-md: {{settings.bs4-modal-md}}; {% endif %}
-{% if settings.bs4-modal-sm %} $modal-sm: {{settings.bs4-modal-sm}}; {% endif %}
+{% comment %} Popovers {% endcomment %}
+$popover-inner-padding: {{settings.bs4-popover-inner-padding}};
+$popover-bg: {{settings.bs4-popover-bg}};
+$popover-max-width: {{settings.bs4-popover-max-width}};
+$popover-border-width: {{settings.bs4-popover-border-width}};
+$popover-border-color: {{settings.bs4-popover-border-color}};
+$popover-box-shadow: {{settings.bs4-popover-box-shadow}};
+$popover-title-bg: {{settings.bs4-popover-title-bg}};
+$popover-title-padding-x: {{settings.bs4-popover-title-padding-x}};
+$popover-title-padding-y: {{settings.bs4-popover-title-padding-y}};
+$popover-content-padding-x: {{settings.bs4-popover-content-padding-x}};
+$popover-content-padding-y: {{settings.bs4-popover-content-padding-y}};
+$popover-arrow-width: {{settings.bs4-popover-arrow-width}};
+$popover-arrow-color: {{settings.bs4-popover-arrow-color}};
+$popover-arrow-outer-width: {{settings.bs4-popover-arrow-outer-width}};
+$popover-arrow-outer-color: {{settings.bs4-popover-arrow-outer-color}};
 
-{% comment %} navbar {% endcomment %}
-{% if settings.bs4-navbar-border-radius %} $navbar-border-radius: {{settings.bs4-navbar-border-radius}}; {% endif %}
-{% if settings.bs4-navbar-padding-x %} $navbar-padding-x: {{settings.bs4-navbar-padding-x}}; {% endif %}
-{% if settings.bs4-navbar-padding-y %} $navbar-padding-y: {{settings.bs4-navbar-padding-y}}; {% endif %}
-{% if settings.bs4-navbar-brand-padding-y %} $navbar-brand-padding-y: {{settings.bs4-navbar-brand-padding-y}}; {% endif %}
-{% if settings.bs4-navbar-dark-color %} $navbar-dark-color: {{settings.bs4-navbar-dark-color}}; {% endif %}
-{% if settings.bs4-navbar-dark-hover-color %} $navbar-dark-hover-color: {{settings.bs4-navbar-dark-hover-color}}; {% endif %}
-{% if settings.bs4-navbar-dark-active-color %} $navbar-dark-active-color: {{settings.bs4-navbar-dark-active-color}}; {% endif %}
-{% if settings.bs4-navbar-dark-disabled-color %} $navbar-dark-disabled-color: {{settings.bs4-navbar-dark-disabled-color}}; {% endif %}
-{% if settings.bs4-navbar-light-color %} $navbar-light-color: {{settings.bs4-navbar-light-color}}; {% endif %}
-{% if settings.bs4-navbar-light-hover-color %} $navbar-light-hover-color: {{settings.bs4-navbar-light-hover-color}}; {% endif %}
-{% if settings.bs4-navbar-light-active-color %} $navbar-light-active-color: {{settings.bs4-navbar-light-active-color}}; {% endif %}
-{% if settings.bs4-navbar-light-disabled-color %} $navbar-light-disabled-color: {{settings.bs4-navbar-light-disabled-color}}; {% endif %}
+{% comment %} Tags {% endcomment %}
+$tag-default-bg: {{settings.bs4-tag-default-bg}};
+$tag-primary-bg: {{settings.bs4-tag-primary-bg}};
+$tag-success-bg: {{settings.bs4-tag-success-bg}};
+$tag-info-bg: {{settings.bs4-tag-info-bg}};
+$tag-warning-bg: {{settings.bs4-tag-warning-bg}};
+$tag-danger-bg: {{settings.bs4-tag-danger-bg}};
+$tag-color: {{settings.bs4-tag-color}};
+$tag-link-hover-color: {{settings.bs4-tag-link-hover-color}};
+$tag-font-size: {{settings.bs4-tag-font-size}};
+$tag-font-weight: {{settings.bs4-tag-font-weight}};
+$tag-padding-x: {{settings.bs4-tag-padding-x}};
+$tag-padding-y: {{settings.bs4-tag-padding-y}};
+$tag-pill-padding-x: {{settings.bs4-tag-pill-padding-x}};
+$tag-pill-border-radius: {{settings.bs4-tag-pill-border-radius}};
 
-{% comment %} navs {% endcomment %}
-{% if settings.bs4-nav-item-margin %} $nav-item-margin: {{settings.bs4-nav-item-margin}}; {% endif %}
-{% if settings.bs4-nav-item-inline-spacer %} $nav-item-inline-spacer: {{settings.bs4-nav-item-inline-spacer}}; {% endif %}
-{% if settings.bs4-nav-link-padding %} $nav-link-padding: {{settings.bs4-nav-link-padding}}; {% endif %}
-{% if settings.bs4-nav-link-hover-bg %} $nav-link-hover-bg: {{settings.bs4-nav-link-hover-bg}}; {% endif %}
-{% if settings.bs4-nav-disabled-link-color %} $nav-disabled-link-color: {{settings.bs4-nav-disabled-link-color}}; {% endif %}
-{% if settings.bs4-nav-disabled-link-hover-color %} $nav-disabled-link-hover-color: {{settings.bs4-nav-disabled-link-hover-color}}; {% endif %}
-{% if settings.bs4-nav-disabled-link-hover-bg %} $nav-disabled-link-hover-bg: {{settings.bs4-nav-disabled-link-hover-bg}}; {% endif %}
-{% if settings.bs4-nav-tabs-border-color %} $nav-tabs-border-color: {{settings.bs4-nav-tabs-border-color}}; {% endif %}
-{% if settings.bs4-nav-tabs-border-width %} $nav-tabs-border-width: {{settings.bs4-nav-tabs-border-width}}; {% endif %}
-{% if settings.bs4-nav-tabs-border-radius %} $nav-tabs-border-radius: {{settings.bs4-nav-tabs-border-radius}}; {% endif %}
-{% if settings.bs4-nav-tabs-link-hover-border-color %} $nav-tabs-link-hover-border-color: {{settings.bs4-nav-tabs-link-hover-border-color}}; {% endif %}
-{% if settings.bs4-nav-tabs-active-link-hover-color %} $nav-tabs-active-link-hover-color: {{settings.bs4-nav-tabs-active-link-hover-color}}; {% endif %}
-{% if settings.bs4-nav-tabs-active-link-hover-bg %} $nav-tabs-active-link-hover-bg: {{settings.bs4-nav-tabs-active-link-hover-bg}}; {% endif %}
-{% if settings.bs4-nav-tabs-active-link-hover-border-color %} $nav-tabs-active-link-hover-border-color: {{settings.bs4-nav-tabs-active-link-hover-border-color}}; {% endif %}
-{% if settings.bs4-nav-tabs-justified-link-border-color %} $nav-tabs-justified-link-border-color: {{settings.bs4-nav-tabs-justified-link-border-color}}; {% endif %}
-{% if settings.bs4-nav-tabs-justified-active-link-border-color %} $nav-tabs-justified-active-link-border-color: {{settings.bs4-nav-tabs-justified-active-link-border-color}}; {% endif %}
-{% if settings.bs4-nav-pills-border-radius %} $nav-pills-border-radius: {{settings.bs4-nav-pills-border-radius}}; {% endif %}
-{% if settings.bs4-nav-pills-active-link-color %} $nav-pills-active-link-color: {{settings.bs4-nav-pills-active-link-color}}; {% endif %}
-{% if settings.bs4-nav-pills-active-link-bg %} $nav-pills-active-link-bg: {{settings.bs4-nav-pills-active-link-bg}}; {% endif %}
+{% comment %} Modals {% endcomment %}
+$modal-inner-padding: {{settings.bs4-modal-inner-padding}};
+$modal-dialog-margin: {{settings.bs4-modal-dialog-margin}};
+$modal-dialog-sm-up-margin-y: {{settings.bs4-modal-dialog-sm-up-margin-y}};
+$modal-title-padding: {{settings.bs4-modal-title-padding}};
+$modal-title-line-height: {{settings.bs4-modal-title-line-height}};
+$modal-content-bg: {{settings.bs4-modal-content-bg}};
+$modal-content-border-color: {{settings.bs4-modal-content-border-color}};
+$modal-content-border-width: {{settings.bs4-modal-content-border-width}};
+$modal-content-xs-box-shadow: {{settings.bs4-modal-content-xs-box-shadow}};
+$modal-content-sm-up-box-shadow: {{settings.bs4-modal-content-sm-up-box-shadow}};
+$modal-backdrop-bg: {{settings.bs4-modal-backdrop-bg}};
+$modal-backdrop-opacity: {{settings.bs4-modal-backdrop-opacity}};
+$modal-header-border-color: {{settings.bs4-modal-header-border-color}};
+$modal-footer-border-color: {{settings.bs4-modal-footer-border-color}};
+$modal-header-border-width: {{settings.bs4-modal-header-border-width}};
+$modal-footer-border-width: {{settings.bs4-modal-footer-border-width}};
+$modal-lg: {{settings.bs4-modal-lg}};
+$modal-md: {{settings.bs4-modal-md}};
+$modal-sm: {{settings.bs4-modal-sm}};
 
-{% comment %} options {% endcomment %}
-{% if settings.bs4-enable-flex %} $enable-flex: {{settings.bs4-enable-flex}}; {% endif %}
-{% if settings.bs4-enable-rounded %} $enable-rounded: {{settings.bs4-enable-rounded}}; {% endif %}
-{% if settings.bs4-enable-shadows %} $enable-shadows: {{settings.bs4-enable-shadows}}; {% endif %}
-{% if settings.bs4-enable-gradients %} $enable-gradients: {{settings.bs4-enable-gradients}}; {% endif %}
-{% if settings.bs4-enable-transitions %} $enable-transitions: {{settings.bs4-enable-transitions}}; {% endif %}
-{% if settings.bs4-enable-hover-media-query %} $enable-hover-media-query: {{settings.bs4-enable-hover-media-query}}; {% endif %}
-{% if settings.bs4-enable-grid-classes %} $enable-grid-classes: {{settings.bs4-enable-grid-classes}}; {% endif %}
-{% if settings.bs4-enable-print-styles %} $enable-print-styles: {{settings.bs4-enable-print-styles}}; {% endif %}
+{% comment %} Alerts {% endcomment %}
+$alert-padding: {{settings.bs4-alert-padding}};
+$alert-border-radius: {{settings.bs4-alert-border-radius}};
+$alert-link-font-weight: {{settings.bs4-alert-link-font-weight}};
+$alert-border-width: {{settings.bs4-alert-border-width}};
+$alert-success-bg: {{settings.bs4-alert-success-bg}};
+$alert-success-text: {{settings.bs4-alert-success-text}};
+$alert-success-border: {{settings.bs4-alert-success-border}};
+$alert-info-bg: {{settings.bs4-alert-info-bg}};
+$alert-info-text: {{settings.bs4-alert-info-text}};
+$alert-info-border: {{settings.bs4-alert-info-border}};
+$alert-warning-bg: {{settings.bs4-alert-warning-bg}};
+$alert-warning-text: {{settings.bs4-alert-warning-text}};
+$alert-warning-border: {{settings.bs4-alert-warning-border}};
+$alert-danger-bg: {{settings.bs4-alert-danger-bg}};
+$alert-danger-text: {{settings.bs4-alert-danger-text}};
+$alert-danger-border: {{settings.bs4-alert-danger-border}};
 
-{% comment %} pagination {% endcomment %}
-{% if settings.bs4-pagination-padding-x %} $pagination-padding-x: {{settings.bs4-pagination-padding-x}}; {% endif %}
-{% if settings.bs4-pagination-padding-y %} $pagination-padding-y: {{settings.bs4-pagination-padding-y}}; {% endif %}
-{% if settings.bs4-pagination-padding-x-sm %} $pagination-padding-x-sm: {{settings.bs4-pagination-padding-x-sm}}; {% endif %}
-{% if settings.bs4-pagination-padding-y-sm %} $pagination-padding-y-sm: {{settings.bs4-pagination-padding-y-sm}}; {% endif %}
-{% if settings.bs4-pagination-padding-x-lg %} $pagination-padding-x-lg: {{settings.bs4-pagination-padding-x-lg}}; {% endif %}
-{% if settings.bs4-pagination-padding-y-lg %} $pagination-padding-y-lg: {{settings.bs4-pagination-padding-y-lg}}; {% endif %}
-{% if settings.bs4-pagination-color %} $pagination-color: {{settings.bs4-pagination-color}}; {% endif %}
-{% if settings.bs4-pagination-bg %} $pagination-bg: {{settings.bs4-pagination-bg}}; {% endif %}
-{% if settings.bs4-pagination-border-width %} $pagination-border-width: {{settings.bs4-pagination-border-width}}; {% endif %}
-{% if settings.bs4-pagination-border-color %} $pagination-border-color: {{settings.bs4-pagination-border-color}}; {% endif %}
-{% if settings.bs4-pagination-hover-color %} $pagination-hover-color: {{settings.bs4-pagination-hover-color}}; {% endif %}
-{% if settings.bs4-pagination-hover-bg %} $pagination-hover-bg: {{settings.bs4-pagination-hover-bg}}; {% endif %}
-{% if settings.bs4-pagination-hover-border %} $pagination-hover-border: {{settings.bs4-pagination-hover-border}}; {% endif %}
-{% if settings.bs4-pagination-active-color %} $pagination-active-color: {{settings.bs4-pagination-active-color}}; {% endif %}
-{% if settings.bs4-pagination-active-bg %} $pagination-active-bg: {{settings.bs4-pagination-active-bg}}; {% endif %}
-{% if settings.bs4-pagination-active-border %} $pagination-active-border: {{settings.bs4-pagination-active-border}}; {% endif %}
-{% if settings.bs4-pagination-disabled-color %} $pagination-disabled-color: {{settings.bs4-pagination-disabled-color}}; {% endif %}
-{% if settings.bs4-pagination-disabled-bg %} $pagination-disabled-bg: {{settings.bs4-pagination-disabled-bg}}; {% endif %}
-{% if settings.bs4-pagination-disabled-border %} $pagination-disabled-border: {{settings.bs4-pagination-disabled-border}}; {% endif %}
+{% comment %} Progress Bars {% endcomment %}
+$progress-bg: {{settings.bs4-progress-bg}};
+$progress-bar-color: {{settings.bs4-progress-bar-color}};
+$progress-border-radius: {{settings.bs4-progress-border-radius}};
+$progress-box-shadow: {{settings.bs4-progress-box-shadow}};
+$progress-bar-bg: {{settings.bs4-progress-bar-bg}};
+$progress-bar-success-bg: {{settings.bs4-progress-bar-success-bg}};
+$progress-bar-warning-bg: {{settings.bs4-progress-bar-warning-bg}};
+$progress-bar-danger-bg: {{settings.bs4-progress-bar-danger-bg}};
+$progress-bar-info-bg: {{settings.bs4-progress-bar-info-bg}};
 
-{% comment %} popovers {% endcomment %}
-{% if settings.bs4-popover-inner-padding %} $popover-inner-padding: {{settings.bs4-popover-inner-padding}}; {% endif %}
-{% if settings.bs4-popover-bg %} $popover-bg: {{settings.bs4-popover-bg}}; {% endif %}
-{% if settings.bs4-popover-max-width %} $popover-max-width: {{settings.bs4-popover-max-width}}; {% endif %}
-{% if settings.bs4-popover-border-width %} $popover-border-width: {{settings.bs4-popover-border-width}}; {% endif %}
-{% if settings.bs4-popover-border-color %} $popover-border-color: {{settings.bs4-popover-border-color}}; {% endif %}
-{% if settings.bs4-popover-box-shadow %} $popover-box-shadow: {{settings.bs4-popover-box-shadow}}; {% endif %}
-{% if settings.bs4-popover-title-bg %} $popover-title-bg: {{settings.bs4-popover-title-bg}}; {% endif %}
-{% if settings.bs4-popover-title-padding-x %} $popover-title-padding-x: {{settings.bs4-popover-title-padding-x}}; {% endif %}
-{% if settings.bs4-popover-title-padding-y %} $popover-title-padding-y: {{settings.bs4-popover-title-padding-y}}; {% endif %}
-{% if settings.bs4-popover-content-padding-x %} $popover-content-padding-x: {{settings.bs4-popover-content-padding-x}}; {% endif %}
-{% if settings.bs4-popover-content-padding-y %} $popover-content-padding-y: {{settings.bs4-popover-content-padding-y}}; {% endif %}
-{% if settings.bs4-popover-arrow-width %} $popover-arrow-width: {{settings.bs4-popover-arrow-width}}; {% endif %}
-{% if settings.bs4-popover-arrow-color %} $popover-arrow-color: {{settings.bs4-popover-arrow-color}}; {% endif %}
-{% if settings.bs4-popover-arrow-outer-width %} $popover-arrow-outer-width: {{settings.bs4-popover-arrow-outer-width}}; {% endif %}
-{% if settings.bs4-popover-arrow-outer-color %} $popover-arrow-outer-color: {{settings.bs4-popover-arrow-outer-color}}; {% endif %}
+{% comment %} List Group {% endcomment %}
+$list-group-bg: {{settings.bs4-list-group-bg}};
+$list-group-border-color: {{settings.bs4-list-group-border-color}};
+$list-group-border-width: {{settings.bs4-list-group-border-width}};
+$list-group-border-radius: {{settings.bs4-list-group-border-radius}};
+$list-group-hover-bg: {{settings.bs4-list-group-hover-bg}};
+$list-group-active-color: {{settings.bs4-list-group-active-color}};
+$list-group-active-bg: {{settings.bs4-list-group-active-bg}};
+$list-group-active-border: {{settings.bs4-list-group-active-border}};
+$list-group-active-text-color: {{settings.bs4-list-group-active-text-color}};
+$list-group-disabled-color: {{settings.bs4-list-group-disabled-color}};
+$list-group-disabled-bg: {{settings.bs4-list-group-disabled-bg}};
+$list-group-disabled-text-color: {{settings.bs4-list-group-disabled-text-color}};
+$list-group-link-color: {{settings.bs4-list-group-link-color}};
+$list-group-link-hover-color: {{settings.bs4-list-group-link-hover-color}};
+$list-group-link-heading-color: {{settings.bs4-list-group-link-heading-color}};
+$list-group-item-padding-x: {{settings.bs4-list-group-item-padding-x}};
+$list-group-item-padding-y: {{settings.bs4-list-group-item-padding-y}};
+$list-group-item-heading-margin-bottom: {{settings.bs4-list-group-item-heading-margin-bottom}};
 
-{% comment %} progress bars {% endcomment %}
-{% if settings.bs4-progress-bg %} $progress-bg: {{settings.bs4-progress-bg}}; {% endif %}
-{% if settings.bs4-progress-bar-color %} $progress-bar-color: {{settings.bs4-progress-bar-color}}; {% endif %}
-{% if settings.bs4-progress-border-radius %} $progress-border-radius: {{settings.bs4-progress-border-radius}}; {% endif %}
-{% if settings.bs4-progress-box-shadow %} $progress-box-shadow: {{settings.bs4-progress-box-shadow}}; {% endif %}
-{% if settings.bs4-progress-bar-bg %} $progress-bar-bg: {{settings.bs4-progress-bar-bg}}; {% endif %}
-{% if settings.bs4-progress-bar-success-bg %} $progress-bar-success-bg: {{settings.bs4-progress-bar-success-bg}}; {% endif %}
-{% if settings.bs4-progress-bar-warning-bg %} $progress-bar-warning-bg: {{settings.bs4-progress-bar-warning-bg}}; {% endif %}
-{% if settings.bs4-progress-bar-danger-bg %} $progress-bar-danger-bg: {{settings.bs4-progress-bar-danger-bg}}; {% endif %}
-{% if settings.bs4-progress-bar-info-bg %} $progress-bar-info-bg: {{settings.bs4-progress-bar-info-bg}}; {% endif %}
+{% comment %} Image Thumbnails {% endcomment %}
+$thumbnail-padding: {{settings.bs4-thumbnail-padding}};
+$thumbnail-bg: {{settings.bs4-thumbnail-bg}};
+$thumbnail-border-width: {{settings.bs4-thumbnail-border-width}};
+$thumbnail-border-color: {{settings.bs4-thumbnail-border-color}};
+$thumbnail-border-radius: {{settings.bs4-thumbnail-border-radius}};
+$thumbnail-box-shadow: {{settings.bs4-thumbnail-box-shadow}};
 
-{% comment %} spacing {% endcomment %}
-{% if settings.bs4-spacer %} $spacer: {{settings.bs4-spacer}}; {% endif %}
-{% if settings.bs4-spacer-x %} $spacer-x: {{settings.bs4-spacer-x}}; {% endif %}
-{% if settings.bs4-spacer-y %} $spacer-y: {{settings.bs4-spacer-y}}; {% endif %}
-{% if settings.bs4-spacers-x-0 %} $spacers-x-0: {{settings.bs4-spacers-x-0}}; {% endif %}
-{% if settings.bs4-spacers-y-0 %} $spacers-y-0: {{settings.bs4-spacers-y-0}}; {% endif %}
-{% if settings.bs4-spacers-x-1 %} $spacers-x-1: {{settings.bs4-spacers-x-1}}; {% endif %}
-{% if settings.bs4-spacers-y-1 %} $spacers-y-1: {{settings.bs4-spacers-y-1}}; {% endif %}
-{% if settings.bs4-spacers-x-2 %} $spacers-x-2: {{settings.bs4-spacers-x-2}}; {% endif %}
-{% if settings.bs4-spacers-y-2 %} $spacers-y-2: {{settings.bs4-spacers-y-2}}; {% endif %}
-{% if settings.bs4-spacers-x-3 %} $spacers-x-3: {{settings.bs4-spacers-x-3}}; {% endif %}
-{% if settings.bs4-spacers-y-3 %} $spacers-y-3: {{settings.bs4-spacers-y-3}}; {% endif %}
-{% if settings.bs4-border-width %} $border-width: {{settings.bs4-border-width}}; {% endif %}
+{% comment %} Figures {% endcomment %}
+$figure-caption-font-size: {{settings.bs4-figure-caption-font-size}};
 
-{% comment %} tables {% endcomment %}
-{% if settings.bs4-table-cell-padding %} $table-cell-padding: {{settings.bs4-table-cell-padding}}; {% endif %}
-{% if settings.bs4-table-sm-cell-padding %} $table-sm-cell-padding: {{settings.bs4-table-sm-cell-padding}}; {% endif %}
-{% if settings.bs4-table-bg %} $table-bg: {{settings.bs4-table-bg}}; {% endif %}
-{% if settings.bs4-table-bg-accent %} $table-bg-accent: {{settings.bs4-table-bg-accent}}; {% endif %}
-{% if settings.bs4-table-bg-hover %} $table-bg-hover: {{settings.bs4-table-bg-hover}}; {% endif %}
-{% if settings.bs4-table-bg-active %} $table-bg-active: {{settings.bs4-table-bg-active}}; {% endif %}
-{% if settings.bs4-table-border-width %} $table-border-width: {{settings.bs4-table-border-width}}; {% endif %}
-{% if settings.bs4-table-border-color %} $table-border-color: {{settings.bs4-table-border-color}}; {% endif %}
+{% comment %} Breadcrumbs {% endcomment %}
+$breadcrumb-padding-y: {{settings.bs4-breadcrumb-padding-y}};
+$breadcrumb-padding-x: {{settings.bs4-breadcrumb-padding-x}};
+$breadcrumb-item-padding: {{settings.bs4-breadcrumb-item-padding}};
+$breadcrumb-bg: {{settings.bs4-breadcrumb-bg}};
+$breadcrumb-divider-color: {{settings.bs4-breadcrumb-divider-color}};
+$breadcrumb-active-color: {{settings.bs4-breadcrumb-active-color}};
+$breadcrumb-divider: {{settings.bs4-breadcrumb-divider}};
 
-{% comment %} tags {% endcomment %}
-{% if settings.bs4-tag-default-bg %} $tag-default-bg: {{settings.bs4-tag-default-bg}}; {% endif %}
-{% if settings.bs4-tag-primary-bg %} $tag-primary-bg: {{settings.bs4-tag-primary-bg}}; {% endif %}
-{% if settings.bs4-tag-success-bg %} $tag-success-bg: {{settings.bs4-tag-success-bg}}; {% endif %}
-{% if settings.bs4-tag-info-bg %} $tag-info-bg: {{settings.bs4-tag-info-bg}}; {% endif %}
-{% if settings.bs4-tag-warning-bg %} $tag-warning-bg: {{settings.bs4-tag-warning-bg}}; {% endif %}
-{% if settings.bs4-tag-danger-bg %} $tag-danger-bg: {{settings.bs4-tag-danger-bg}}; {% endif %}
-{% if settings.bs4-tag-color %} $tag-color: {{settings.bs4-tag-color}}; {% endif %}
-{% if settings.bs4-tag-link-hover-color %} $tag-link-hover-color: {{settings.bs4-tag-link-hover-color}}; {% endif %}
-{% if settings.bs4-tag-font-size %} $tag-font-size: {{settings.bs4-tag-font-size}}; {% endif %}
-{% if settings.bs4-tag-font-weight %} $tag-font-weight: {{settings.bs4-tag-font-weight}}; {% endif %}
-{% if settings.bs4-tag-padding-x %} $tag-padding-x: {{settings.bs4-tag-padding-x}}; {% endif %}
-{% if settings.bs4-tag-padding-y %} $tag-padding-y: {{settings.bs4-tag-padding-y}}; {% endif %}
-{% if settings.bs4-tag-pill-padding-x %} $tag-pill-padding-x: {{settings.bs4-tag-pill-padding-x}}; {% endif %}
-{% if settings.bs4-tag-pill-border-radius %} $tag-pill-border-radius: {{settings.bs4-tag-pill-border-radius}}; {% endif %}
+{% comment %} Media Objects {% endcomment %}
+$media-margin-top: {{settings.bs4-media-margin-top}};
+$media-heading-margin-bottom: {{settings.bs4-media-heading-margin-bottom}};
+$media-alignment-padding-x: {{settings.bs4-media-alignment-padding-x}};
 
-{% comment %} tooltips {% endcomment %}
-{% if settings.bs4-tooltip-max-width %} $tooltip-max-width: {{settings.bs4-tooltip-max-width}}; {% endif %}
-{% if settings.bs4-tooltip-color %} $tooltip-color: {{settings.bs4-tooltip-color}}; {% endif %}
-{% if settings.bs4-tooltip-bg %} $tooltip-bg: {{settings.bs4-tooltip-bg}}; {% endif %}
-{% if settings.bs4-tooltip-opacity %} $tooltip-opacity: {{settings.bs4-tooltip-opacity}}; {% endif %}
-{% if settings.bs4-tooltip-padding-y %} $tooltip-padding-y: {{settings.bs4-tooltip-padding-y}}; {% endif %}
-{% if settings.bs4-tooltip-padding-x %} $tooltip-padding-x: {{settings.bs4-tooltip-padding-x}}; {% endif %}
-{% if settings.bs4-tooltip-margin %} $tooltip-margin: {{settings.bs4-tooltip-margin}}; {% endif %}
-{% if settings.bs4-tooltip-arrow-width %} $tooltip-arrow-width: {{settings.bs4-tooltip-arrow-width}}; {% endif %}
-{% if settings.bs4-tooltip-arrow-color %} $tooltip-arrow-color: {{settings.bs4-tooltip-arrow-color}}; {% endif %}
+{% comment %} Carousel {% endcomment %}
+$carousel-text-shadow: {{settings.bs4-carousel-text-shadow}};
+$carousel-control-color: {{settings.bs4-carousel-control-color}};
+$carousel-control-width: {{settings.bs4-carousel-control-width}};
+$carousel-control-sm-up-size: {{settings.bs4-carousel-control-sm-up-size}};
+$carousel-control-opacity: {{settings.bs4-carousel-control-opacity}};
+$carousel-control-font-size: {{settings.bs4-carousel-control-font-size}};
+$carousel-indicators-width: {{settings.bs4-carousel-indicators-width}};
+$carousel-indicator-size: {{settings.bs4-carousel-indicator-size}};
+$carousel-indicator-active-size: {{settings.bs4-carousel-indicator-active-size}};
+$carousel-indicator-active-bg: {{settings.bs4-carousel-indicator-active-bg}};
+$carousel-indicator-border-color: {{settings.bs4-carousel-indicator-border-color}};
+$carousel-caption-width: {{settings.bs4-carousel-caption-width}};
+$carousel-caption-sm-up-width: {{settings.bs4-carousel-caption-sm-up-width}};
+$carousel-caption-color: {{settings.bs4-carousel-caption-color}};
+$carousel-icon-width: {{settings.bs4-carousel-icon-width}};
 
-{% comment %} typography {% endcomment %}
-{% if settings.bs4-font-family-sans-serif %} $font-family-sans-serif: {{settings.bs4-font-family-sans-serif}}; {% endif %}
-{% if settings.bs4-font-family-serif %} $font-family-serif: {{settings.bs4-font-family-serif}}; {% endif %}
-{% if settings.bs4-font-family-monospace %} $font-family-monospace: {{settings.bs4-font-family-monospace}}; {% endif %}
-{% if settings.bs4-font-family-base %} $font-family-base: {{settings.bs4-font-family-base}}; {% endif %}
-{% if settings.bs4-font-size-root %} $font-size-root: {{settings.bs4-font-size-root}}; {% endif %}
-{% if settings.bs4-font-size-base %} $font-size-base: {{settings.bs4-font-size-base}}; {% endif %}
-{% if settings.bs4-font-size-lg %} $font-size-lg: {{settings.bs4-font-size-lg}}; {% endif %}
-{% if settings.bs4-font-size-sm %} $font-size-sm: {{settings.bs4-font-size-sm}}; {% endif %}
-{% if settings.bs4-font-size-xs %} $font-size-xs: {{settings.bs4-font-size-xs}}; {% endif %}
-{% if settings.bs4-line-height-base %} $line-height-base: {{settings.bs4-line-height-base}}; {% endif %}
-{% if settings.bs4-font-size-h1 %} $font-size-h1: {{settings.bs4-font-size-h1}}; {% endif %}
-{% if settings.bs4-font-size-h2 %} $font-size-h2: {{settings.bs4-font-size-h2}}; {% endif %}
-{% if settings.bs4-font-size-h3 %} $font-size-h3: {{settings.bs4-font-size-h3}}; {% endif %}
-{% if settings.bs4-font-size-h4 %} $font-size-h4: {{settings.bs4-font-size-h4}}; {% endif %}
-{% if settings.bs4-font-size-h5 %} $font-size-h5: {{settings.bs4-font-size-h5}}; {% endif %}
-{% if settings.bs4-font-size-h6 %} $font-size-h6: {{settings.bs4-font-size-h6}}; {% endif %}
-{% if settings.bs4-display1-size %} $display1-size: {{settings.bs4-display1-size}}; {% endif %}
-{% if settings.bs4-display2-size %} $display2-size: {{settings.bs4-display2-size}}; {% endif %}
-{% if settings.bs4-display3-size %} $display3-size: {{settings.bs4-display3-size}}; {% endif %}
-{% if settings.bs4-display4-size %} $display4-size: {{settings.bs4-display4-size}}; {% endif %}
-{% if settings.bs4-display1-weight %} $display1-weight: {{settings.bs4-display1-weight}}; {% endif %}
-{% if settings.bs4-display2-weight %} $display2-weight: {{settings.bs4-display2-weight}}; {% endif %}
-{% if settings.bs4-display3-weight %} $display3-weight: {{settings.bs4-display3-weight}}; {% endif %}
-{% if settings.bs4-display4-weight %} $display4-weight: {{settings.bs4-display4-weight}}; {% endif %}
-{% if settings.bs4-headings-margin-bottom %} $headings-margin-bottom: {{settings.bs4-headings-margin-bottom}}; {% endif %}
-{% if settings.bs4-headings-font-family %} $headings-font-family: {{settings.bs4-headings-font-family}}; {% endif %}
-{% if settings.bs4-headings-font-weight %} $headings-font-weight: {{settings.bs4-headings-font-weight}}; {% endif %}
-{% if settings.bs4-headings-line-height %} $headings-line-height: {{settings.bs4-headings-line-height}}; {% endif %}
-{% if settings.bs4-headings-color %} $headings-color: {{settings.bs4-headings-color}}; {% endif %}
-{% if settings.bs4-lead-font-size %} $lead-font-size: {{settings.bs4-lead-font-size}}; {% endif %}
-{% if settings.bs4-lead-font-weight %} $lead-font-weight: {{settings.bs4-lead-font-weight}}; {% endif %}
-{% if settings.bs4-small-font-size %} $small-font-size: {{settings.bs4-small-font-size}}; {% endif %}
-{% if settings.bs4-text-muted %} $text-muted: {{settings.bs4-text-muted}}; {% endif %}
-{% if settings.bs4-abbr-border-color %} $abbr-border-color: {{settings.bs4-abbr-border-color}}; {% endif %}
-{% if settings.bs4-blockquote-small-color %} $blockquote-small-color: {{settings.bs4-blockquote-small-color}}; {% endif %}
-{% if settings.bs4-blockquote-font-size %} $blockquote-font-size: {{settings.bs4-blockquote-font-size}}; {% endif %}
-{% if settings.bs4-blockquote-border-color %} $blockquote-border-color: {{settings.bs4-blockquote-border-color}}; {% endif %}
-{% if settings.bs4-blockquote-border-width %} $blockquote-border-width: {{settings.bs4-blockquote-border-width}}; {% endif %}
-{% if settings.bs4-hr-border-color %} $hr-border-color: {{settings.bs4-hr-border-color}}; {% endif %}
-{% if settings.bs4-hr-border-width %} $hr-border-width: {{settings.bs4-hr-border-width}}; {% endif %}
-{% if settings.bs4-mark-padding %} $mark-padding: {{settings.bs4-mark-padding}}; {% endif %}
-{% if settings.bs4-dt-font-weight %} $dt-font-weight: {{settings.bs4-dt-font-weight}}; {% endif %}
-{% if settings.bs4-kbd-box-shadow %} $kbd-box-shadow: {{settings.bs4-kbd-box-shadow}}; {% endif %}
-{% if settings.bs4-nested-kbd-font-weight %} $nested-kbd-font-weight: {{settings.bs4-nested-kbd-font-weight}}; {% endif %}
-{% if settings.bs4-list-inline-padding %} $list-inline-padding: {{settings.bs4-list-inline-padding}}; {% endif %}
+{% comment %} Close {% endcomment %}
+$close-font-weight: {{settings.bs4-close-font-weight}};
+$close-color: {{settings.bs4-close-color}};
+$close-text-shadow: {{settings.bs4-close-text-shadow}};
 
-{% comment %} z-index master list {% endcomment %}
-{% if settings.bs4-zindex-dropdown-backdrop %} $zindex-dropdown-backdrop: {{settings.bs4-zindex-dropdown-backdrop}}; {% endif %}
-{% if settings.bs4-zindex-navbar %} $zindex-navbar: {{settings.bs4-zindex-navbar}}; {% endif %}
-{% if settings.bs4-zindex-dropdown %} $zindex-dropdown: {{settings.bs4-zindex-dropdown}}; {% endif %}
-{% if settings.bs4-zindex-popover %} $zindex-popover: {{settings.bs4-zindex-popover}}; {% endif %}
-{% if settings.bs4-zindex-tooltip %} $zindex-tooltip: {{settings.bs4-zindex-tooltip}}; {% endif %}
-{% if settings.bs4-zindex-navbar-fixed %} $zindex-navbar-fixed: {{settings.bs4-zindex-navbar-fixed}}; {% endif %}
-{% if settings.bs4-zindex-navbar-sticky %} $zindex-navbar-sticky: {{settings.bs4-zindex-navbar-sticky}}; {% endif %}
-{% if settings.bs4-zindex-modal-bg %} $zindex-modal-bg: {{settings.bs4-zindex-modal-bg}}; {% endif %}
-{% if settings.bs4-zindex-modal %} $zindex-modal: {{settings.bs4-zindex-modal}}; {% endif %}
+{% comment %} Code {% endcomment %}
+$code-font-size: {{settings.bs4-code-font-size}};
+$code-padding-x: {{settings.bs4-code-padding-x}};
+$code-padding-y: {{settings.bs4-code-padding-y}};
+$code-color: {{settings.bs4-code-color}};
+$code-bg: {{settings.bs4-code-bg}};
+$kbd-color: {{settings.bs4-kbd-color}};
+$kbd-bg: {{settings.bs4-kbd-bg}};
+$pre-bg: {{settings.bs4-pre-bg}};
+$pre-color: {{settings.bs4-pre-color}};
+$pre-border-color: {{settings.bs4-pre-border-color}};
+$pre-scrollable-max-height: {{settings.bs4-pre-scrollable-max-height}};
 
 @mixin box-shadow($shadow...) {
   @if $enable-shadows {
@@ -553,6 +553,7 @@
     @include vp-box-sizing($transition);
   }
 }
+
 
 $enable-autoprefixer: true !default;
 $enable-overflow-scrolling: false !default;

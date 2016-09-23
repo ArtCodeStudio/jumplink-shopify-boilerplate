@@ -8,3 +8,6 @@ To make it possible to use Bootstrap 4 Sass files directly we have create a fork
 All Bootstrap 4 Variables full customizable on runtime:
 
 ![Alt text](/theme_settings.png?raw=true "Optional Title")
+
+## See also
+ * [Bootstrap 4 Boilerplate for OctoberCMS](https://github.com/JumpLinkNetwork/jumplink-october-boilerplate)

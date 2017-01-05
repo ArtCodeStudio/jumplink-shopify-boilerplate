@@ -70,6 +70,7 @@ gulp.task('zip', function () {
 });
 
 // SASS_CONCAT: Pull our scss files together and move them into the themes assets
+//TODO use https://www.npmjs.com/package/gulp-shopify-sass
 gulp.task('sass_concat', ['bootstrap_theme_settings_scss'], function () {
   var paths = new SassImport('./src/scss/theme.scss');
   console.log(paths);

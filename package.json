@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scssphp": "php ./vendor/bin/pscss ./dist/scss/theme.scss"
+    "sass_php": "php ./vendor/bin/pscss ./dist/scss/theme.scss",
+    "sass_ruby": "sass ./dist/scss/theme.scss"
   },
   "repository": {
     "type": "git",

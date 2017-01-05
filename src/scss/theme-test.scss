@@ -1,0 +1,5 @@
+// theme file without liquid variables to test the concationation
+@import 'fixes';
+@import 'custom';
+@import "../../bower_components/sass-autoprefixer/scss/prefixes";
+@import "../../bower_components/bootstrap-backward/scss/bootstrap";

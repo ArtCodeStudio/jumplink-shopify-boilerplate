@@ -1,10 +1,11 @@
 {
   "name": "jumplink-shopify-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Shopify theme framework based on Bootstrap 4",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scssphp": "php ./vendor/bin/pscss ./dist/scss/theme.scss"
   },
   "repository": {
     "type": "git",

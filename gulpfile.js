@@ -46,10 +46,10 @@ gulp.task('sass', ['bootstrap_sass_test_build', 'sass_concat']);
 gulp.task('build', ['sass', 'zip']);
 
 // build sass to test build
-gulp.task('bootstrap_sass_test_build', function () {
-  return gulp.src('./bower_components/bootstrap-backward/scss/bootstrap-backward.scss')
+gulp.task('bootstrap_sass_test_build', ['sass_concat_test'], function () {
+  return gulp.src('./dist/scss/theme.scss')
     .pipe(sass().on('error', onError))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('./dist/css'));
 });
 
 // ZIP: Cretae a zipped file of the theme that can be uploaded to Shopify
@@ -79,6 +79,18 @@ gulp.task('sass_concat', ['bootstrap_theme_settings_scss'], function () {
     }))
     .pipe(concat('theme.scss.liquid'))
     .pipe(gulp.dest('./theme/assets/'));
+});
+
+// SASS_CONCAT_TEST: Pull our scss files together and move them into the themes assets
+gulp.task('sass_concat_test', ['bootstrap_theme_settings_scss'], function () {
+  var paths = new SassImport('./src/scss/theme-test.scss');
+  console.log(paths);
+  return gulp.src(paths)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
+    .pipe(concat('theme.scss'))
+    .pipe(gulp.dest('./dist/scss/'));
 });
 
 // BOOTSTRAP_THEME_SETTINGS_SCSS: Inject bootstrap theme settings to scss

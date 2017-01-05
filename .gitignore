@@ -84,3 +84,7 @@ grunt-config.json
 theme/config*.yml
 /_site
 assets/logo.png
+css/
+composer.phar
+composer.lock
+vendor/

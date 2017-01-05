@@ -11,7 +11,11 @@ All Bootstrap 4 Variables full customizable on runtime:
 
 ## Contributing
 
-* run `gulp sass_concat` to test if the scss files can be compiled
+* run `gulp` to watc changes on scss files
+* run `gulp build` to run all tasks and build the theme zip
+* run `gulp sass` to test build and concat sass files
+* run `gulp bootstrap_sass_test_build` to test if the scss files can be compiled
+* run `gulp zip` to cretae a zipped file of the theme that can be uploaded to Shopify
 * run `gulp sass_concat` to pull our scss files together and move them into the themes assets
 * run `gulp bootstrap_theme_settings_scss` to inject bootstrap theme settings to scss
 * run `gulp bootstrap_theme_settings` tp create bootstrap variables for the settings_schema.json

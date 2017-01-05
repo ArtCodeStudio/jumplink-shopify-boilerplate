@@ -1,5 +1,5 @@
 {
-  "name": "Bootstrap 4.0.0-alpha.4",
+  "name": "Bootstrap 4.0.0-alpha.5",
   "settings": [
     {
       "type": "paragraph",
@@ -11,21 +11,81 @@
     },
     {
       "type": "color",
+      "id": "bs4-white",
+      "label": "white",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bs4-black",
+      "label": "black",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "bs4-red",
+      "label": "red",
+      "default": "#d9534f"
+    },
+    {
+      "type": "color",
+      "id": "bs4-orange",
+      "label": "orange",
+      "default": "#f0ad4e"
+    },
+    {
+      "type": "color",
+      "id": "bs4-yellow",
+      "label": "yellow",
+      "default": "#ffd500"
+    },
+    {
+      "type": "color",
+      "id": "bs4-green",
+      "label": "green",
+      "default": "#5cb85c"
+    },
+    {
+      "type": "color",
+      "id": "bs4-blue",
+      "label": "blue",
+      "default": "#0275d8"
+    },
+    {
+      "type": "color",
+      "id": "bs4-teal",
+      "label": "teal",
+      "default": "#5bc0de"
+    },
+    {
+      "type": "color",
+      "id": "bs4-pink",
+      "label": "pink",
+      "default": "#ff5b77"
+    },
+    {
+      "type": "color",
+      "id": "bs4-purple",
+      "label": "purple",
+      "default": "#613d7c"
+    },
+    {
+      "type": "color",
       "id": "bs4-gray-dark",
       "label": "gray-dark",
-      "default": "#373a3c"
+      "default": "#292b2c"
     },
     {
       "type": "color",
       "id": "bs4-gray",
       "label": "gray",
-      "default": "#55595c"
+      "default": "#464a4c"
     },
     {
       "type": "color",
       "id": "bs4-gray-light",
       "label": "gray-light",
-      "default": "#818a91"
+      "default": "#636c72"
     },
     {
       "type": "color",
@@ -40,34 +100,34 @@
       "default": "#f7f7f9"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-brand-primary",
       "label": "brand-primary",
-      "default": "#0275d8"
+      "default": "$blue"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-brand-success",
       "label": "brand-success",
-      "default": "#5cb85c"
+      "default": "$green"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-brand-info",
       "label": "brand-info",
-      "default": "#5bc0de"
+      "default": "$teal"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-brand-warning",
       "label": "brand-warning",
-      "default": "#f0ad4e"
+      "default": "$orange"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-brand-danger",
       "label": "brand-danger",
-      "default": "#d9534f"
+      "default": "$red"
     },
     {
       "type": "text",
@@ -78,12 +138,6 @@
     {
       "type": "header",
       "content": "Options"
-    },
-    {
-      "type": "checkbox",
-      "id": "bs4-enable-flex",
-      "label": "enable-flex",
-      "default": false
     },
     {
       "type": "checkbox",
@@ -107,7 +161,7 @@
       "type": "checkbox",
       "id": "bs4-enable-transitions",
       "label": "enable-transitions",
-      "default": false
+      "default": true
     },
     {
       "type": "checkbox",
@@ -150,51 +204,75 @@
       "default": "$spacer"
     },
     {
-      "type": "text",
+      "type": "number",
       "id": "bs4-spacers-x-0",
       "label": "spacers-x-0",
-      "default": "0"
+      "default": 0
     },
     {
-      "type": "text",
+      "type": "number",
       "id": "bs4-spacers-y-0",
       "label": "spacers-y-0",
-      "default": "0"
+      "default": 0
     },
     {
       "type": "text",
       "id": "bs4-spacers-x-1",
       "label": "spacers-x-1",
-      "default": "$spacer-x"
+      "default": "$spacer-x * .25"
     },
     {
       "type": "text",
       "id": "bs4-spacers-y-1",
       "label": "spacers-y-1",
-      "default": "$spacer-y"
+      "default": "$spacer-y * .25"
     },
     {
       "type": "text",
       "id": "bs4-spacers-x-2",
       "label": "spacers-x-2",
-      "default": "($spacer-x * 1.5)"
+      "default": "($spacer-x * .5)"
     },
     {
       "type": "text",
       "id": "bs4-spacers-y-2",
       "label": "spacers-y-2",
-      "default": "($spacer-y * 1.5)"
+      "default": "($spacer-y * .5)"
     },
     {
       "type": "text",
       "id": "bs4-spacers-x-3",
       "label": "spacers-x-3",
-      "default": "($spacer-x * 3)"
+      "default": "($spacer-x)"
     },
     {
       "type": "text",
       "id": "bs4-spacers-y-3",
       "label": "spacers-y-3",
+      "default": "($spacer-y)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-spacers-x-4",
+      "label": "spacers-x-4",
+      "default": "($spacer-x * 1.5)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-spacers-y-4",
+      "label": "spacers-y-4",
+      "default": "($spacer-y * 1.5)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-spacers-x-5",
+      "label": "spacers-x-5",
+      "default": "($spacer-x * 3)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-spacers-y-5",
+      "label": "spacers-y-5",
       "default": "($spacer-y * 3)"
     },
     {
@@ -211,13 +289,25 @@
       "type": "text",
       "id": "bs4-body-bg",
       "label": "body-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
       "id": "bs4-body-color",
       "label": "body-color",
       "default": "$gray-dark"
+    },
+    {
+      "type": "text",
+      "id": "bs4-inverse-bg",
+      "label": "inverse-bg",
+      "default": "$gray-dark"
+    },
+    {
+      "type": "text",
+      "id": "bs4-inverse-color",
+      "label": "inverse-color",
+      "default": "$gray-lighter"
     },
     {
       "type": "header",
@@ -252,16 +342,16 @@
       "content": "Grid Breakpoints"
     },
     {
-      "type": "text",
+      "type": "number",
       "id": "bs4-grid-breakpoints-xs",
       "label": "grid-breakpoints-xs",
-      "default": "0"
+      "default": 0
     },
     {
       "type": "text",
       "id": "bs4-grid-breakpoints-sm",
       "label": "grid-breakpoints-sm",
-      "default": "544px"
+      "default": "576px"
     },
     {
       "type": "text",
@@ -295,7 +385,7 @@
       "type": "text",
       "id": "bs4-container-max-widths-sm",
       "label": "container-max-widths-sm",
-      "default": "576px"
+      "default": "540px"
     },
     {
       "type": "text",
@@ -307,7 +397,7 @@
       "type": "text",
       "id": "bs4-container-max-widths-lg",
       "label": "container-max-widths-lg",
-      "default": "940px"
+      "default": "960px"
     },
     {
       "type": "text",
@@ -327,9 +417,39 @@
     },
     {
       "type": "text",
-      "id": "bs4-grid-gutter-width",
-      "label": "grid-gutter-width",
+      "id": "bs4-grid-gutter-width-base",
+      "label": "grid-gutter-width-base",
       "default": "30px"
+    },
+    {
+      "type": "text",
+      "id": "bs4-grid-gutter-widths-xs",
+      "label": "grid-gutter-widths-xs",
+      "default": "$grid-gutter-width-base"
+    },
+    {
+      "type": "text",
+      "id": "bs4-grid-gutter-widths-sm",
+      "label": "grid-gutter-widths-sm",
+      "default": "$grid-gutter-width-base"
+    },
+    {
+      "type": "text",
+      "id": "bs4-grid-gutter-widths-md",
+      "label": "grid-gutter-widths-md",
+      "default": "$grid-gutter-width-base"
+    },
+    {
+      "type": "text",
+      "id": "bs4-grid-gutter-widths-lg",
+      "label": "grid-gutter-widths-lg",
+      "default": "$grid-gutter-width-base"
+    },
+    {
+      "type": "text",
+      "id": "bs4-grid-gutter-widths-xl",
+      "label": "grid-gutter-widths-xl",
+      "default": "$grid-gutter-width-base"
     },
     {
       "type": "header",
@@ -339,7 +459,7 @@
       "type": "text",
       "id": "bs4-font-family-sans-serif",
       "label": "font-family-sans-serif",
-      "default": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
+      "default": "-apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
     },
     {
       "type": "text",
@@ -392,6 +512,24 @@
     },
     {
       "type": "text",
+      "id": "bs4-font-weight-normal",
+      "label": "font-weight-normal",
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "bs4-font-weight-bold",
+      "label": "font-weight-bold",
+      "default": "bold"
+    },
+    {
+      "type": "text",
+      "id": "bs4-font-weight-base",
+      "label": "font-weight-base",
+      "default": "$font-weight-normal"
+    },
+    {
+      "type": "text",
       "id": "bs4-line-height-base",
       "label": "line-height-base",
       "default": "1.5"
@@ -431,6 +569,36 @@
       "id": "bs4-font-size-h6",
       "label": "font-size-h6",
       "default": "1rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-headings-margin-bottom",
+      "label": "headings-margin-bottom",
+      "default": "($spacer / 2)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-headings-font-family",
+      "label": "headings-font-family",
+      "default": "inherit"
+    },
+    {
+      "type": "text",
+      "id": "bs4-headings-font-weight",
+      "label": "headings-font-weight",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "bs4-headings-line-height",
+      "label": "headings-line-height",
+      "default": "1.1"
+    },
+    {
+      "type": "text",
+      "id": "bs4-headings-color",
+      "label": "headings-color",
+      "default": "inherit"
     },
     {
       "type": "text",
@@ -482,33 +650,9 @@
     },
     {
       "type": "text",
-      "id": "bs4-headings-margin-bottom",
-      "label": "headings-margin-bottom",
-      "default": "($spacer / 2)"
-    },
-    {
-      "type": "text",
-      "id": "bs4-headings-font-family",
-      "label": "headings-font-family",
-      "default": "inherit"
-    },
-    {
-      "type": "text",
-      "id": "bs4-headings-font-weight",
-      "label": "headings-font-weight",
-      "default": "500"
-    },
-    {
-      "type": "text",
-      "id": "bs4-headings-line-height",
-      "label": "headings-line-height",
-      "default": "1.1"
-    },
-    {
-      "type": "text",
-      "id": "bs4-headings-color",
-      "label": "headings-color",
-      "default": "inherit"
+      "id": "bs4-display-line-height",
+      "label": "display-line-height",
+      "default": "$headings-line-height"
     },
     {
       "type": "text",
@@ -568,7 +712,7 @@
       "type": "text",
       "id": "bs4-hr-border-color",
       "label": "hr-border-color",
-      "default": "rgba(0,0,0,.1)"
+      "default": "rgba($black,.1)"
     },
     {
       "type": "text",
@@ -586,19 +730,19 @@
       "type": "text",
       "id": "bs4-dt-font-weight",
       "label": "dt-font-weight",
-      "default": "bold"
+      "default": "$font-weight-bold"
     },
     {
       "type": "text",
       "id": "bs4-kbd-box-shadow",
       "label": "kbd-box-shadow",
-      "default": "inset 0 -.1rem 0 rgba(0,0,0,.25)"
+      "default": "inset 0 -.1rem 0 rgba($black,.25)"
     },
     {
       "type": "text",
       "id": "bs4-nested-kbd-font-weight",
       "label": "nested-kbd-font-weight",
-      "default": "bold"
+      "default": "$font-weight-bold"
     },
     {
       "type": "text",
@@ -644,7 +788,7 @@
       "type": "text",
       "id": "bs4-component-active-color",
       "label": "component-active-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -663,6 +807,24 @@
       "id": "bs4-caret-width-lg",
       "label": "caret-width-lg",
       "default": "$caret-width"
+    },
+    {
+      "type": "text",
+      "id": "bs4-transition-base",
+      "label": "transition-base",
+      "default": "all .2s ease-in-out"
+    },
+    {
+      "type": "text",
+      "id": "bs4-transition-fade",
+      "label": "transition-fade",
+      "default": "opacity .15s linear"
+    },
+    {
+      "type": "text",
+      "id": "bs4-transition-collapse",
+      "label": "transition-collapse",
+      "default": "height .35s ease"
     },
     {
       "type": "header",
@@ -688,21 +850,45 @@
     },
     {
       "type": "text",
+      "id": "bs4-table-inverse-bg",
+      "label": "table-inverse-bg",
+      "default": "$gray-dark"
+    },
+    {
+      "type": "text",
+      "id": "bs4-table-inverse-color",
+      "label": "table-inverse-color",
+      "default": "$body-bg"
+    },
+    {
+      "type": "text",
       "id": "bs4-table-bg-accent",
       "label": "table-bg-accent",
-      "default": "rgba(0,0,0,.05)"
+      "default": "rgba($black,.05)"
     },
     {
       "type": "text",
       "id": "bs4-table-bg-hover",
       "label": "table-bg-hover",
-      "default": "rgba(0,0,0,.075)"
+      "default": "rgba($black,.075)"
     },
     {
       "type": "text",
       "id": "bs4-table-bg-active",
       "label": "table-bg-active",
       "default": "$table-bg-hover"
+    },
+    {
+      "type": "text",
+      "id": "bs4-table-head-bg",
+      "label": "table-head-bg",
+      "default": "$gray-lighter"
+    },
+    {
+      "type": "text",
+      "id": "bs4-table-head-color",
+      "label": "table-head-color",
+      "default": "$gray"
     },
     {
       "type": "text",
@@ -742,25 +928,31 @@
       "type": "text",
       "id": "bs4-btn-font-weight",
       "label": "btn-font-weight",
-      "default": "normal"
+      "default": "$font-weight-normal"
     },
     {
       "type": "text",
       "id": "bs4-btn-box-shadow",
       "label": "btn-box-shadow",
-      "default": "inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075)"
+      "default": "inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-btn-focus-box-shadow",
+      "label": "btn-focus-box-shadow",
+      "default": "0 0 0 2px rgba($brand-primary, .25)"
     },
     {
       "type": "text",
       "id": "bs4-btn-active-box-shadow",
       "label": "btn-active-box-shadow",
-      "default": "inset 0 3px 5px rgba(0,0,0,.125)"
+      "default": "inset 0 3px 5px rgba($black,.125)"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-primary-color",
       "label": "btn-primary-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -781,22 +973,22 @@
       "default": "$gray-dark"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-secondary-bg",
       "label": "btn-secondary-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-secondary-border",
       "label": "btn-secondary-border",
       "default": "#ccc"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-info-color",
       "label": "btn-info-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -811,10 +1003,10 @@
       "default": "$btn-info-bg"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-success-color",
       "label": "btn-success-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -829,10 +1021,10 @@
       "default": "$btn-success-bg"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-warning-color",
       "label": "btn-warning-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -847,10 +1039,10 @@
       "default": "$btn-warning-bg"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-btn-danger-color",
       "label": "btn-danger-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -910,8 +1102,7 @@
       "type": "text",
       "id": "bs4-btn-border-radius",
       "label": "btn-border-radius",
-      "default": "$border-radius",
-      "info": "Allows for customizing button radius independently from global border radius\n"
+      "default": "$border-radius"
     },
     {
       "type": "text",
@@ -924,6 +1115,12 @@
       "id": "bs4-btn-border-radius-sm",
       "label": "btn-border-radius-sm",
       "default": "$border-radius-sm"
+    },
+    {
+      "type": "text",
+      "id": "bs4-btn-transition",
+      "label": "btn-transition",
+      "default": "all .2s ease-in-out"
     },
     {
       "type": "header",
@@ -948,10 +1145,10 @@
       "default": "1.25"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-input-bg",
       "label": "input-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -969,19 +1166,20 @@
       "type": "text",
       "id": "bs4-input-border-color",
       "label": "input-border-color",
-      "default": "rgba(0,0,0,.15)"
+      "default": "rgba($black,.15)"
     },
     {
       "type": "text",
       "id": "bs4-input-btn-border-width",
       "label": "input-btn-border-width",
-      "default": "$border-width"
+      "default": "$border-width",
+      "info": "For form controls and buttons\n"
     },
     {
       "type": "text",
       "id": "bs4-input-box-shadow",
       "label": "input-box-shadow",
-      "default": "inset 0 1px 1px rgba(0,0,0,.075)"
+      "default": "inset 0 1px 1px rgba($black,.075)"
     },
     {
       "type": "text",
@@ -1002,22 +1200,34 @@
       "default": "$border-radius-sm"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-input-bg-focus",
+      "label": "input-bg-focus",
+      "default": "$input-bg"
+    },
+    {
+      "type": "text",
       "id": "bs4-input-border-focus",
       "label": "input-border-focus",
-      "default": "#66afe9"
+      "default": "lighten($brand-primary, 25%)"
     },
     {
       "type": "text",
       "id": "bs4-input-box-shadow-focus",
       "label": "input-box-shadow-focus",
-      "default": "rgba(102,175,233,.6)"
+      "default": "$input-box-shadow, rgba($input-border-focus, .6)"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-input-color-focus",
+      "label": "input-color-focus",
+      "default": "$input-color"
+    },
+    {
+      "type": "text",
       "id": "bs4-input-color-placeholder",
       "label": "input-color-placeholder",
-      "default": "#999"
+      "default": "$gray-light"
     },
     {
       "type": "text",
@@ -1047,7 +1257,7 @@
       "type": "text",
       "id": "bs4-input-height",
       "label": "input-height",
-      "default": "(($font-size-base * $line-height-base) + ($input-padding-y * 2))"
+      "default": "(($font-size-base * $input-line-height) + ($input-padding-y * 2))"
     },
     {
       "type": "text",
@@ -1060,6 +1270,54 @@
       "id": "bs4-input-height-sm",
       "label": "input-height-sm",
       "default": "(($font-size-sm * $line-height-sm) + ($input-padding-y-sm * 2))"
+    },
+    {
+      "type": "text",
+      "id": "bs4-input-transition",
+      "label": "input-transition",
+      "default": "border-color ease-in-out .15s, box-shadow ease-in-out .15s"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-text-margin-top",
+      "label": "form-text-margin-top",
+      "default": ".25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-feedback-margin-top",
+      "label": "form-feedback-margin-top",
+      "default": "$form-text-margin-top"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-check-margin-bottom",
+      "label": "form-check-margin-bottom",
+      "default": ".5rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-check-input-gutter",
+      "label": "form-check-input-gutter",
+      "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-check-input-margin-y",
+      "label": "form-check-input-margin-y",
+      "default": ".25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-check-input-margin-x",
+      "label": "form-check-input-margin-x",
+      "default": ".25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-check-inline-margin-x",
+      "label": "form-check-inline-margin-x",
+      "default": ".75rem"
     },
     {
       "type": "text",
@@ -1110,7 +1368,13 @@
       "default": "1rem"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-custom-control-indicator-margin-y",
+      "label": "custom-control-indicator-margin-y",
+      "default": "(($line-height-base * 1rem) - $custom-control-indicator-size) / -2"
+    },
+    {
+      "type": "text",
       "id": "bs4-custom-control-indicator-bg",
       "label": "custom-control-indicator-bg",
       "default": "#ddd"
@@ -1125,7 +1389,7 @@
       "type": "text",
       "id": "bs4-custom-control-indicator-box-shadow",
       "label": "custom-control-indicator-box-shadow",
-      "default": "inset 0 .25rem .25rem rgba(0,0,0,.1)"
+      "default": "inset 0 .25rem .25rem rgba($black,.1)"
     },
     {
       "type": "text",
@@ -1134,28 +1398,28 @@
       "default": "$cursor-disabled"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-disabled-indicator-bg",
       "label": "custom-control-disabled-indicator-bg",
-      "default": "#eee"
+      "default": "$gray-lighter"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-disabled-description-color",
       "label": "custom-control-disabled-description-color",
-      "default": "#767676"
+      "default": "$gray-light"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-checked-indicator-color",
       "label": "custom-control-checked-indicator-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-checked-indicator-bg",
       "label": "custom-control-checked-indicator-bg",
-      "default": "#0074d9"
+      "default": "$brand-primary"
     },
     {
       "type": "text",
@@ -1167,19 +1431,19 @@
       "type": "text",
       "id": "bs4-custom-control-focus-indicator-box-shadow",
       "label": "custom-control-focus-indicator-box-shadow",
-      "default": "0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9"
+      "default": "0 0 0 1px $body-bg, 0 0 0 3px $brand-primary"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-active-indicator-color",
       "label": "custom-control-active-indicator-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-control-active-indicator-bg",
       "label": "custom-control-active-indicator-bg",
-      "default": "#84c6ff"
+      "default": "lighten($brand-primary, 35%)"
     },
     {
       "type": "text",
@@ -1194,10 +1458,16 @@
       "default": "$border-radius"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-checkbox-indeterminate-bg",
       "label": "custom-checkbox-indeterminate-bg",
-      "default": "#0074d9"
+      "default": "$brand-primary"
+    },
+    {
+      "type": "text",
+      "id": "bs4-custom-checkbox-indeterminate-indicator-color",
+      "label": "custom-checkbox-indeterminate-indicator-color",
+      "default": "$custom-control-checked-indicator-color"
     },
     {
       "type": "text",
@@ -1231,6 +1501,12 @@
     },
     {
       "type": "text",
+      "id": "bs4-custom-select-line-height",
+      "label": "custom-select-line-height",
+      "default": "$input-line-height"
+    },
+    {
+      "type": "text",
       "id": "bs4-custom-select-color",
       "label": "custom-select-color",
       "default": "$input-color"
@@ -1242,10 +1518,10 @@
       "default": "$gray-light"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-select-bg",
       "label": "custom-select-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -1257,7 +1533,14 @@
       "type": "text",
       "id": "bs4-custom-select-bg-size",
       "label": "custom-select-bg-size",
-      "default": "8px 10px"
+      "default": "8px 10px",
+      "info": "In pixels because image dimensions\n"
+    },
+    {
+      "type": "text",
+      "id": "bs4-custom-select-indicator-color",
+      "label": "custom-select-indicator-color",
+      "default": "#333"
     },
     {
       "type": "text",
@@ -1278,16 +1561,16 @@
       "default": "$border-radius"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-select-focus-border-color",
       "label": "custom-select-focus-border-color",
-      "default": "#51a7e8"
+      "default": "lighten($brand-primary, 25%)"
     },
     {
       "type": "text",
       "id": "bs4-custom-select-focus-box-shadow",
       "label": "custom-select-focus-box-shadow",
-      "default": "inset 0 1px 2px rgba(0, 0, 0, .075), 0 0 5px rgba(81, 167, 232, .5)"
+      "default": "inset 0 1px 2px rgba($black, .075), 0 0 5px rgba($custom-select-focus-border-color, .5)"
     },
     {
       "type": "text",
@@ -1317,7 +1600,7 @@
       "type": "text",
       "id": "bs4-custom-file-focus-box-shadow",
       "label": "custom-file-focus-box-shadow",
-      "default": "0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9"
+      "default": "0 0 0 .075rem $white, 0 0 0 .2rem $brand-primary"
     },
     {
       "type": "text",
@@ -1338,16 +1621,16 @@
       "default": "1.5"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-file-color",
       "label": "custom-file-color",
-      "default": "#555"
+      "default": "$gray"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-file-bg",
       "label": "custom-file-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -1356,10 +1639,10 @@
       "default": "$border-width"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-file-border-color",
       "label": "custom-file-border-color",
-      "default": "#ddd"
+      "default": "$input-border-color"
     },
     {
       "type": "text",
@@ -1371,7 +1654,7 @@
       "type": "text",
       "id": "bs4-custom-file-box-shadow",
       "label": "custom-file-box-shadow",
-      "default": "inset 0 .2rem .4rem rgba(0,0,0,.05)"
+      "default": "inset 0 .2rem .4rem rgba($black,.05)"
     },
     {
       "type": "text",
@@ -1380,10 +1663,10 @@
       "default": "$custom-file-color"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-custom-file-button-bg",
       "label": "custom-file-button-bg",
-      "default": "#eee"
+      "default": "$gray-lighter"
     },
     {
       "type": "text",
@@ -1393,9 +1676,42 @@
     },
     {
       "type": "text",
+      "id": "bs4-custom-file-text-placeholder-de",
+      "label": "custom-file-text-placeholder-de",
+      "default": "\"Datei auswählen...\""
+    },
+    {
+      "type": "text",
       "id": "bs4-custom-file-text-button-label-en",
       "label": "custom-file-text-button-label-en",
       "default": "\"Browse\""
+    },
+    {
+      "type": "text",
+      "id": "bs4-custom-file-text-button-label-de",
+      "label": "custom-file-text-button-label-de",
+      "default": "\"Durchsuchen\""
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-icon-success-color",
+      "label": "form-icon-success-color",
+      "default": "$brand-success",
+      "info": "Form validation icons\n"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-icon-warning-color",
+      "label": "form-icon-warning-color",
+      "default": "$brand-warning",
+      "info": "Form validation icons\n"
+    },
+    {
+      "type": "text",
+      "id": "bs4-form-icon-danger-color",
+      "label": "form-icon-danger-color",
+      "default": "$brand-danger",
+      "info": "Form validation icons\n"
     },
     {
       "type": "header",
@@ -1405,31 +1721,31 @@
       "type": "text",
       "id": "bs4-dropdown-min-width",
       "label": "dropdown-min-width",
-      "default": "160px"
+      "default": "10rem"
     },
     {
       "type": "text",
       "id": "bs4-dropdown-padding-y",
       "label": "dropdown-padding-y",
-      "default": "5px"
+      "default": ".5rem"
     },
     {
       "type": "text",
       "id": "bs4-dropdown-margin-top",
       "label": "dropdown-margin-top",
-      "default": "2px"
+      "default": ".125rem"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-dropdown-bg",
       "label": "dropdown-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
       "id": "bs4-dropdown-border-color",
       "label": "dropdown-border-color",
-      "default": "rgba(0,0,0,.15)"
+      "default": "rgba($black,.15)"
     },
     {
       "type": "text",
@@ -1438,16 +1754,16 @@
       "default": "$border-width"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-dropdown-divider-bg",
       "label": "dropdown-divider-bg",
-      "default": "#e5e5e5"
+      "default": "$gray-lighter"
     },
     {
       "type": "text",
       "id": "bs4-dropdown-box-shadow",
       "label": "dropdown-box-shadow",
-      "default": "0 6px 12px rgba(0,0,0,.175)"
+      "default": "0 .5rem 1rem rgba($black,.175)"
     },
     {
       "type": "text",
@@ -1462,10 +1778,10 @@
       "default": "darken($gray-dark, 5%)"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-dropdown-link-hover-bg",
       "label": "dropdown-link-hover-bg",
-      "default": "#f5f5f5"
+      "default": "$gray-lightest"
     },
     {
       "type": "text",
@@ -1489,7 +1805,7 @@
       "type": "text",
       "id": "bs4-dropdown-item-padding-x",
       "label": "dropdown-item-padding-x",
-      "default": "20px"
+      "default": "1.5rem"
     },
     {
       "type": "text",
@@ -1521,6 +1837,30 @@
     },
     {
       "type": "number",
+      "id": "bs4-zindex-fixed",
+      "label": "zindex-fixed",
+      "default": 1030
+    },
+    {
+      "type": "number",
+      "id": "bs4-zindex-sticky",
+      "label": "zindex-sticky",
+      "default": 1030
+    },
+    {
+      "type": "number",
+      "id": "bs4-zindex-modal-backdrop",
+      "label": "zindex-modal-backdrop",
+      "default": 1040
+    },
+    {
+      "type": "number",
+      "id": "bs4-zindex-modal",
+      "label": "zindex-modal",
+      "default": 1050
+    },
+    {
+      "type": "number",
       "id": "bs4-zindex-popover",
       "label": "zindex-popover",
       "default": 1060
@@ -1530,30 +1870,6 @@
       "id": "bs4-zindex-tooltip",
       "label": "zindex-tooltip",
       "default": 1070
-    },
-    {
-      "type": "number",
-      "id": "bs4-zindex-navbar-fixed",
-      "label": "zindex-navbar-fixed",
-      "default": 1030
-    },
-    {
-      "type": "number",
-      "id": "bs4-zindex-navbar-sticky",
-      "label": "zindex-navbar-sticky",
-      "default": 1030
-    },
-    {
-      "type": "number",
-      "id": "bs4-zindex-modal-bg",
-      "label": "zindex-modal-bg",
-      "default": 1040
-    },
-    {
-      "type": "number",
-      "id": "bs4-zindex-modal",
-      "label": "zindex-modal",
-      "default": 1050
     },
     {
       "type": "header",
@@ -1585,51 +1901,87 @@
     },
     {
       "type": "text",
-      "id": "bs4-navbar-dark-color",
-      "label": "navbar-dark-color",
-      "default": "rgba(255,255,255,.5)"
+      "id": "bs4-navbar-toggler-padding-x",
+      "label": "navbar-toggler-padding-x",
+      "default": ".75rem"
     },
     {
       "type": "text",
-      "id": "bs4-navbar-dark-hover-color",
-      "label": "navbar-dark-hover-color",
-      "default": "rgba(255,255,255,.75)"
+      "id": "bs4-navbar-toggler-padding-y",
+      "label": "navbar-toggler-padding-y",
+      "default": ".25rem"
     },
     {
       "type": "text",
-      "id": "bs4-navbar-dark-active-color",
-      "label": "navbar-dark-active-color",
-      "default": "rgba(255,255,255,1)"
+      "id": "bs4-navbar-toggler-font-size",
+      "label": "navbar-toggler-font-size",
+      "default": "$font-size-lg"
     },
     {
       "type": "text",
-      "id": "bs4-navbar-dark-disabled-color",
-      "label": "navbar-dark-disabled-color",
-      "default": "rgba(255,255,255,.25)"
+      "id": "bs4-navbar-toggler-border-radius",
+      "label": "navbar-toggler-border-radius",
+      "default": "$btn-border-radius"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-inverse-color",
+      "label": "navbar-inverse-color",
+      "default": "rgba($white,.5)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-inverse-hover-color",
+      "label": "navbar-inverse-hover-color",
+      "default": "rgba($white,.75)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-inverse-active-color",
+      "label": "navbar-inverse-active-color",
+      "default": "rgba($white,1)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-inverse-disabled-color",
+      "label": "navbar-inverse-disabled-color",
+      "default": "rgba($white,.25)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-inverse-toggler-border",
+      "label": "navbar-inverse-toggler-border",
+      "default": "rgba($white,.1)"
     },
     {
       "type": "text",
       "id": "bs4-navbar-light-color",
       "label": "navbar-light-color",
-      "default": "rgba(0,0,0,.3)"
+      "default": "rgba($black,.5)"
     },
     {
       "type": "text",
       "id": "bs4-navbar-light-hover-color",
       "label": "navbar-light-hover-color",
-      "default": "rgba(0,0,0,.6)"
+      "default": "rgba($black,.7)"
     },
     {
       "type": "text",
       "id": "bs4-navbar-light-active-color",
       "label": "navbar-light-active-color",
-      "default": "rgba(0,0,0,.8)"
+      "default": "rgba($black,.9)"
     },
     {
       "type": "text",
       "id": "bs4-navbar-light-disabled-color",
       "label": "navbar-light-disabled-color",
-      "default": "rgba(0,0,0,.15)"
+      "default": "rgba($black,.3)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-navbar-light-toggler-border",
+      "label": "navbar-light-toggler-border",
+      "default": "rgba($black,.1)"
     },
     {
       "type": "header",
@@ -1769,13 +2121,13 @@
       "type": "text",
       "id": "bs4-pagination-padding-x-sm",
       "label": "pagination-padding-x-sm",
-      "default": ".75rem"
+      "default": ".5rem"
     },
     {
       "type": "text",
       "id": "bs4-pagination-padding-y-sm",
       "label": "pagination-padding-y-sm",
-      "default": ".275rem"
+      "default": ".25rem"
     },
     {
       "type": "text",
@@ -1791,15 +2143,21 @@
     },
     {
       "type": "text",
+      "id": "bs4-pagination-line-height",
+      "label": "pagination-line-height",
+      "default": "1.25"
+    },
+    {
+      "type": "text",
       "id": "bs4-pagination-color",
       "label": "pagination-color",
       "default": "$link-color"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-pagination-bg",
       "label": "pagination-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -1832,10 +2190,10 @@
       "default": "#ddd"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-pagination-active-color",
       "label": "pagination-active-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -1856,10 +2214,10 @@
       "default": "$gray-light"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-pagination-disabled-bg",
       "label": "pagination-disabled-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "color",
@@ -1997,31 +2355,31 @@
       "type": "text",
       "id": "bs4-card-border-color",
       "label": "card-border-color",
-      "default": "rgba(0,0,0,.125)"
+      "default": "rgba($black,.125)"
     },
     {
       "type": "text",
       "id": "bs4-card-border-radius-inner",
       "label": "card-border-radius-inner",
-      "default": "$card-border-radius"
+      "default": "calc(#{$card-border-radius} - #{$card-border-width})"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-card-cap-bg",
       "label": "card-cap-bg",
-      "default": "#f5f5f5"
+      "default": "$gray-lightest"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-card-bg",
       "label": "card-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-card-link-hover-color",
       "label": "card-link-hover-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -2033,13 +2391,31 @@
       "type": "text",
       "id": "bs4-card-deck-margin",
       "label": "card-deck-margin",
-      "default": ".625rem"
+      "default": "($grid-gutter-width-base / 2)"
     },
     {
       "type": "text",
       "id": "bs4-card-columns-sm-up-column-gap",
       "label": "card-columns-sm-up-column-gap",
       "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-card-columns-count",
+      "label": "card-columns-count",
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "bs4-card-columns-gap",
+      "label": "card-columns-gap",
+      "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-card-columns-margin",
+      "label": "card-columns-margin",
+      "default": "$card-spacer-y"
     },
     {
       "type": "header",
@@ -2052,16 +2428,16 @@
       "default": "200px"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-tooltip-color",
       "label": "tooltip-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-tooltip-bg",
       "label": "tooltip-bg",
-      "default": "#000"
+      "default": "$black"
     },
     {
       "type": "text",
@@ -2110,10 +2486,10 @@
       "default": "1px"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-popover-bg",
       "label": "popover-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -2131,13 +2507,13 @@
       "type": "text",
       "id": "bs4-popover-border-color",
       "label": "popover-border-color",
-      "default": "rgba(0,0,0,.2)"
+      "default": "rgba($black,.2)"
     },
     {
       "type": "text",
       "id": "bs4-popover-box-shadow",
       "label": "popover-box-shadow",
-      "default": "0 5px 10px rgba(0,0,0,.2)"
+      "default": "0 5px 10px rgba($black,.2)"
     },
     {
       "type": "text",
@@ -2195,90 +2571,90 @@
     },
     {
       "type": "header",
-      "content": "Tags"
+      "content": "Badges"
     },
     {
       "type": "text",
-      "id": "bs4-tag-default-bg",
-      "label": "tag-default-bg",
+      "id": "bs4-badge-default-bg",
+      "label": "badge-default-bg",
       "default": "$gray-light"
     },
     {
       "type": "text",
-      "id": "bs4-tag-primary-bg",
-      "label": "tag-primary-bg",
+      "id": "bs4-badge-primary-bg",
+      "label": "badge-primary-bg",
       "default": "$brand-primary"
     },
     {
       "type": "text",
-      "id": "bs4-tag-success-bg",
-      "label": "tag-success-bg",
+      "id": "bs4-badge-success-bg",
+      "label": "badge-success-bg",
       "default": "$brand-success"
     },
     {
       "type": "text",
-      "id": "bs4-tag-info-bg",
-      "label": "tag-info-bg",
+      "id": "bs4-badge-info-bg",
+      "label": "badge-info-bg",
       "default": "$brand-info"
     },
     {
       "type": "text",
-      "id": "bs4-tag-warning-bg",
-      "label": "tag-warning-bg",
+      "id": "bs4-badge-warning-bg",
+      "label": "badge-warning-bg",
       "default": "$brand-warning"
     },
     {
       "type": "text",
-      "id": "bs4-tag-danger-bg",
-      "label": "tag-danger-bg",
+      "id": "bs4-badge-danger-bg",
+      "label": "badge-danger-bg",
       "default": "$brand-danger"
     },
     {
-      "type": "color",
-      "id": "bs4-tag-color",
-      "label": "tag-color",
-      "default": "#fff"
-    },
-    {
-      "type": "color",
-      "id": "bs4-tag-link-hover-color",
-      "label": "tag-link-hover-color",
-      "default": "#fff"
+      "type": "text",
+      "id": "bs4-badge-color",
+      "label": "badge-color",
+      "default": "$white"
     },
     {
       "type": "text",
-      "id": "bs4-tag-font-size",
-      "label": "tag-font-size",
+      "id": "bs4-badge-link-hover-color",
+      "label": "badge-link-hover-color",
+      "default": "$white"
+    },
+    {
+      "type": "text",
+      "id": "bs4-badge-font-size",
+      "label": "badge-font-size",
       "default": "75%"
     },
     {
       "type": "text",
-      "id": "bs4-tag-font-weight",
-      "label": "tag-font-weight",
+      "id": "bs4-badge-font-weight",
+      "label": "badge-font-weight",
       "default": "bold"
     },
     {
       "type": "text",
-      "id": "bs4-tag-padding-x",
-      "label": "tag-padding-x",
+      "id": "bs4-badge-padding-x",
+      "label": "badge-padding-x",
       "default": ".4em"
     },
     {
       "type": "text",
-      "id": "bs4-tag-padding-y",
-      "label": "tag-padding-y",
+      "id": "bs4-badge-padding-y",
+      "label": "badge-padding-y",
       "default": ".25em"
     },
     {
       "type": "text",
-      "id": "bs4-tag-pill-padding-x",
-      "label": "tag-pill-padding-x",
+      "id": "bs4-badge-pill-padding-x",
+      "label": "badge-pill-padding-x",
       "default": ".6em"
     },
     {
       "type": "text",
-      "id": "bs4-tag-pill-border-radius",
-      "label": "tag-pill-border-radius",
+      "id": "bs4-badge-pill-border-radius",
+      "label": "badge-pill-border-radius",
       "default": "10rem",
       "info": "Use a higher than normal value to ensure completely rounded edges when\ncustomizing padding or font-size on labels.\n"
     },
@@ -2307,27 +2683,21 @@
     },
     {
       "type": "text",
-      "id": "bs4-modal-title-padding",
-      "label": "modal-title-padding",
-      "default": "15px"
-    },
-    {
-      "type": "text",
       "id": "bs4-modal-title-line-height",
       "label": "modal-title-line-height",
       "default": "$line-height-base"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-modal-content-bg",
       "label": "modal-content-bg",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
       "id": "bs4-modal-content-border-color",
       "label": "modal-content-border-color",
-      "default": "rgba(0,0,0,.2)"
+      "default": "rgba($black,.2)"
     },
     {
       "type": "text",
@@ -2339,19 +2709,19 @@
       "type": "text",
       "id": "bs4-modal-content-xs-box-shadow",
       "label": "modal-content-xs-box-shadow",
-      "default": "0 3px 9px rgba(0,0,0,.5)"
+      "default": "0 3px 9px rgba($black,.5)"
     },
     {
       "type": "text",
       "id": "bs4-modal-content-sm-up-box-shadow",
       "label": "modal-content-sm-up-box-shadow",
-      "default": "0 5px 15px rgba(0,0,0,.5)"
+      "default": "0 5px 15px rgba($black,.5)"
     },
     {
       "type": "text",
       "id": "bs4-modal-backdrop-bg",
       "label": "modal-backdrop-bg",
-      "default": "#000"
+      "default": "$black"
     },
     {
       "type": "text",
@@ -2360,10 +2730,10 @@
       "default": ".5"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-modal-header-border-color",
       "label": "modal-header-border-color",
-      "default": "#e5e5e5"
+      "default": "$gray-lighter"
     },
     {
       "type": "text",
@@ -2385,15 +2755,21 @@
     },
     {
       "type": "text",
+      "id": "bs4-modal-header-padding",
+      "label": "modal-header-padding",
+      "default": "15px"
+    },
+    {
+      "type": "text",
       "id": "bs4-modal-lg",
       "label": "modal-lg",
-      "default": "900px"
+      "default": "800px"
     },
     {
       "type": "text",
       "id": "bs4-modal-md",
       "label": "modal-md",
-      "default": "600px"
+      "default": "500px"
     },
     {
       "type": "text",
@@ -2402,14 +2778,32 @@
       "default": "300px"
     },
     {
+      "type": "text",
+      "id": "bs4-modal-transition",
+      "label": "modal-transition",
+      "default": "transform .3s ease-out"
+    },
+    {
       "type": "header",
       "content": "Alerts"
     },
     {
       "type": "text",
-      "id": "bs4-alert-padding",
-      "label": "alert-padding",
-      "default": "1rem"
+      "id": "bs4-alert-padding-x",
+      "label": "alert-padding-x",
+      "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-alert-padding-y",
+      "label": "alert-padding-y",
+      "default": ".75rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-alert-margin-bottom",
+      "label": "alert-margin-bottom",
+      "default": "$spacer-y"
     },
     {
       "type": "text",
@@ -2421,7 +2815,7 @@
       "type": "text",
       "id": "bs4-alert-link-font-weight",
       "label": "alert-link-font-weight",
-      "default": "bold"
+      "default": "$font-weight-bold"
     },
     {
       "type": "text",
@@ -2506,16 +2900,22 @@
       "content": "Progress Bars"
     },
     {
-      "type": "color",
-      "id": "bs4-progress-bg",
-      "label": "progress-bg",
-      "default": "#eee"
+      "type": "text",
+      "id": "bs4-progress-height",
+      "label": "progress-height",
+      "default": "1rem"
     },
     {
-      "type": "color",
-      "id": "bs4-progress-bar-color",
-      "label": "progress-bar-color",
-      "default": "#0074d9"
+      "type": "text",
+      "id": "bs4-progress-font-size",
+      "label": "progress-font-size",
+      "default": ".75rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-progress-bg",
+      "label": "progress-bg",
+      "default": "$gray-lighter"
     },
     {
       "type": "text",
@@ -2527,7 +2927,13 @@
       "type": "text",
       "id": "bs4-progress-box-shadow",
       "label": "progress-box-shadow",
-      "default": "inset 0 .1rem .1rem rgba(0,0,0,.1)"
+      "default": "inset 0 .1rem .1rem rgba($black,.1)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-progress-bar-color",
+      "label": "progress-bar-color",
+      "default": "$white"
     },
     {
       "type": "text",
@@ -2537,43 +2943,31 @@
     },
     {
       "type": "text",
-      "id": "bs4-progress-bar-success-bg",
-      "label": "progress-bar-success-bg",
-      "default": "$brand-success"
-    },
-    {
-      "type": "text",
-      "id": "bs4-progress-bar-warning-bg",
-      "label": "progress-bar-warning-bg",
-      "default": "$brand-warning"
-    },
-    {
-      "type": "text",
-      "id": "bs4-progress-bar-danger-bg",
-      "label": "progress-bar-danger-bg",
-      "default": "$brand-danger"
-    },
-    {
-      "type": "text",
-      "id": "bs4-progress-bar-info-bg",
-      "label": "progress-bar-info-bg",
-      "default": "$brand-info"
+      "id": "bs4-progress-bar-animation-timing",
+      "label": "progress-bar-animation-timing",
+      "default": "1s linear infinite"
     },
     {
       "type": "header",
       "content": "List Group"
     },
     {
-      "type": "color",
-      "id": "bs4-list-group-bg",
-      "label": "list-group-bg",
-      "default": "#fff"
+      "type": "text",
+      "id": "bs4-list-group-color",
+      "label": "list-group-color",
+      "default": "$body-color"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-list-group-bg",
+      "label": "list-group-bg",
+      "default": "$white"
+    },
+    {
+      "type": "text",
       "id": "bs4-list-group-border-color",
       "label": "list-group-border-color",
-      "default": "#ddd"
+      "default": "rgba($black,.125)"
     },
     {
       "type": "text",
@@ -2588,10 +2982,22 @@
       "default": "$border-radius"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-list-group-item-padding-x",
+      "label": "list-group-item-padding-x",
+      "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "bs4-list-group-item-padding-y",
+      "label": "list-group-item-padding-y",
+      "default": ".75rem"
+    },
+    {
+      "type": "text",
       "id": "bs4-list-group-hover-bg",
       "label": "list-group-hover-bg",
-      "default": "#f5f5f5"
+      "default": "$gray-lightest"
     },
     {
       "type": "text",
@@ -2615,7 +3021,7 @@
       "type": "text",
       "id": "bs4-list-group-active-text-color",
       "label": "list-group-active-text-color",
-      "default": "lighten($list-group-active-bg, 40%)"
+      "default": "lighten($list-group-active-bg, 50%)"
     },
     {
       "type": "text",
@@ -2627,7 +3033,7 @@
       "type": "text",
       "id": "bs4-list-group-disabled-bg",
       "label": "list-group-disabled-bg",
-      "default": "$gray-lighter"
+      "default": "$list-group-bg"
     },
     {
       "type": "text",
@@ -2636,10 +3042,16 @@
       "default": "$list-group-disabled-color"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-list-group-link-color",
       "label": "list-group-link-color",
-      "default": "#555"
+      "default": "$gray"
+    },
+    {
+      "type": "text",
+      "id": "bs4-list-group-link-heading-color",
+      "label": "list-group-link-heading-color",
+      "default": "$gray-dark"
     },
     {
       "type": "text",
@@ -2648,28 +3060,16 @@
       "default": "$list-group-link-color"
     },
     {
-      "type": "color",
-      "id": "bs4-list-group-link-heading-color",
-      "label": "list-group-link-heading-color",
-      "default": "#333"
+      "type": "text",
+      "id": "bs4-list-group-link-active-color",
+      "label": "list-group-link-active-color",
+      "default": "$list-group-color"
     },
     {
       "type": "text",
-      "id": "bs4-list-group-item-padding-x",
-      "label": "list-group-item-padding-x",
-      "default": "1.25rem"
-    },
-    {
-      "type": "text",
-      "id": "bs4-list-group-item-padding-y",
-      "label": "list-group-item-padding-y",
-      "default": ".75rem"
-    },
-    {
-      "type": "text",
-      "id": "bs4-list-group-item-heading-margin-bottom",
-      "label": "list-group-item-heading-margin-bottom",
-      "default": "5px"
+      "id": "bs4-list-group-link-active-bg",
+      "label": "list-group-link-active-bg",
+      "default": "$gray-lighter"
     },
     {
       "type": "header",
@@ -2709,7 +3109,13 @@
       "type": "text",
       "id": "bs4-thumbnail-box-shadow",
       "label": "thumbnail-box-shadow",
-      "default": "0 1px 2px rgba(0,0,0,.075)"
+      "default": "0 1px 2px rgba($black,.075)"
+    },
+    {
+      "type": "text",
+      "id": "bs4-thumbnail-transition",
+      "label": "thumbnail-transition",
+      "default": "all .2s ease-in-out"
     },
     {
       "type": "header",
@@ -2720,6 +3126,12 @@
       "id": "bs4-figure-caption-font-size",
       "label": "figure-caption-font-size",
       "default": "90%"
+    },
+    {
+      "type": "text",
+      "id": "bs4-figure-caption-color",
+      "label": "figure-caption-color",
+      "default": "$gray-light"
     },
     {
       "type": "header",
@@ -2795,15 +3207,9 @@
     },
     {
       "type": "text",
-      "id": "bs4-carousel-text-shadow",
-      "label": "carousel-text-shadow",
-      "default": "0 1px 2px rgba(0,0,0,.6)"
-    },
-    {
-      "type": "color",
       "id": "bs4-carousel-control-color",
       "label": "carousel-control-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -2813,51 +3219,33 @@
     },
     {
       "type": "text",
-      "id": "bs4-carousel-control-sm-up-size",
-      "label": "carousel-control-sm-up-size",
-      "default": "30px"
-    },
-    {
-      "type": "text",
       "id": "bs4-carousel-control-opacity",
       "label": "carousel-control-opacity",
       "default": ".5"
     },
     {
       "type": "text",
-      "id": "bs4-carousel-control-font-size",
-      "label": "carousel-control-font-size",
-      "default": "20px"
+      "id": "bs4-carousel-indicator-width",
+      "label": "carousel-indicator-width",
+      "default": "30px"
     },
     {
       "type": "text",
-      "id": "bs4-carousel-indicators-width",
-      "label": "carousel-indicators-width",
-      "default": "60%"
+      "id": "bs4-carousel-indicator-height",
+      "label": "carousel-indicator-height",
+      "default": "3px"
     },
     {
       "type": "text",
-      "id": "bs4-carousel-indicator-size",
-      "label": "carousel-indicator-size",
-      "default": "10px"
+      "id": "bs4-carousel-indicator-spacer",
+      "label": "carousel-indicator-spacer",
+      "default": "3px"
     },
     {
       "type": "text",
-      "id": "bs4-carousel-indicator-active-size",
-      "label": "carousel-indicator-active-size",
-      "default": "12px"
-    },
-    {
-      "type": "color",
       "id": "bs4-carousel-indicator-active-bg",
       "label": "carousel-indicator-active-bg",
-      "default": "#fff"
-    },
-    {
-      "type": "color",
-      "id": "bs4-carousel-indicator-border-color",
-      "label": "carousel-indicator-border-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
@@ -2867,21 +3255,21 @@
     },
     {
       "type": "text",
-      "id": "bs4-carousel-caption-sm-up-width",
-      "label": "carousel-caption-sm-up-width",
-      "default": "60%"
-    },
-    {
-      "type": "color",
       "id": "bs4-carousel-caption-color",
       "label": "carousel-caption-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
       "type": "text",
-      "id": "bs4-carousel-icon-width",
-      "label": "carousel-icon-width",
+      "id": "bs4-carousel-control-icon-width",
+      "label": "carousel-control-icon-width",
       "default": "20px"
+    },
+    {
+      "type": "text",
+      "id": "bs4-carousel-transition",
+      "label": "carousel-transition",
+      "default": "transform .6s ease-in-out"
     },
     {
       "type": "header",
@@ -2889,21 +3277,27 @@
     },
     {
       "type": "text",
-      "id": "bs4-close-font-weight",
-      "label": "close-font-weight",
-      "default": "bold"
+      "id": "bs4-close-font-size",
+      "label": "close-font-size",
+      "default": "$font-size-base * 1.5"
     },
     {
-      "type": "color",
+      "type": "text",
+      "id": "bs4-close-font-weight",
+      "label": "close-font-weight",
+      "default": "$font-weight-bold"
+    },
+    {
+      "type": "text",
       "id": "bs4-close-color",
       "label": "close-color",
-      "default": "#000"
+      "default": "$black"
     },
     {
       "type": "text",
       "id": "bs4-close-text-shadow",
       "label": "close-text-shadow",
-      "default": "0 1px 0 #fff"
+      "default": "0 1px 0 $white"
     },
     {
       "type": "header",
@@ -2934,28 +3328,28 @@
       "default": "#bd4147"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-code-bg",
       "label": "code-bg",
-      "default": "#f7f7f9"
+      "default": "$gray-lightest"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-kbd-color",
       "label": "kbd-color",
-      "default": "#fff"
+      "default": "$white"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-kbd-bg",
       "label": "kbd-bg",
-      "default": "#333"
+      "default": "$gray-dark"
     },
     {
-      "type": "color",
+      "type": "text",
       "id": "bs4-pre-bg",
       "label": "pre-bg",
-      "default": "#f7f7f9"
+      "default": "$gray-lightest"
     },
     {
       "type": "text",

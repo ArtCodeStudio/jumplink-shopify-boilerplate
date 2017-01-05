@@ -2,6 +2,16 @@
 {% comment %} Bootstrap 4 [fork](https://github.com/JumpLinkNetwork/bootstrap-backward) with backward compatibility for Shopify by [JumpLink](https://www.jumplink.eu) {% endcomment %}
 
 {% comment %} Colors {% endcomment %}
+$white: {{settings.bs4-white}};
+$black: {{settings.bs4-black}};
+$red: {{settings.bs4-red}};
+$orange: {{settings.bs4-orange}};
+$yellow: {{settings.bs4-yellow}};
+$green: {{settings.bs4-green}};
+$blue: {{settings.bs4-blue}};
+$teal: {{settings.bs4-teal}};
+$pink: {{settings.bs4-pink}};
+$purple: {{settings.bs4-purple}};
 $gray-dark: {{settings.bs4-gray-dark}};
 $gray: {{settings.bs4-gray}};
 $gray-light: {{settings.bs4-gray-light}};
@@ -15,7 +25,6 @@ $brand-danger: {{settings.bs4-brand-danger}};
 $brand-inverse: {{settings.bs4-brand-inverse}};
 
 {% comment %} Options {% endcomment %}
-$enable-flex: {{settings.bs4-enable-flex}};
 $enable-rounded: {{settings.bs4-enable-rounded}};
 $enable-shadows: {{settings.bs4-enable-shadows}};
 $enable-gradients: {{settings.bs4-enable-gradients}};
@@ -36,11 +45,17 @@ $spacers-x-2: {{settings.bs4-spacers-x-2}};
 $spacers-y-2: {{settings.bs4-spacers-y-2}};
 $spacers-x-3: {{settings.bs4-spacers-x-3}};
 $spacers-y-3: {{settings.bs4-spacers-y-3}};
+$spacers-x-4: {{settings.bs4-spacers-x-4}};
+$spacers-y-4: {{settings.bs4-spacers-y-4}};
+$spacers-x-5: {{settings.bs4-spacers-x-5}};
+$spacers-y-5: {{settings.bs4-spacers-y-5}};
 $border-width: {{settings.bs4-border-width}};
 
 {% comment %} Body {% endcomment %}
 $body-bg: {{settings.bs4-body-bg}};
 $body-color: {{settings.bs4-body-color}};
+$inverse-bg: {{settings.bs4-inverse-bg}};
+$inverse-color: {{settings.bs4-inverse-color}};
 
 {% comment %} Links {% endcomment %}
 $link-color: {{settings.bs4-link-color}};
@@ -64,7 +79,12 @@ $container-max-widths-xl: {{settings.bs4-container-max-widths-xl}};
 
 {% comment %} Grid Columns {% endcomment %}
 $grid-columns: {{settings.bs4-grid-columns}};
-$grid-gutter-width: {{settings.bs4-grid-gutter-width}};
+$grid-gutter-width-base: {{settings.bs4-grid-gutter-width-base}};
+$grid-gutter-widths-xs: {{settings.bs4-grid-gutter-widths-xs}};
+$grid-gutter-widths-sm: {{settings.bs4-grid-gutter-widths-sm}};
+$grid-gutter-widths-md: {{settings.bs4-grid-gutter-widths-md}};
+$grid-gutter-widths-lg: {{settings.bs4-grid-gutter-widths-lg}};
+$grid-gutter-widths-xl: {{settings.bs4-grid-gutter-widths-xl}};
 
 {% comment %} Typography {% endcomment %}
 $font-family-sans-serif: {{settings.bs4-font-family-sans-serif}};
@@ -76,6 +96,9 @@ $font-size-base: {{settings.bs4-font-size-base}};
 $font-size-lg: {{settings.bs4-font-size-lg}};
 $font-size-sm: {{settings.bs4-font-size-sm}};
 $font-size-xs: {{settings.bs4-font-size-xs}};
+$font-weight-normal: {{settings.bs4-font-weight-normal}};
+$font-weight-bold: {{settings.bs4-font-weight-bold}};
+$font-weight-base: {{settings.bs4-font-weight-base}};
 $line-height-base: {{settings.bs4-line-height-base}};
 $font-size-h1: {{settings.bs4-font-size-h1}};
 $font-size-h2: {{settings.bs4-font-size-h2}};
@@ -83,6 +106,11 @@ $font-size-h3: {{settings.bs4-font-size-h3}};
 $font-size-h4: {{settings.bs4-font-size-h4}};
 $font-size-h5: {{settings.bs4-font-size-h5}};
 $font-size-h6: {{settings.bs4-font-size-h6}};
+$headings-margin-bottom: {{settings.bs4-headings-margin-bottom}};
+$headings-font-family: {{settings.bs4-headings-font-family}};
+$headings-font-weight: {{settings.bs4-headings-font-weight}};
+$headings-line-height: {{settings.bs4-headings-line-height}};
+$headings-color: {{settings.bs4-headings-color}};
 $display1-size: {{settings.bs4-display1-size}};
 $display2-size: {{settings.bs4-display2-size}};
 $display3-size: {{settings.bs4-display3-size}};
@@ -91,11 +119,7 @@ $display1-weight: {{settings.bs4-display1-weight}};
 $display2-weight: {{settings.bs4-display2-weight}};
 $display3-weight: {{settings.bs4-display3-weight}};
 $display4-weight: {{settings.bs4-display4-weight}};
-$headings-margin-bottom: {{settings.bs4-headings-margin-bottom}};
-$headings-font-family: {{settings.bs4-headings-font-family}};
-$headings-font-weight: {{settings.bs4-headings-font-weight}};
-$headings-line-height: {{settings.bs4-headings-line-height}};
-$headings-color: {{settings.bs4-headings-color}};
+$display-line-height: {{settings.bs4-display-line-height}};
 $lead-font-size: {{settings.bs4-lead-font-size}};
 $lead-font-weight: {{settings.bs4-lead-font-weight}};
 $small-font-size: {{settings.bs4-small-font-size}};
@@ -123,14 +147,21 @@ $component-active-color: {{settings.bs4-component-active-color}};
 $component-active-bg: {{settings.bs4-component-active-bg}};
 $caret-width: {{settings.bs4-caret-width}};
 $caret-width-lg: {{settings.bs4-caret-width-lg}};
+$transition-base: {{settings.bs4-transition-base}};
+$transition-fade: {{settings.bs4-transition-fade}};
+$transition-collapse: {{settings.bs4-transition-collapse}};
 
 {% comment %} Tables {% endcomment %}
 $table-cell-padding: {{settings.bs4-table-cell-padding}};
 $table-sm-cell-padding: {{settings.bs4-table-sm-cell-padding}};
 $table-bg: {{settings.bs4-table-bg}};
+$table-inverse-bg: {{settings.bs4-table-inverse-bg}};
+$table-inverse-color: {{settings.bs4-table-inverse-color}};
 $table-bg-accent: {{settings.bs4-table-bg-accent}};
 $table-bg-hover: {{settings.bs4-table-bg-hover}};
 $table-bg-active: {{settings.bs4-table-bg-active}};
+$table-head-bg: {{settings.bs4-table-head-bg}};
+$table-head-color: {{settings.bs4-table-head-color}};
 $table-border-width: {{settings.bs4-table-border-width}};
 $table-border-color: {{settings.bs4-table-border-color}};
 
@@ -140,6 +171,7 @@ $btn-padding-y: {{settings.bs4-btn-padding-y}};
 $btn-line-height: {{settings.bs4-btn-line-height}};
 $btn-font-weight: {{settings.bs4-btn-font-weight}};
 $btn-box-shadow: {{settings.bs4-btn-box-shadow}};
+$btn-focus-box-shadow: {{settings.bs4-btn-focus-box-shadow}};
 $btn-active-box-shadow: {{settings.bs4-btn-active-box-shadow}};
 $btn-primary-color: {{settings.bs4-btn-primary-color}};
 $btn-primary-bg: {{settings.bs4-btn-primary-bg}};
@@ -169,6 +201,7 @@ $btn-toolbar-margin: {{settings.bs4-btn-toolbar-margin}};
 $btn-border-radius: {{settings.bs4-btn-border-radius}};
 $btn-border-radius-lg: {{settings.bs4-btn-border-radius-lg}};
 $btn-border-radius-sm: {{settings.bs4-btn-border-radius-sm}};
+$btn-transition: {{settings.bs4-btn-transition}};
 
 {% comment %} Forms {% endcomment %}
 $input-padding-x: {{settings.bs4-input-padding-x}};
@@ -183,8 +216,10 @@ $input-box-shadow: {{settings.bs4-input-box-shadow}};
 $input-border-radius: {{settings.bs4-input-border-radius}};
 $input-border-radius-lg: {{settings.bs4-input-border-radius-lg}};
 $input-border-radius-sm: {{settings.bs4-input-border-radius-sm}};
+$input-bg-focus: {{settings.bs4-input-bg-focus}};
 $input-border-focus: {{settings.bs4-input-border-focus}};
 $input-box-shadow-focus: {{settings.bs4-input-box-shadow-focus}};
+$input-color-focus: {{settings.bs4-input-color-focus}};
 $input-color-placeholder: {{settings.bs4-input-color-placeholder}};
 $input-padding-x-sm: {{settings.bs4-input-padding-x-sm}};
 $input-padding-y-sm: {{settings.bs4-input-padding-y-sm}};
@@ -193,6 +228,14 @@ $input-padding-y-lg: {{settings.bs4-input-padding-y-lg}};
 $input-height: {{settings.bs4-input-height}};
 $input-height-lg: {{settings.bs4-input-height-lg}};
 $input-height-sm: {{settings.bs4-input-height-sm}};
+$input-transition: {{settings.bs4-input-transition}};
+$form-text-margin-top: {{settings.bs4-form-text-margin-top}};
+$form-feedback-margin-top: {{settings.bs4-form-feedback-margin-top}};
+$form-check-margin-bottom: {{settings.bs4-form-check-margin-bottom}};
+$form-check-input-gutter: {{settings.bs4-form-check-input-gutter}};
+$form-check-input-margin-y: {{settings.bs4-form-check-input-margin-y}};
+$form-check-input-margin-x: {{settings.bs4-form-check-input-margin-x}};
+$form-check-inline-margin-x: {{settings.bs4-form-check-inline-margin-x}};
 $form-group-margin-bottom: {{settings.bs4-form-group-margin-bottom}};
 $input-group-addon-bg: {{settings.bs4-input-group-addon-bg}};
 $input-group-addon-border-color: {{settings.bs4-input-group-addon-border-color}};
@@ -201,6 +244,7 @@ $custom-control-gutter: {{settings.bs4-custom-control-gutter}};
 $custom-control-spacer-x: {{settings.bs4-custom-control-spacer-x}};
 $custom-control-spacer-y: {{settings.bs4-custom-control-spacer-y}};
 $custom-control-indicator-size: {{settings.bs4-custom-control-indicator-size}};
+$custom-control-indicator-margin-y: {{settings.bs4-custom-control-indicator-margin-y}};
 $custom-control-indicator-bg: {{settings.bs4-custom-control-indicator-bg}};
 $custom-control-indicator-bg-size: {{settings.bs4-custom-control-indicator-bg-size}};
 $custom-control-indicator-box-shadow: {{settings.bs4-custom-control-indicator-box-shadow}};
@@ -216,16 +260,19 @@ $custom-control-active-indicator-bg: {{settings.bs4-custom-control-active-indica
 $custom-control-active-indicator-box-shadow: {{settings.bs4-custom-control-active-indicator-box-shadow}};
 $custom-checkbox-radius: {{settings.bs4-custom-checkbox-radius}};
 $custom-checkbox-indeterminate-bg: {{settings.bs4-custom-checkbox-indeterminate-bg}};
+$custom-checkbox-indeterminate-indicator-color: {{settings.bs4-custom-checkbox-indeterminate-indicator-color}};
 $custom-checkbox-indeterminate-box-shadow: {{settings.bs4-custom-checkbox-indeterminate-box-shadow}};
 $custom-radio-radius: {{settings.bs4-custom-radio-radius}};
 $custom-select-padding-x: {{settings.bs4-custom-select-padding-x}};
 $custom-select-padding-y: {{settings.bs4-custom-select-padding-y}};
 $custom-select-indicator-padding: {{settings.bs4-custom-select-indicator-padding}};
+$custom-select-line-height: {{settings.bs4-custom-select-line-height}};
 $custom-select-color: {{settings.bs4-custom-select-color}};
 $custom-select-disabled-color: {{settings.bs4-custom-select-disabled-color}};
 $custom-select-bg: {{settings.bs4-custom-select-bg}};
 $custom-select-disabled-bg: {{settings.bs4-custom-select-disabled-bg}};
 $custom-select-bg-size: {{settings.bs4-custom-select-bg-size}};
+$custom-select-indicator-color: {{settings.bs4-custom-select-indicator-color}};
 $custom-select-border-width: {{settings.bs4-custom-select-border-width}};
 $custom-select-border-color: {{settings.bs4-custom-select-border-color}};
 $custom-select-border-radius: {{settings.bs4-custom-select-border-radius}};
@@ -248,7 +295,12 @@ $custom-file-box-shadow: {{settings.bs4-custom-file-box-shadow}};
 $custom-file-button-color: {{settings.bs4-custom-file-button-color}};
 $custom-file-button-bg: {{settings.bs4-custom-file-button-bg}};
 $custom-file-text-placeholder-en: {{settings.bs4-custom-file-text-placeholder-en}};
+$custom-file-text-placeholder-de: {{settings.bs4-custom-file-text-placeholder-de}};
 $custom-file-text-button-label-en: {{settings.bs4-custom-file-text-button-label-en}};
+$custom-file-text-button-label-de: {{settings.bs4-custom-file-text-button-label-de}};
+$form-icon-success-color: {{settings.bs4-form-icon-success-color}};
+$form-icon-warning-color: {{settings.bs4-form-icon-warning-color}};
+$form-icon-danger-color: {{settings.bs4-form-icon-danger-color}};
 
 {% comment %} Dropdowns {% endcomment %}
 $dropdown-min-width: {{settings.bs4-dropdown-min-width}};
@@ -272,26 +324,32 @@ $dropdown-header-color: {{settings.bs4-dropdown-header-color}};
 $zindex-dropdown-backdrop: {{settings.bs4-zindex-dropdown-backdrop}};
 $zindex-navbar: {{settings.bs4-zindex-navbar}};
 $zindex-dropdown: {{settings.bs4-zindex-dropdown}};
+$zindex-fixed: {{settings.bs4-zindex-fixed}};
+$zindex-sticky: {{settings.bs4-zindex-sticky}};
+$zindex-modal-backdrop: {{settings.bs4-zindex-modal-backdrop}};
+$zindex-modal: {{settings.bs4-zindex-modal}};
 $zindex-popover: {{settings.bs4-zindex-popover}};
 $zindex-tooltip: {{settings.bs4-zindex-tooltip}};
-$zindex-navbar-fixed: {{settings.bs4-zindex-navbar-fixed}};
-$zindex-navbar-sticky: {{settings.bs4-zindex-navbar-sticky}};
-$zindex-modal-bg: {{settings.bs4-zindex-modal-bg}};
-$zindex-modal: {{settings.bs4-zindex-modal}};
 
 {% comment %} Navbar {% endcomment %}
 $navbar-border-radius: {{settings.bs4-navbar-border-radius}};
 $navbar-padding-x: {{settings.bs4-navbar-padding-x}};
 $navbar-padding-y: {{settings.bs4-navbar-padding-y}};
 $navbar-brand-padding-y: {{settings.bs4-navbar-brand-padding-y}};
-$navbar-dark-color: {{settings.bs4-navbar-dark-color}};
-$navbar-dark-hover-color: {{settings.bs4-navbar-dark-hover-color}};
-$navbar-dark-active-color: {{settings.bs4-navbar-dark-active-color}};
-$navbar-dark-disabled-color: {{settings.bs4-navbar-dark-disabled-color}};
+$navbar-toggler-padding-x: {{settings.bs4-navbar-toggler-padding-x}};
+$navbar-toggler-padding-y: {{settings.bs4-navbar-toggler-padding-y}};
+$navbar-toggler-font-size: {{settings.bs4-navbar-toggler-font-size}};
+$navbar-toggler-border-radius: {{settings.bs4-navbar-toggler-border-radius}};
+$navbar-inverse-color: {{settings.bs4-navbar-inverse-color}};
+$navbar-inverse-hover-color: {{settings.bs4-navbar-inverse-hover-color}};
+$navbar-inverse-active-color: {{settings.bs4-navbar-inverse-active-color}};
+$navbar-inverse-disabled-color: {{settings.bs4-navbar-inverse-disabled-color}};
+$navbar-inverse-toggler-border: {{settings.bs4-navbar-inverse-toggler-border}};
 $navbar-light-color: {{settings.bs4-navbar-light-color}};
 $navbar-light-hover-color: {{settings.bs4-navbar-light-hover-color}};
 $navbar-light-active-color: {{settings.bs4-navbar-light-active-color}};
 $navbar-light-disabled-color: {{settings.bs4-navbar-light-disabled-color}};
+$navbar-light-toggler-border: {{settings.bs4-navbar-light-toggler-border}};
 
 {% comment %} Navs {% endcomment %}
 $nav-item-margin: {{settings.bs4-nav-item-margin}};
@@ -321,6 +379,7 @@ $pagination-padding-x-sm: {{settings.bs4-pagination-padding-x-sm}};
 $pagination-padding-y-sm: {{settings.bs4-pagination-padding-y-sm}};
 $pagination-padding-x-lg: {{settings.bs4-pagination-padding-x-lg}};
 $pagination-padding-y-lg: {{settings.bs4-pagination-padding-y-lg}};
+$pagination-line-height: {{settings.bs4-pagination-line-height}};
 $pagination-color: {{settings.bs4-pagination-color}};
 $pagination-bg: {{settings.bs4-pagination-bg}};
 $pagination-border-width: {{settings.bs4-pagination-border-width}};
@@ -367,6 +426,9 @@ $card-link-hover-color: {{settings.bs4-card-link-hover-color}};
 $card-img-overlay-padding: {{settings.bs4-card-img-overlay-padding}};
 $card-deck-margin: {{settings.bs4-card-deck-margin}};
 $card-columns-sm-up-column-gap: {{settings.bs4-card-columns-sm-up-column-gap}};
+$card-columns-count: {{settings.bs4-card-columns-count}};
+$card-columns-gap: {{settings.bs4-card-columns-gap}};
+$card-columns-margin: {{settings.bs4-card-columns-margin}};
 
 {% comment %} Tooltips {% endcomment %}
 $tooltip-max-width: {{settings.bs4-tooltip-max-width}};
@@ -396,27 +458,26 @@ $popover-arrow-color: {{settings.bs4-popover-arrow-color}};
 $popover-arrow-outer-width: {{settings.bs4-popover-arrow-outer-width}};
 $popover-arrow-outer-color: {{settings.bs4-popover-arrow-outer-color}};
 
-{% comment %} Tags {% endcomment %}
-$tag-default-bg: {{settings.bs4-tag-default-bg}};
-$tag-primary-bg: {{settings.bs4-tag-primary-bg}};
-$tag-success-bg: {{settings.bs4-tag-success-bg}};
-$tag-info-bg: {{settings.bs4-tag-info-bg}};
-$tag-warning-bg: {{settings.bs4-tag-warning-bg}};
-$tag-danger-bg: {{settings.bs4-tag-danger-bg}};
-$tag-color: {{settings.bs4-tag-color}};
-$tag-link-hover-color: {{settings.bs4-tag-link-hover-color}};
-$tag-font-size: {{settings.bs4-tag-font-size}};
-$tag-font-weight: {{settings.bs4-tag-font-weight}};
-$tag-padding-x: {{settings.bs4-tag-padding-x}};
-$tag-padding-y: {{settings.bs4-tag-padding-y}};
-$tag-pill-padding-x: {{settings.bs4-tag-pill-padding-x}};
-$tag-pill-border-radius: {{settings.bs4-tag-pill-border-radius}};
+{% comment %} Badges {% endcomment %}
+$badge-default-bg: {{settings.bs4-badge-default-bg}};
+$badge-primary-bg: {{settings.bs4-badge-primary-bg}};
+$badge-success-bg: {{settings.bs4-badge-success-bg}};
+$badge-info-bg: {{settings.bs4-badge-info-bg}};
+$badge-warning-bg: {{settings.bs4-badge-warning-bg}};
+$badge-danger-bg: {{settings.bs4-badge-danger-bg}};
+$badge-color: {{settings.bs4-badge-color}};
+$badge-link-hover-color: {{settings.bs4-badge-link-hover-color}};
+$badge-font-size: {{settings.bs4-badge-font-size}};
+$badge-font-weight: {{settings.bs4-badge-font-weight}};
+$badge-padding-x: {{settings.bs4-badge-padding-x}};
+$badge-padding-y: {{settings.bs4-badge-padding-y}};
+$badge-pill-padding-x: {{settings.bs4-badge-pill-padding-x}};
+$badge-pill-border-radius: {{settings.bs4-badge-pill-border-radius}};
 
 {% comment %} Modals {% endcomment %}
 $modal-inner-padding: {{settings.bs4-modal-inner-padding}};
 $modal-dialog-margin: {{settings.bs4-modal-dialog-margin}};
 $modal-dialog-sm-up-margin-y: {{settings.bs4-modal-dialog-sm-up-margin-y}};
-$modal-title-padding: {{settings.bs4-modal-title-padding}};
 $modal-title-line-height: {{settings.bs4-modal-title-line-height}};
 $modal-content-bg: {{settings.bs4-modal-content-bg}};
 $modal-content-border-color: {{settings.bs4-modal-content-border-color}};
@@ -429,12 +490,16 @@ $modal-header-border-color: {{settings.bs4-modal-header-border-color}};
 $modal-footer-border-color: {{settings.bs4-modal-footer-border-color}};
 $modal-header-border-width: {{settings.bs4-modal-header-border-width}};
 $modal-footer-border-width: {{settings.bs4-modal-footer-border-width}};
+$modal-header-padding: {{settings.bs4-modal-header-padding}};
 $modal-lg: {{settings.bs4-modal-lg}};
 $modal-md: {{settings.bs4-modal-md}};
 $modal-sm: {{settings.bs4-modal-sm}};
+$modal-transition: {{settings.bs4-modal-transition}};
 
 {% comment %} Alerts {% endcomment %}
-$alert-padding: {{settings.bs4-alert-padding}};
+$alert-padding-x: {{settings.bs4-alert-padding-x}};
+$alert-padding-y: {{settings.bs4-alert-padding-y}};
+$alert-margin-bottom: {{settings.bs4-alert-margin-bottom}};
 $alert-border-radius: {{settings.bs4-alert-border-radius}};
 $alert-link-font-weight: {{settings.bs4-alert-link-font-weight}};
 $alert-border-width: {{settings.bs4-alert-border-width}};
@@ -452,21 +517,23 @@ $alert-danger-text: {{settings.bs4-alert-danger-text}};
 $alert-danger-border: {{settings.bs4-alert-danger-border}};
 
 {% comment %} Progress Bars {% endcomment %}
+$progress-height: {{settings.bs4-progress-height}};
+$progress-font-size: {{settings.bs4-progress-font-size}};
 $progress-bg: {{settings.bs4-progress-bg}};
-$progress-bar-color: {{settings.bs4-progress-bar-color}};
 $progress-border-radius: {{settings.bs4-progress-border-radius}};
 $progress-box-shadow: {{settings.bs4-progress-box-shadow}};
+$progress-bar-color: {{settings.bs4-progress-bar-color}};
 $progress-bar-bg: {{settings.bs4-progress-bar-bg}};
-$progress-bar-success-bg: {{settings.bs4-progress-bar-success-bg}};
-$progress-bar-warning-bg: {{settings.bs4-progress-bar-warning-bg}};
-$progress-bar-danger-bg: {{settings.bs4-progress-bar-danger-bg}};
-$progress-bar-info-bg: {{settings.bs4-progress-bar-info-bg}};
+$progress-bar-animation-timing: {{settings.bs4-progress-bar-animation-timing}};
 
 {% comment %} List Group {% endcomment %}
+$list-group-color: {{settings.bs4-list-group-color}};
 $list-group-bg: {{settings.bs4-list-group-bg}};
 $list-group-border-color: {{settings.bs4-list-group-border-color}};
 $list-group-border-width: {{settings.bs4-list-group-border-width}};
 $list-group-border-radius: {{settings.bs4-list-group-border-radius}};
+$list-group-item-padding-x: {{settings.bs4-list-group-item-padding-x}};
+$list-group-item-padding-y: {{settings.bs4-list-group-item-padding-y}};
 $list-group-hover-bg: {{settings.bs4-list-group-hover-bg}};
 $list-group-active-color: {{settings.bs4-list-group-active-color}};
 $list-group-active-bg: {{settings.bs4-list-group-active-bg}};
@@ -476,11 +543,10 @@ $list-group-disabled-color: {{settings.bs4-list-group-disabled-color}};
 $list-group-disabled-bg: {{settings.bs4-list-group-disabled-bg}};
 $list-group-disabled-text-color: {{settings.bs4-list-group-disabled-text-color}};
 $list-group-link-color: {{settings.bs4-list-group-link-color}};
-$list-group-link-hover-color: {{settings.bs4-list-group-link-hover-color}};
 $list-group-link-heading-color: {{settings.bs4-list-group-link-heading-color}};
-$list-group-item-padding-x: {{settings.bs4-list-group-item-padding-x}};
-$list-group-item-padding-y: {{settings.bs4-list-group-item-padding-y}};
-$list-group-item-heading-margin-bottom: {{settings.bs4-list-group-item-heading-margin-bottom}};
+$list-group-link-hover-color: {{settings.bs4-list-group-link-hover-color}};
+$list-group-link-active-color: {{settings.bs4-list-group-link-active-color}};
+$list-group-link-active-bg: {{settings.bs4-list-group-link-active-bg}};
 
 {% comment %} Image Thumbnails {% endcomment %}
 $thumbnail-padding: {{settings.bs4-thumbnail-padding}};
@@ -489,9 +555,11 @@ $thumbnail-border-width: {{settings.bs4-thumbnail-border-width}};
 $thumbnail-border-color: {{settings.bs4-thumbnail-border-color}};
 $thumbnail-border-radius: {{settings.bs4-thumbnail-border-radius}};
 $thumbnail-box-shadow: {{settings.bs4-thumbnail-box-shadow}};
+$thumbnail-transition: {{settings.bs4-thumbnail-transition}};
 
 {% comment %} Figures {% endcomment %}
 $figure-caption-font-size: {{settings.bs4-figure-caption-font-size}};
+$figure-caption-color: {{settings.bs4-figure-caption-color}};
 
 {% comment %} Breadcrumbs {% endcomment %}
 $breadcrumb-padding-y: {{settings.bs4-breadcrumb-padding-y}};
@@ -508,23 +576,20 @@ $media-heading-margin-bottom: {{settings.bs4-media-heading-margin-bottom}};
 $media-alignment-padding-x: {{settings.bs4-media-alignment-padding-x}};
 
 {% comment %} Carousel {% endcomment %}
-$carousel-text-shadow: {{settings.bs4-carousel-text-shadow}};
 $carousel-control-color: {{settings.bs4-carousel-control-color}};
 $carousel-control-width: {{settings.bs4-carousel-control-width}};
-$carousel-control-sm-up-size: {{settings.bs4-carousel-control-sm-up-size}};
 $carousel-control-opacity: {{settings.bs4-carousel-control-opacity}};
-$carousel-control-font-size: {{settings.bs4-carousel-control-font-size}};
-$carousel-indicators-width: {{settings.bs4-carousel-indicators-width}};
-$carousel-indicator-size: {{settings.bs4-carousel-indicator-size}};
-$carousel-indicator-active-size: {{settings.bs4-carousel-indicator-active-size}};
+$carousel-indicator-width: {{settings.bs4-carousel-indicator-width}};
+$carousel-indicator-height: {{settings.bs4-carousel-indicator-height}};
+$carousel-indicator-spacer: {{settings.bs4-carousel-indicator-spacer}};
 $carousel-indicator-active-bg: {{settings.bs4-carousel-indicator-active-bg}};
-$carousel-indicator-border-color: {{settings.bs4-carousel-indicator-border-color}};
 $carousel-caption-width: {{settings.bs4-carousel-caption-width}};
-$carousel-caption-sm-up-width: {{settings.bs4-carousel-caption-sm-up-width}};
 $carousel-caption-color: {{settings.bs4-carousel-caption-color}};
-$carousel-icon-width: {{settings.bs4-carousel-icon-width}};
+$carousel-control-icon-width: {{settings.bs4-carousel-control-icon-width}};
+$carousel-transition: {{settings.bs4-carousel-transition}};
 
 {% comment %} Close {% endcomment %}
+$close-font-size: {{settings.bs4-close-font-size}};
 $close-font-weight: {{settings.bs4-close-font-weight}};
 $close-color: {{settings.bs4-close-color}};
 $close-text-shadow: {{settings.bs4-close-text-shadow}};

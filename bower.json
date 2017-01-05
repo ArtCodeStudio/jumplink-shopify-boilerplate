@@ -1,5 +1,6 @@
 {
   "name": "jumplink-shopify-boilerplate",
+  "version": "0.0.2",
   "description": "Shopify theme framework based on Bootstrap 4",
   "main": "gulpfile.js",
   "authors": [
@@ -20,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-backward": "JumpLinkNetwork/bootstrap-backward#v4-0-0-alpha-4-scss-backward",
-    "sass-autoprefixer": "JumpLinkNetwork/sass-autoprefixer"
+    "bootstrap-backward": "JumpLinkNetwork/bootstrap-backward#v4-0-0-alpha-5-scss-backward",
+    "sass-autoprefixer": "^1.0.1"
   }
 }

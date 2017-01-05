@@ -21,5 +21,22 @@ All Bootstrap 4 Variables full customizable on runtime:
 * run `gulp bootstrap_theme_settings` tp create bootstrap variables for the settings_schema.json
 * run `gulp theme_settings ` - to create settings_schema.json
 
+### Test
+
+To test the scss file use sass v3.2.6, because this version is used by shopify:
+
+```
+gem install sass --user-install -v 3.2.6
+```
+
+or
+```
+sudo su -c "gem uninstall sass -v 3.2.6"
+```
+and compile the file with
+```
+npm run sass_ruby
+```
+
 ## See also
  * [Bootstrap 4 Boilerplate for OctoberCMS](https://github.com/JumpLinkNetwork/jumplink-october-boilerplate)
